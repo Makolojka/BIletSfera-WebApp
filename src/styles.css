@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0;
+  font-family: Bahnschrift; }
+:root {
+  --main-color: #6B3FA0;
+  --main-bg-color: rgba(107, 63, 160, 0.84);
+  --secondary-color: #e0c500;
+  --third-color: #B46BDB;
+  --fourth-color: #666666;
+  --fifth-color: #944FC7;
+}

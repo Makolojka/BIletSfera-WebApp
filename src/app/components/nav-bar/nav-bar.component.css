@@ -1,0 +1,92 @@
+.bg
+{
+  background-color: var(--main-bg-color);
+  color: white;
+}
+
+.spacer
+{
+  flex: 1 1 auto;
+}
+
+.margin-right
+{
+  margin-right: 1em;
+  font-family: Bahnschrift;
+}
+
+.menu-button{
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.logo
+{
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+::ng-deep .customize {
+  background: var(--main-bg-color);
+  z-index: 999999;
+}
+
+.toolbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background-color: var(--main-bg-color);
+}
+
+.menu-element
+{
+  transition: all 0.5s ease;
+  border: 0px;
+  background-color: var(--main-bg-color);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  font-family: Roboto;
+}
+.menu-element:hover {
+  transition: all 0.5s ease;
+  border: 0px;
+  background-color: var(--main-bg-color);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.cart{
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.profile{
+  transition: all 0.3s ease;
+}
+
+.cart:hover, .profile:hover
+{
+  transition: all 0.3s ease;
+  color: var(--secondary-color);
+}
+
