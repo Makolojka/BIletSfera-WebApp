@@ -28,12 +28,15 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { CarouselModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    NavBarComponent
+    NavBarComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
     MdbScrollspyModule,
     MdbTabsModule,
     MdbTooltipModule,
-    MdbValidationModule
+    MdbValidationModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
