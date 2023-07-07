@@ -1,7 +1,9 @@
 .bg
 {
-  background-color: var(--main-bg-color);
-  color: white;
+  background-color: var(--main-background);
+  color: black;
+  box-shadow: 0 1px 10px 0 var(--fourth-color);
+  display: flex;
 }
 
 .spacer
@@ -12,7 +14,6 @@
 .margin-right
 {
   margin-right: 1em;
-  font-family: Bahnschrift;
 }
 
 .menu-button{
@@ -24,21 +25,29 @@
 .logo
 {
   font-size: 24px;
-  margin-right: 20px;
+  text-decoration: none;
+  color: black;
+  padding: 0;
+  margin-left: 15px;
 }
 
 ::ng-deep .customize {
-  background: var(--main-bg-color);
-  z-index: 999999;
+  background-color: var(--main-bg-color);
+  /*z-index: 999999;*/
 }
 
 .toolbar-fixed {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 20;
   background-color: var(--main-bg-color);
+}
+
+.toolbar-fixed {
+  /*backdrop-filter: blur(10px);*/
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .menu-element
@@ -50,7 +59,7 @@
   padding: 10px;
   width: 100%;
   text-align: left;
-  font-family: Roboto;
+  font-family: Bahnschrift;
 }
 .menu-element:hover {
   transition: all 0.5s ease;
@@ -75,18 +84,203 @@
   margin-right: 10px;
 }
 
-.cart{
-  margin-right: 15px;
-  transition: all 0.3s ease;
-}
-
-.profile{
-  transition: all 0.3s ease;
-}
-
-.cart:hover, .profile:hover
+.tickets
 {
-  transition: all 0.3s ease;
-  color: var(--secondary-color);
+  transition: all 0.5s ease;
+  padding: 25px;
+  width: 100px;
+  width: 120px;
 }
 
+.tickets:hover
+{
+  cursor: pointer;
+  transition: all 0.5s ease;
+  background-color: var(--fifth-color);
+}
+
+.nav-button {
+  background-color: var(--main-bg-color);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar__input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+  width: 100%;
+  height: 40px;
+}
+
+.search-bar__button {
+  padding: 5px 12px;
+  background-color: var(--main-bg-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar__button i {
+  color: #fff;
+  transform: scale(0.8);
+  height: 15px;
+}
+
+.search-bar__input:focus,
+.search-bar__button:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-text
+{
+  text-align: center;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: var(--main-bg-color);
+}
+
+.nav-text
+{
+  text-align: center;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: black;
+  transition: all 0.5s ease;
+}
+
+.nav-text:hover
+{
+  transition: all 0.5s ease;
+  color: var(--main-bg-color);
+}
+
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.nav-column
+{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dropDownMenuNav ul li
+{
+  font-size: 16px;
+}
+
+.nav-a
+{
+  text-align: center;
+  font-size: 16px;
+  padding: 0;
+  margin: -10px;
+  color: black;
+  transition: all 0.5s ease;
+}
+
+.icon{
+  transform: scale(1.2);
+  margin: 5px;
+}
+
+/*-------*/
+.dropDownMenuNav {
+  position: relative;
+  margin:0 auto;
+  width:200px;
+  height:70px;
+  display:inline-block;
+  z-index: 999;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.dropDownMenuNav:hover
+{
+  transition: all 0.5s ease;
+  /*background-color: var(--fifth-color);*/
+  background-color: var(--fifth-color);
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.3);
+}
+
+.dropDownMenuNav ul {
+  margin:0;padding:0;
+  list-style-type:none;
+  float:left;
+  display:inline-block;
+
+  /*-webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+}
+
+.dropDownMenuNav ul li {
+  position:relative;
+  /*margin:0 20px 0 0;*/
+  float:left;
+  display:inline-block;
+}
+
+.dropDownMenuNav li > a:after { content: ''; } /* Change this in order to change the Dropdown symbol */
+
+.dropDownMenuNav li > a:only-child:after { content: ''; }
+
+.dropDownMenuNav ul li a {
+  padding:20px;
+  display:inline-block;
+  color: black;
+  text-decoration:none;
+}
+
+.dropDownMenuNav ul li a:hover {
+  transition: all 0.5s ease;
+  color: var(--main-bg-color);
+}
+
+.dropDownMenuNav ul li ul {
+  width: 200px;
+  display:none;
+  position:absolute;
+  left:0;
+  /*background: var(--fifth-color);*/
+  background: rgba(255,255,255,1);
+  float:left;
+}
+
+.dropDownMenuNav ul li ul li {
+  width:100%;
+  /*border-bottom:1px solid rgba(0, 0, 0, 0.8);*/
+
+}
+
+.dropDownMenuNav ul li:hover ul {
+  display:block;
+}
+
+.nav-div
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 12px;
+  width: 100%;
+  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+  /*border: 1px solid red;*/
+}
