@@ -30,6 +30,9 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselModule } from '@coreui/angular';
+import { FooterComponent } from './components/footer/footer.component';
+import { LatestEventsComponent } from './components/latest-events/latest-events.component';
+import { EventCardComponent } from './components/event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { CarouselModule } from '@coreui/angular';
     HomePageComponent,
     NavBarComponent,
     CarouselComponent,
+    FooterComponent,
+    LatestEventsComponent,
+    EventCardComponent,
   ],
   imports: [
     BrowserModule,

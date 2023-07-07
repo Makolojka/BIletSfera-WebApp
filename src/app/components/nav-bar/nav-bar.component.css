@@ -2,6 +2,8 @@
 {
   background-color: var(--main-background);
   color: black;
+  box-shadow: 0 1px 10px 0 var(--fourth-color);
+  display: flex;
 }
 
 .spacer
@@ -31,7 +33,7 @@
 
 ::ng-deep .customize {
   background-color: var(--main-bg-color);
-  z-index: 999999;
+  /*z-index: 999999;*/
 }
 
 .toolbar-fixed {
