@@ -1,4 +1,4 @@
-<mat-toolbar class="bg" style="height: 70px">
+<mat-toolbar class="bg" style="height: 70px; padding: 5px">
   <a class="logo" [routerLink]="['/']"><img src="assets/logo.png">BiletSfera</a>
   <div class="search-bar">
     <input type="text" placeholder="Search" class="search-bar__input">
@@ -6,15 +6,6 @@
       <i class="fa fa-search"></i>
     </button>
   </div>
-<!--  <a class="margin-right" mat-button href="#" [routerLink]="['/']">Home</a>-->
-<!--  <a class="margin-right" mat-button [routerLink]="['/about']">O autorze</a>-->
-
-<!--  <button mat-button [matMenuTriggerFor]="menu">Menu</button>-->
-<!--  <mat-menu #menu="matMenu" class="customize">-->
-<!--    <button class="menu-element" [routerLink]="['/user/liked']">Ulubione przepisy</button>-->
-<!--    <button class="menu-element" [routerLink]="['/userRecipes']">Przepisy użytkowników</button>-->
-<!--    <button class="menu-element" [routerLink]="['/addRecipe']">Dodaj przepis</button>-->
-<!--  </mat-menu>-->
 
   <div class="spacer"></div>
 
@@ -70,40 +61,47 @@
   </ul>
   </div>
 
-  <div class="tickets"><ul class="navbar-nav">
-    <!-- Notification dropdown -->
-    <li mdbDropdown class="nav-item dropdown">
-      <div class="nav-column">
-        <a class="nav-link dropdown-toggle hidden-arrow"
-           style="padding: 0; margin: 0"
-           href="#"
-           id="navbarDropdownMenuLinkProfile"
-           role="button"
-           mdbDropdownToggle
-           aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <a class="nav-a">Profil</a>
-      </div>
-      <ul mdbDropdownMenu
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-      >
-      </ul>
-    </li>
-    <!-- Notification dropdown -->
-  </ul>
-  </div>
-
-<!--  <div style="color: white" class="d-flex">-->
-<!--    <div class="center">-->
-<!--      <a class="nav-text" style="width: 140px" href="#" [routerLink]="['/login']">Zaloguj się</a>-->
-<!--      <a class="nav-text" style="width: 140px" href="#" [routerLink]="['/signup']">Zarejestruj się</a>-->
-<!--    </div>-->
+<!--  <div class="tickets" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
+<!--    <div class="nav-column"><mat-icon class="icon">person</mat-icon>-->
+<!--      <p class="nav-a">Profil</p></div>-->
 <!--  </div>-->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item class="nav-menu">
+      <span>Zaloguj się</span>
+    </button>
+    <button mat-menu-item>
+      <span>Zarejestruj się</span>
+    </button>
+  </mat-menu>
+
+<!--  <div class="tickets">-->
+<!--    <div class="nav-column"><mat-icon class="icon">person</mat-icon>-->
+<!--      <p class="nav-a">Profil</p></div>-->
+<!--  </div>-->
+  <nav class="dropDownMenuNav">
+      <ul>
+        <li style="width: 175px">
+          <div class="nav-div">
+            <div class="nav-column">
+              <mat-icon class="icon">person</mat-icon>
+              <p class="nav-a">Profil</p>
+            </div>
+          </div>
+          <ul style="text-align: left">
+            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Wydarzenia</a></li>
+            <li><a href="#">Bilety</a></li>
+            <li><a href="#">Polubione</a></li>
+            <li><a href="#">Obserwowane</a></li>
+            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Zaloguj się</a></li>
+            <li><a href="#">Zarejestruj się</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
 
 </mat-toolbar>
+
 
 
 <!--&lt;!&ndash; Navbar &ndash;&gt;-->

@@ -26,6 +26,7 @@
   text-decoration: none;
   color: black;
   padding: 0;
+  margin-left: 15px;
 }
 
 ::ng-deep .customize {
@@ -176,6 +177,11 @@
   justify-content: center;
 }
 
+.dropDownMenuNav ul li
+{
+  font-size: 16px;
+}
+
 .nav-a
 {
   text-align: center;
@@ -184,4 +190,95 @@
   margin: -10px;
   color: black;
   transition: all 0.5s ease;
+}
+
+.icon{
+  transform: scale(1.2);
+  margin: 5px;
+}
+
+/*-------*/
+.dropDownMenuNav {
+  position: relative;
+  margin:0 auto;
+  width:200px;
+  height:70px;
+  display:inline-block;
+  z-index: 999;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.dropDownMenuNav:hover
+{
+  transition: all 0.5s ease;
+  /*background-color: var(--fifth-color);*/
+  background-color: var(--fifth-color);
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.3);
+}
+
+.dropDownMenuNav ul {
+  margin:0;padding:0;
+  list-style-type:none;
+  float:left;
+  display:inline-block;
+
+  /*-webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+}
+
+.dropDownMenuNav ul li {
+  position:relative;
+  /*margin:0 20px 0 0;*/
+  float:left;
+  display:inline-block;
+}
+
+.dropDownMenuNav li > a:after { content: ''; } /* Change this in order to change the Dropdown symbol */
+
+.dropDownMenuNav li > a:only-child:after { content: ''; }
+
+.dropDownMenuNav ul li a {
+  padding:20px;
+  display:inline-block;
+  color: black;
+  text-decoration:none;
+}
+
+.dropDownMenuNav ul li a:hover {
+  transition: all 0.5s ease;
+  color: var(--main-bg-color);
+}
+
+.dropDownMenuNav ul li ul {
+  width: 200px;
+  display:none;
+  position:absolute;
+  left:0;
+  /*background: var(--fifth-color);*/
+  background: rgba(255,255,255,1);
+  float:left;
+}
+
+.dropDownMenuNav ul li ul li {
+  width:100%;
+  /*border-bottom:1px solid rgba(0, 0, 0, 0.8);*/
+
+}
+
+.dropDownMenuNav ul li:hover ul {
+  display:block;
+}
+
+.nav-div
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 12px;
+  width: 100%;
+  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
+  /*border: 1px solid red;*/
 }
