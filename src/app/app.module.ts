@@ -33,6 +33,8 @@ import { CarouselModule } from '@coreui/angular';
 import { FooterComponent } from './components/footer/footer.component';
 import { LatestEventsComponent } from './components/latest-events/latest-events.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import { MainButtonComponent } from './components/main-button/main-button.component';
+import { LikeButtonComponent } from './components/like-button/like-button.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { EventCardComponent } from './components/event-card/event-card.component
     FooterComponent,
     LatestEventsComponent,
     EventCardComponent,
+    MainButtonComponent,
+    LikeButtonComponent,
   ],
   imports: [
     BrowserModule,
