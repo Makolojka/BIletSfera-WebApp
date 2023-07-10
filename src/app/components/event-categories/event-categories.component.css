@@ -1,0 +1,59 @@
+.main {
+  padding: 25px 50px;
+}
+
+.popular {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.button-style {
+  color: var(--secondary-color);
+  /*background-color: var(--main-bg-color);*/
+  border: none;
+}
+
+h1 {
+  color: var(--third-color);
+  font-weight: 500;
+}
+
+.cat-button {
+  padding: 15px 15px;
+  background-color: var(--third-color);
+  color: var(--main-background);
+  border: none;
+  width: 220px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+  /*border: 2px solid #222;*/
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease-in-out;
+  flex-basis: calc(25% - 30px); /* 25% width minus margin to fit four buttons in a row */
+  margin: 15px; /* Adjust margin as needed for spacing between buttons */
+  display: flex; /* Add this to make the icon and text align properly */
+  align-items: center; /* Add this to vertically center the icon and text */
+}
+
+.icon {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.cat-name {
+  flex-grow: 1; /* Add this to allow the text to grow and prevent wrapping */
+  white-space: nowrap; /* Add this to prevent the text from wrapping */
+  overflow: hidden; /* Add this to hide any overflow of the text */
+  text-overflow: ellipsis; /* Add this to show an ellipsis (...) for truncated text */
+}
+
+
+.cat-button:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: var(--third-color-hover);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
