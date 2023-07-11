@@ -139,7 +139,20 @@ span{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border: 1px solid #ddd;
   margin-bottom: 5px;
-  padding: 10px;
+  padding: 10px 20px;
+}
+
+.tickets{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ticket-items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .additional-info h2,
@@ -161,12 +174,59 @@ span{
 
 /*TICKET*/
 .ticket {
-  background:
-    radial-gradient(20px at right, #0000 97%,#fff) right,
-    radial-gradient(20px at left , #0000 97%,#fff) left;
-  background-size: 51% 100%;
-  background-repeat: no-repeat;
-  height: 100px;
-  width: 200px;
-  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 10%));
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 900px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+  overflow: hidden;
+  color: black;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.left-vertical {
+  width: 20px;
+  height: 100%;
+  background-color: var(--third-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border: 0px solid var(--third-color);
+}
+
+/*.ticket .content {*/
+/*  flex-grow: 1;*/
+/*  padding: 10px;*/
+/*  color: var(--third-color);*/
+/*}*/
+
+.content-ticket {
+  display: flex;
+}
+
+.content-ticket .content-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content-ticket .content-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-left: 25px;
+}
+
+.content-ticket h3 {
+  padding: 10px;
+  margin: 0;
+}
+
+.content-line
+{
+  border-right: 2px dashed var(--third-color);
 }
