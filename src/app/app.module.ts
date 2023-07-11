@@ -37,6 +37,7 @@ import { MainButtonComponent } from './components/main-button/main-button.compon
 import { LikeButtonComponent } from './components/like-button/like-button.component';
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
 import { LoginComponent } from './components/login/login.component';
+import { EventDetailComponent } from './components/event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LoginComponent } from './components/login/login.component';
     LikeButtonComponent,
     EventCategoriesComponent,
     LoginComponent,
+    EventDetailComponent,
   ],
   imports: [
     BrowserModule,
