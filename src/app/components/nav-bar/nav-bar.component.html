@@ -1,4 +1,4 @@
-<mat-toolbar class="bg" style="height: 70px; padding: 5px;">
+<mat-toolbar class="bg toolbar-fixed" style="height: 60px; padding: 0px">
   <a class="logo" [routerLink]="['/']"><img src="assets/logo.png">BiletSfera</a>
   <div class="search-bar">
     <input type="text" placeholder="Search" class="search-bar__input">
@@ -20,10 +20,10 @@
            role="button"
            mdbDropdownToggle
            aria-expanded="false">
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart icon"></i>
           <span class="badge rounded-pill badge-notification bg-danger" style="background-color: var(--main-bg-color)!important;">0</span>
         </a>
-        <a class="nav-a">Polubione</a>
+<!--        <a class="nav-a">Polubione</a>-->
       </div>
       <ul mdbDropdownMenu
           class="dropdown-menu dropdown-menu-end"
@@ -46,10 +46,10 @@
         role="button"
         mdbDropdownToggle
         aria-expanded="false">
-        <i class="fas fa-ticket"></i>
+        <i class="fas fa-ticket icon"></i>
         <span class="badge rounded-pill badge-notification bg-danger" style="background-color: var(--main-bg-color)!important;">0</span>
       </a>
-      <a class="nav-a">Bilety</a>
+<!--      <a class="nav-a">Bilety</a>-->
       </div>
       <ul mdbDropdownMenu
           class="dropdown-menu dropdown-menu-end"
@@ -80,18 +80,18 @@
 <!--  </div>-->
   <nav class="dropDownMenuNav">
       <ul>
-        <li style="width: 175px">
+        <li style="width: 120px">
           <div class="nav-div">
             <div class="nav-column">
-              <mat-icon class="icon">person</mat-icon>
-              <p class="nav-a">Profil</p>
+              <mat-icon class="icon">menu</mat-icon>
+<!--              <p class="nav-a">Profil</p>-->
             </div>
           </div>
           <ul style="text-align: left">
             <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Wydarzenia</a></li>
-            <li><a href="#">Bilety</a></li>
-            <li><a href="#">Polubione</a></li>
-            <li><a href="#">Obserwowane</a></li>
+            <li><a href="#">Bilety(0)</a></li>
+            <li><a href="#">Polubione(0)</a></li>
+            <li><a href="#">Obserwowane(0)</a></li>
             <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Zaloguj się</a></li>
             <li><a href="#">Zarejestruj się</a></li>
           </ul>

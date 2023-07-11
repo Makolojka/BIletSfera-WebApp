@@ -25,11 +25,5 @@ export class CarouselComponent implements OnInit {
       title: 'Second slide',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
-    // this.slides[2] = {
-    //   id: 2,
-    //   src: 'https://res.cloudinary.com/practicaldev/image/fetch/s--kVDe1E4S--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://imgur.com/GnzKe6A.png',
-    //   title: 'Third slide',
-    //   subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-    // }
   }
 }
