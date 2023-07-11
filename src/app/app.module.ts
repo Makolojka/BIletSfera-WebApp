@@ -36,6 +36,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
 import { MainButtonComponent } from './components/main-button/main-button.component';
 import { LikeButtonComponent } from './components/like-button/like-button.component';
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EventCategoriesComponent } from './components/event-categories/event-ca
     MainButtonComponent,
     LikeButtonComponent,
     EventCategoriesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
