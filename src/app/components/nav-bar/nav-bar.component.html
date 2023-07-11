@@ -92,8 +92,8 @@
             <li><a href="#">Bilety(0)</a></li>
             <li><a href="#">Polubione(0)</a></li>
             <li><a href="#">Obserwowane(0)</a></li>
-            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Zaloguj się</a></li>
-            <li><a href="#">Zarejestruj się</a></li>
+            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a [routerLink]="['/login']">Zaloguj się</a></li>
+            <li><a [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a></li>
           </ul>
         </li>
       </ul>
