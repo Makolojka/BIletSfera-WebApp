@@ -103,3 +103,10 @@
 .w-250{
   width: 250px;
 }
+
+.btn-small{
+  font-size: 8px;
+  padding: 10px 10px;
+  margin: 0 auto;
+  width: 20px;
+}

@@ -1,3 +1,7 @@
+.main{
+  padding: 0px 80px;
+}
+
 .banner {
   position: relative;
   width: 100%;
@@ -82,7 +86,8 @@ span{
 .content {
   display: flex;
   margin: 0 60px;
-  color: var(--third-color);
+  /*color: var(--third-color);*/
+  color: black;
 }
 
 .content-left {
@@ -92,22 +97,99 @@ span{
 }
 
 .card {
-  width: 200px;
-  height: 200px;
   position: relative;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
 }
 
+.card:before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
 .card img {
-  width: 200px;
-  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.content-right {
+  flex-basis: 85%;
+  max-width: 85%;
+  padding: 10px;
+}
+
+.description,
+.tickets,
+.additional-info,
+.artists {
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+  border-top: 1px solid #ddd;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+}
+
+.additional-info h2,
+.artists h2 {
+  margin-top: 0;
+}
+
+.slider-container {
+  width: 100%; /* Set the width of the container */
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.slider {
+  display: flex;
+  white-space: nowrap; /* Prevent artist circles from wrapping */
+}
+
+/* width */
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--third-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-bg-color);
+}
+
+.artist-circle {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 125px;
+  max-height: 125px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+/*SIDE MENU*/
+.sticky{
+  position: fixed;
+  top: 80px;
+  overflow: hidden;
+  z-index: 10;
+  /*width: 100%;*/
+  padding: 10px;
+}
+
 .links {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
 }
 
@@ -120,32 +202,36 @@ span{
 .links li {
   padding: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  /*transition: all 0.2s ease;*/
 }
 
 .links li:hover {
-  background-color: #f9f9f9;
+  border-left: 1px solid var(--third-color);
+  /*transition: all 0.2s ease;*/
+  /*font-weight: 500;*/
 }
 
-.content-right {
-  flex-basis: 85%;
-  padding: 10px;
+.links a{
+  color: black;
 }
 
-.description,
-.tickets,
-.additional-info,
-.artists {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  padding: 10px 20px;
+.links a:hover{
+  color: var(--third-color);
 }
 
+.links a:hover li{
+  border-left: 1px solid var(--third-color);
+}
+
+
+
+/*TICKET*/
 .tickets{
   display: flex;
   justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .ticket-items{
@@ -153,39 +239,23 @@ span{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
-.additional-info h2,
-.artists h2 {
-  margin-top: 0;
-}
-
-.slider {
-  display: flex;
-}
-
-.artist-circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #ccc;
-  margin-right: 10px;
-}
-
-/*TICKET*/
 .ticket {
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 900px;
   height: 150px;
   background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid var(--third-color);
+  border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
   color: black;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+  margin: 20px 0px;
+  max-width: 100%;
 }
 
 .left-vertical {
@@ -193,17 +263,13 @@ span{
   height: 100%;
   background-color: var(--third-color);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-  border: 0px solid var(--third-color);
+  /*border: 0px solid var(--third-color);*/
+  transition: all 0.5s ease;
 }
-
-/*.ticket .content {*/
-/*  flex-grow: 1;*/
-/*  padding: 10px;*/
-/*  color: var(--third-color);*/
-/*}*/
 
 .content-ticket {
   display: flex;
+  justify-content: center;
 }
 
 .content-ticket .content-left {
@@ -218,7 +284,7 @@ span{
   justify-content: center;
   align-items: center;
   flex: 1;
-  margin-left: 25px;
+  margin: 15px;
 }
 
 .content-ticket h3 {
@@ -229,4 +295,115 @@ span{
 .content-line
 {
   border-right: 2px dashed var(--third-color);
+  opacity: 0.7;
+  transition: all 0.5s ease;
+}
+
+.content-right h2{
+  margin: 0;
+}
+
+h2
+{
+  padding-bottom: 15px;
+}
+
+.ticket:hover {
+  box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.ticket:hover .left-vertical {
+  background-color: var(--main-bg-color);
+  transition: all 0.5s ease;
+}
+
+.ticket:hover + .left-vertical {
+  transition: all 0.5s ease;
+}
+
+.ticket:hover .content-line {
+  border-right: 2px dashed var(--main-bg-color);
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+/*.ticket:hover + .content-line {*/
+/*  !*border-right: 2px dashed var(--third-color);*!*/
+/*  !*opacity: 1;*!*/
+/*  !*transition: all 0.5s ease;*!*/
+/*}*/
+@media screen and (max-width: 728px) {
+  .main{
+    padding: 0;
+  }
+
+  .content{
+    margin: 0;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .main{
+    padding: 0;
+  }
+
+  .content{
+    margin: 0;
+    justify-content: center;
+  }
+
+  .ticket{
+    flex-direction: column;
+    height: auto;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .content-ticket{
+    flex-direction: column;
+  }
+
+  .content-left{
+    margin-bottom: 10px;
+  }
+
+  /*.content-right{*/
+  /*  margin-left: 0px;*/
+  /*  width: 100%;*/
+  /*}*/
+
+  .content-line{
+    width: 100%;
+    border-bottom: 2px dashed var(--third-color);
+  }
+
+  .left-vertical{
+    height: 15px;
+    width: 100%;
+  }
+
+  .content-ticket .content-right{
+    flex-basis: 100%;
+    max-width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    /*width: 280px;*/
+  }
+
+  .content-ticket .align-center-column h3{
+    font-size: 14px;
+    pad: 0;
+  }
+
+  .content-ticket p{
+    font-size: 12px;
+    margin: 0px;
+  }
+
+  .content-ticket h2{
+    font-size: 14px;
+    padding: 0px;
+  }
 }
