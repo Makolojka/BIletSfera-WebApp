@@ -27,12 +27,13 @@
             "styles": [
               "src/styles.scss",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/mdb-ui-kit/css/mdb.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/assets/mdb.min.js"
+              "node_modules/mdb-ui-kit/js/mdb.min.js"
             ]
           },
           "configurations": {
