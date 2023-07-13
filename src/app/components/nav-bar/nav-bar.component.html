@@ -1,151 +1,118 @@
-<mat-toolbar class="bg toolbar-fixed" style="height: 60px; padding: 0px">
-  <a class="logo" [routerLink]="['/']"><img src="assets/logo.png">BiletSfera</a>
-  <div class="search-bar">
-    <input type="text" placeholder="Search" class="search-bar__input">
-    <button class="search-bar__button">
-      <i class="fa fa-search"></i>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid navbar-container">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
     </button>
-  </div>
 
-  <div class="spacer"></div>
-
-  <div class="tickets"><ul class="navbar-nav">
-    <!-- Notification dropdown -->
-    <li mdbDropdown class="nav-item dropdown">
-      <div class="nav-column">
-        <a class="nav-link dropdown-toggle hidden-arrow"
-           style="padding: 0; margin: 0"
-           href="#"
-           id="navbarDropdownMenuLinkLiked"
-           role="button"
-           mdbDropdownToggle
-           aria-expanded="false">
-          <i class="fas fa-heart icon"></i>
-          <span class="badge rounded-pill badge-notification bg-danger" style="background-color: var(--main-bg-color)!important;">0</span>
-        </a>
-<!--        <a class="nav-a">Polubione</a>-->
-      </div>
-      <ul mdbDropdownMenu
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-      >
-      </ul>
-    </li>
-    <!-- Notification dropdown -->
-  </ul>
-  </div>
-
-  <div class="tickets"><ul class="navbar-nav">
-    <!-- Notification dropdown -->
-    <li mdbDropdown class="nav-item dropdown">
-      <div class="nav-column">
-        <a class="nav-link dropdown-toggle hidden-arrow"
-           style="padding: 0; margin: 0"
-        href="#"
-        id="navbarDropdownMenuLink"
-        role="button"
-        mdbDropdownToggle
-        aria-expanded="false">
-        <i class="fas fa-ticket icon"></i>
-        <span class="badge rounded-pill badge-notification bg-danger" style="background-color: var(--main-bg-color)!important;">0</span>
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          height="15"
+          alt="MDB Logo"
+          loading="lazy"
+        />
       </a>
-<!--      <a class="nav-a">Bilety</a>-->
-      </div>
-      <ul mdbDropdownMenu
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-      >
-      </ul>
-    </li>
-    <!-- Notification dropdown -->
-  </ul>
-  </div>
-
-<!--  <div class="tickets" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
-<!--    <div class="nav-column"><mat-icon class="icon">person</mat-icon>-->
-<!--      <p class="nav-a">Profil</p></div>-->
-<!--  </div>-->
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item class="nav-menu">
-      <span>Zaloguj się</span>
-    </button>
-    <button mat-menu-item>
-      <span>Zarejestruj się</span>
-    </button>
-  </mat-menu>
-
-<!--  <div class="tickets">-->
-<!--    <div class="nav-column"><mat-icon class="icon">person</mat-icon>-->
-<!--      <p class="nav-a">Profil</p></div>-->
-<!--  </div>-->
-  <nav class="dropDownMenuNav">
-      <ul>
-        <li style="width: 120px">
-          <div class="nav-div">
-            <div class="nav-column">
-              <mat-icon class="icon">menu</mat-icon>
-<!--              <p class="nav-a">Profil</p>-->
-            </div>
-          </div>
-          <ul style="text-align: left">
-            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a href="#">Wydarzenia</a></li>
-            <li><a href="#">Bilety(0)</a></li>
-            <li><a href="#">Polubione(0)</a></li>
-            <li><a href="#">Obserwowane(0)</a></li>
-            <li style="box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);"><a [routerLink]="['/login']">Zaloguj się</a></li>
-            <li><a [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a></li>
-          </ul>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
         </li>
       </ul>
-    </nav>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
 
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
 
-</mat-toolbar>
-
-
-
-<!--&lt;!&ndash; Navbar &ndash;&gt;-->
-<!--<mat-toolbar class="bg toolbar-fixed div-center">-->
-<!--  <h2 class="logo"><img src="assets/logo.png">BiletSfera</h2>-->
-<!--  <a class="margin-right" mat-button>Kontakt</a>-->
-
-<!--&lt;!&ndash;  <button mat-button>Menu</button>&ndash;&gt;-->
-<!--&lt;!&ndash;  <mat-menu #menu="matMenu" class="customize">&ndash;&gt;-->
-<!--&lt;!&ndash;    <button class="menu-element" >Ulubione przepisy</button>&ndash;&gt;-->
-<!--&lt;!&ndash;    <button class="menu-element" >Przepisy użytkowników</button>&ndash;&gt;-->
-<!--&lt;!&ndash;    <button class="menu-element" >Dodaj przepis</button>&ndash;&gt;-->
-<!--&lt;!&ndash;  </mat-menu>&ndash;&gt;-->
-
-<!--  <div class="spacer"></div>-->
-
-<!--&lt;!&ndash;  <div style="color: white" class="d-flex" *ngIf="!authService.isLoggedIn()">&ndash;&gt;-->
-<!--&lt;!&ndash;    <a class="margin-right" mat-raised-button style="background-color: rgb(108, 178, 90);" href="#" [routerLink]="['/login']">Zaloguj się</a>&ndash;&gt;-->
-<!--&lt;!&ndash;    <a class="margin-right" mat-raised-button style="background-color: rgb(108, 178, 90);" href="#" [routerLink]="['/signup']">Zarejestruj się</a>&ndash;&gt;-->
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;  <a class="margin-right" mat-raised-button style="background-color: rgb(108, 178, 90);" *ngIf="authService.isLoggedIn()" (click)="signOut()">Wyloguj</a>&ndash;&gt;-->
-
-<!--    <ul class="navbar-nav">-->
-<!--      &lt;!&ndash; Notification dropdown &ndash;&gt;-->
-<!--      <li mdbDropdown class="nav-item dropdown">-->
-<!--        <a-->
-<!--          class="nav-link dropdown-toggle hidden-arrow"-->
-<!--          href="#"-->
-<!--          id="navbarDropdownMenuLink"-->
-<!--          role="button"-->
-<!--          mdbDropdownToggle-->
-<!--          aria-expanded="false"-->
-<!--        >-->
-<!--          <i class="fas fa-ticket"></i>-->
-<!--          <span class="badge rounded-pill badge-notification bg-danger">0</span>-->
-<!--        </a>-->
-<!--        <ul mdbDropdownMenu-->
-<!--            class="dropdown-menu dropdown-menu-end"-->
-<!--            aria-labelledby="navbarDropdownMenuLink"-->
-<!--        >-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--      &lt;!&ndash; Notification dropdown &ndash;&gt;-->
-<!--    </ul>-->
-<!--  <mat-icon class="profile">person</mat-icon>-->
-
-<!--</mat-toolbar>-->
+      <!-- Notifications -->
+      <div class="dropdown">
+        <a
+          class="text-reset me-3 dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bell"></i>
+          <span class="badge rounded-pill badge-notification bg-danger">1</span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end dropdown-menu-start"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="#">Some news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Another news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+            class="rounded-circle"
+            height="25"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end dropdown-menu-start"
+          aria-labelledby="navbarDropdownMenuAvatar"
+        >
+          <li>
+            <a class="dropdown-item" href="#">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

@@ -29,7 +29,6 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { CarouselModule } from '@coreui/angular';
 import { FooterComponent } from './components/footer/footer.component';
 import { LatestEventsComponent } from './components/latest-events/latest-events.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
@@ -80,7 +79,6 @@ import { EventDetailComponent } from './components/event-detail/event-detail.com
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
