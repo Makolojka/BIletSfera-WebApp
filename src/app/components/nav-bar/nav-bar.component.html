@@ -60,38 +60,27 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Likes -->
-      <div class="dropdown me-4">
-        <a
-          class="text-reset me-3 dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLinkLikes"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fas fa-heart fa-lg icon"></i>
-          <span class="badge rounded-pill badge-notification bg-danger">0</span>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end dropdown-menu-start"
-          aria-labelledby="navbarDropdownMenuLinkLikes"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Liked</a>
-          </li>
-        </ul>
+      <div class="position-relative me-5">
+        <a href="">
+        <i class="fas fa-heart fa-lg icon"></i>
+        <span class="badge rounded-pill badge-notification icon-bg">0</span>
+      </a>
       </div>
 
       <!-- Tickets icon -->
-      <div class="position-relative me-4">
+      <div class="position-relative me-5">
         <a id="ticketIcon" class="text-reset me-3 ticket-icon" href="#" (click)="toggleSidebar()">
           <i class="fas fa-ticket fa-lg icon"></i>
-          <span class="badge rounded-pill badge-notification bg-danger">0</span>
+          <span class="badge rounded-pill badge-notification icon-bg">0</span>
         </a>
       </div>
+
     <!--  Sidebar  -->
       <div [ngClass]="{'show': isSidebarVisible}" id="ticketSidebar" class="sidebar position-fixed bg-light">
         <div class="sidebar-content">
+          <div class="close-icon" (click)="toggleSidebar()">
+            <i class="fas fa-times fa-lg"></i>
+          </div>
           <h2>Twoje bilety</h2>
           <ul>
             <li>
@@ -179,12 +168,22 @@
           </li>
             <!-- More menu items here -->
           </ul>
+
+          <!--Bottom section-->
+          <div class="bottom-section">
+            <div class="cart-summary">
+              <span class="label">Suma:</span>
+              <span class="price">150,00zł</span>
+            </div>
+            <button class="sidebar-btn">Koszyk</button>
+            <button class="sidebar-btn-var">Kup bilety</button>
+          </div>
         </div>
       </div>
 
       <div class="backdrop" [ngClass]="{'show': isSidebarVisible}" (click)="toggleSidebar()"></div>
 
-      <!-- Avatar -->
+      <!-- Profil -->
       <div class="dropdown">
         <a
           class="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -206,11 +205,11 @@
           class="dropdown-menu dropdown-menu-end dropdown-menu-start ml-4 rounded-0"
           aria-labelledby="navbarDropdownMenuAvatar"
         >
-          <li><h5 class="dropdown-header mb-0">Główne</h5></li>
+          <li><h5 class="dropdown-header mb-0 text">Główne</h5></li>
           <li>
             <a class="dropdown-item" >Wydarzenia</a>
           </li>
-          <li><h5 class="dropdown-header mb-0">Moje</h5></li>
+          <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>
             <a class="dropdown-item" >Bilety(0)</a>
           </li>
@@ -220,7 +219,7 @@
           <li>
             <a class="dropdown-item" >Obserwowane(0)</a>
           </li>
-          <li><h5 class="dropdown-header mb-0">Opcje</h5></li>
+          <li><h5 class="dropdown-header mb-0 text">Opcje</h5></li>
           <li>
             <a class="dropdown-item" [routerLink]="['/login']">Zaloguj się</a>
           </li>
