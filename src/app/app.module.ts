@@ -22,6 +22,7 @@ import { LikeButtonComponent } from './components/like-button/like-button.compon
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
 import { LoginComponent } from './components/login/login.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
+import { MultiItemCarouselComponent } from './components/multi-item-carousel/multi-item-carousel.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EventDetailComponent } from './components/event-detail/event-detail.com
     EventCategoriesComponent,
     LoginComponent,
     EventDetailComponent,
+    MultiItemCarouselComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,17 @@
   color: var(--third-color-hover);
 }
 
+.icon-bg{
+  background-color: var(--main-bg-color);
+  color: var(--main-background);
+}
+
+.text{
+  /*color: var(--third-color-hover);*/
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .dropdown-scrollable {
   max-height: 100%;
   overflow-y: auto;
@@ -181,4 +192,87 @@ ul {
 .sidebar-content h2{
   font-weight: 500;
   color: var(--third-color);
+}
+
+.close-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+}
+
+.close-icon:hover {
+  transform: rotate(90deg);
+}
+
+/*Bottom section*/
+.bottom-section {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 16px;
+  color: var(--third-color);
+}
+
+.price{
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--third-color);
+}
+
+.button-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--third-color);
+  background-color: transparent;
+  color: var(--third-color);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.sidebar-btn-var {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.sidebar-btn:hover {
+  border: 1px solid var(--third-color-hover);
+  color: var(--third-color-hover);
+  transition: all 0.3s ease;
+}
+
+.sidebar-btn-var:hover {
+  border: 1px solid var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--third-color);
+  transition: all 0.3s ease;
 }

@@ -1,0 +1,81 @@
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+
+@Component({
+  selector: 'multi-item-carousel',
+  templateUrl: './multi-item-carousel.component.html',
+  styleUrls: ['./multi-item-carousel.component.css']
+})
+export class MultiItemCarouselComponent implements OnInit{
+
+  private carousel: HTMLElement | null = null;
+  private carouselInner: HTMLElement | null = null;
+  private currentSlide: number = 0;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.carousel = document.getElementById('carousel') as HTMLElement;
+  }
+
+  ngAfterViewInit(): void {
+    if (this.carousel) {
+      this.carouselInner = this.carousel.querySelector('.custom-carousel-inner') as HTMLElement;
+      this.attachEventListeners();
+      this.showSlide(this.currentSlide);
+    }
+  }
+
+  private attachEventListeners(): void {
+    const prevButton = this.carousel!.querySelector('.carousel-control-prev') as HTMLButtonElement;
+    const nextButton = this.carousel!.querySelector('.carousel-control-next') as HTMLButtonElement;
+
+    prevButton.addEventListener('click', () => {
+      this.prevSlide();
+    });
+
+    nextButton.addEventListener('click', () => {
+      this.nextSlide();
+    });
+
+    this.updateButtonState(0); // Update button state initially
+  }
+
+  private updateButtonState(maxSlideIndex: number): void {
+    const prevButton = this.carousel!.querySelector('.carousel-control-prev') as HTMLButtonElement;
+    const nextButton = this.carousel!.querySelector('.carousel-control-next') as HTMLButtonElement;
+
+    prevButton.disabled = this.currentSlide === 0;
+    nextButton.disabled = this.currentSlide === maxSlideIndex;
+
+    prevButton.classList.toggle('carousel-control-disabled', prevButton.disabled);
+    nextButton.classList.toggle('carousel-control-disabled', nextButton.disabled);
+  }
+
+  private showSlide(slideIndex: number): void {
+    if (this.carouselInner) {
+      const slides = this.carouselInner.getElementsByClassName('custom-carousel-item');
+      const slideWidth = slides[0].clientWidth; // Get the width of a single slide
+
+      const containerWidth = this.carousel!.offsetWidth; // Get the width of the carousel container
+      const visibleSlides = Math.floor(containerWidth / slideWidth); // Calculate the number of visible slides
+
+      const maxSlideIndex = slides.length - visibleSlides; // Calculate the maximum slide index
+      slideIndex = Math.max(0, Math.min(slideIndex, maxSlideIndex)); // Clamp the slide index within the valid range
+
+      const translateX = -(slideIndex * slideWidth); // Calculate the translateX value
+
+      this.carouselInner.style.transform = `translateX(${translateX}px)`;
+      this.currentSlide = slideIndex;
+
+      this.updateButtonState(maxSlideIndex); // Update button state after showing slide
+    }
+  }
+
+  private prevSlide(): void {
+    this.showSlide(this.currentSlide - 1);
+  }
+
+  private nextSlide(): void {
+    this.showSlide(this.currentSlide + 1);
+  }
+}
