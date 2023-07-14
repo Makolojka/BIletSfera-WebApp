@@ -1,304 +1,184 @@
-.bg
+.navbar{
+  min-height: 70px;
+}
+
+.icon{
+  color: var(--third-color);
+}
+
+.icon:hover{
+  color: var(--third-color-hover);
+}
+
+.dropdown-scrollable {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.ticket-item
 {
-  background-color: var(--main-background);
-  color: black;
-  box-shadow: 0 1px 10px 0 var(--fourth-color);
-  display: flex;
-  color: #222;
+  border: 1px solid var(--third-color-hover);
 }
 
-.spacer
-{
-  flex: 1 1 auto;
+.sidebar {
+  top: 0;
+  right: 0;
+  width: 25%; /* Adjust the width of the sidebar */
+  height: calc(100vh - 60px); /* Adjust the height as needed */
+  min-height: 100%;
+  overflow-y: auto;
+  z-index: 9999;
+  transition: transform 0.3s ease-out;
+  transform: translateX(100%); /* Initially translate the sidebar outside the viewport */
 }
 
-.margin-right
-{
-  margin-right: 1em;
+.sidebar.show {
+  transform: translateX(0); /* Translate the sidebar back to its original position */
 }
 
-.menu-button{
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
+.sidebar.show .sidebar-content {
+  opacity: 1; /* Make the content visible when the sidebar is shown */
+  visibility: visible; /* Show the content */
 }
 
-.logo
-{
-  font-size: 16px;
-  text-decoration: none;
-  color: black;
-  padding: 0;
-  margin-left: 15px;
+.sidebar-content {
+  padding: 20px;
+  height: 100%;
+  opacity: 0; /* Initially hide the content */
+  visibility: hidden; /* Hide the content */
+  transition: opacity 0.3s ease-out; /* Add a transition effect for opacity */
 }
 
-::ng-deep .customize {
-  background-color: var(--main-bg-color);
-  /*z-index: 999999;*/
+@media screen and (max-width: 1100px) {
+  .sidebar {
+    right: -30%; /* Adjust the initial position of the sidebar */
+    width: 30%; /* Adjust the width for smaller screens */
+    transform: translateX(100%); /* Reset the transform property */
+  }
+
+  .sidebar.show {
+    transform: translateX(-100%); /* Adjust the transform for smaller screens */
+  }
 }
 
-.toolbar-fixed {
+@media screen and (max-width: 768px) {
+  .sidebar {
+    right: -50%; /* Adjust the initial position of the sidebar */
+    width: 50%; /* Adjust the width for smaller screens */
+    transform: translateX(100%); /* Reset the transform property */
+  }
+
+  .sidebar.show {
+    transform: translateX(-100%); /* Adjust the transform for smaller screens */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sidebar {
+    right: -100%; /* Adjust the initial position of the sidebar */
+    width: 100%; /* Adjust the width for even smaller screens */
+    transform: translateX(100%); /* Reset the transform property */
+  }
+
+  .sidebar.show {
+    transform: translateX(-100%); /* Adjust the transform for even smaller screens */
+  }
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0; /* Hide the default scrollbar */
+}
+
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-}
-
-.toolbar-fixed {
-  backdrop-filter: blur(10px);
-  /*background-color: rgba(255, 255, 255, 0.5);*/
-}
-
-.menu-element
-{
-  transition: all 0.5s ease;
-  border: 0px;
-  background-color: var(--main-bg-color);
-  color: white;
-  padding: 10px;
-  width: 100%;
-  text-align: left;
-  font-family: Bahnschrift;
-}
-.menu-element:hover {
-  transition: all 0.5s ease;
-  border: 0px;
-  background-color: var(--main-bg-color);
-  color: white;
-  padding: 10px;
-  width: 100%;
-  text-align: left;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  margin-right: 20px;
-}
-
-.logo img {
-  height: 36px;
-  width: auto;
-  margin-right: 10px;
-}
-
-.tickets
-{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  transition: all 0.5s ease;
   height: 100%;
-  width: 100px;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.6); /* Adjust the background color and opacity as desired */
+  backdrop-filter: blur(5px); /* Adjust the blur intensity as desired */
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.tickets:hover
-{
-  cursor: pointer;
-  transition: all 0.5s ease;
-  background-color: var(--fifth-color);
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.nav-button {
-  background-color: var(--main-bg-color);
-}
-
-.search-bar {
+.menu-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: 300px;
+  padding: 10px;
+  border-bottom: 1px solid var(--third-color-hover);
 }
 
-.search-bar__input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 5px;
-  width: 100%;
-  height: 32px;
-  font-size: 14px;
-}
-
-.search-bar__button {
-  padding: 0px 8px;
-  background-color: var(--main-bg-color);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.search-bar__button i {
-  color: #fff;
-  transform: scale(0.7);
-  height: 10px;
-}
-
-.search-bar__input:focus,
-.search-bar__button:focus {
-  outline: none;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-.nav-text
-{
-  text-align: center;
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  color: var(--main-bg-color);
-}
-
-.nav-text
-{
-  text-align: center;
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  color: black;
-  transition: all 0.5s ease;
-}
-
-.nav-text:hover
-{
-  transition: all 0.5s ease;
-  color: var(--main-bg-color);
-}
-
-
-.center{
+.left-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.nav-column
-{
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
+  margin-right: 15px;
 }
 
-.dropDownMenuNav ul li
-{
-  font-size: 16px;
+.title {
+  font-weight: bold;
+  color: var(--third-color)
 }
 
-.nav-a
-{
-  text-align: center;
-  font-size: 12px;
-  padding: 0;
-  margin: -10px;
-  color: black;
-  transition: all 0.5s ease;
-  color: #222;
+.date,
+.location {
+  margin: 5px 0;
 }
 
-.icon{
-  transform: scale(1);
-  margin: 5px;
+.date span,
+.location span {
+  font-weight: normal;
 }
 
-/*-------*/
-.dropDownMenuNav.tickets {
-  position: relative;
-  margin:0 auto;
-  width:120px;
-  height:70px;
-  display:inline-block;
-  z-index: 999;
-  justify-content: center;
-  text-align: center;
-  transition: all 0.5s ease;
-}
-
-.dropDownMenuNav:hover
-{
-  transition: all 0.5s ease;
-  /*background-color: var(--fifth-color);*/
-  background-color: var(--fifth-color);
-  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.3);
-}
-
-.dropDownMenuNav ul {
-  margin:0;padding:0;
-  list-style-type:none;
-  float:left;
-  display:inline-block;
-
-  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.3);
-  /*-webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
-  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
-}
-
-.dropDownMenuNav ul:first-child {
-  box-shadow: none;
-}
-
-.dropDownMenuNav ul li {
-  position:relative;
-  /*margin:0 20px 0 0;*/
-  float:left;
-  display:inline-block;
-}
-
-.dropDownMenuNav li > a:after { content: ''; } /* Change this in order to change the Dropdown symbol */
-
-.dropDownMenuNav li > a:only-child:after { content: ''; }
-
-.dropDownMenuNav ul li a {
-  padding:10px;
-  display:inline-block;
-  color: black;
-  text-decoration:none;
-  font-size: 12px;
-}
-
-.dropDownMenuNav ul li a:hover {
-  transition: all 0.5s ease;
-  color: var(--main-bg-color);
-}
-
-.dropDownMenuNav ul li ul {
-  width: 120px;
-  display:none;
-  position:absolute;
-  left:0;
-  /*background: var(--fifth-color);*/
-  background: rgba(255,255,255,1);
-  float:left;
-}
-
-.dropDownMenuNav ul li ul li {
-  width:100%;
-  /*border-bottom:1px solid rgba(0, 0, 0, 0.8);*/
-
-}
-
-.dropDownMenuNav ul li:hover ul {
-  display:block;
-}
-
-.nav-div
-{
+.right-section {
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 14px 0;
-  width: 100%;
-  /*box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
-  /*border: 1px solid red;*/
 }
 
-@media (max-width: 900px) {
-  .tickets {
-    display: none;
-  }
+.btn {
+  background-color: var(--third-color);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn:hover{
+  background-color: var(--third-color-hover);
+  color: white;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+/*.btn:hover i{*/
+/*  transition: all 0.3s ease;*/
+/*  font-size: 18px;*/
+/*}*/
+
+.plus-btn,
+.minus-btn {
+  /* Additional styles for the buttons, adjust as needed */
+}
+
+.counter {
+  margin: 0 15px;
+  font-weight: bold;
+  color: var(--third-color)
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.sidebar-content h2{
+  font-weight: 500;
+  color: var(--third-color);
 }
