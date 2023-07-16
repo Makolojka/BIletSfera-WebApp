@@ -16,7 +16,7 @@ export class MultiItemCarouselComponent implements OnInit{
   ngOnInit(): void {
     this.carousel = document.getElementById('carousel') as HTMLElement;
   }
-
+  //TODO: On focus
   ngAfterViewInit(): void {
     if (this.carousel) {
       this.carouselInner = this.carousel.querySelector('.custom-carousel-inner') as HTMLElement;

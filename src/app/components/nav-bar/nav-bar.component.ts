@@ -11,4 +11,5 @@ export class NavBarComponent {
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
+
 }
