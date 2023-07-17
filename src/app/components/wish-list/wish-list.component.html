@@ -1,19 +1,21 @@
 <nav-bar></nav-bar>
-<nav-bar></nav-bar>
 <div class="wishlist">
-  <h2>Lista życzeń</h2>
-  <div class="wishlist-items">
-    <div class="wishlist-header">
-      <div class="wishlist-header-name">Nazwa</div>
-      <div class="wishlist-header-price">Cena</div>
-      <div class="wishlist-header-availability">Dostępność</div>
-      <div class="wishlist-header-actions"></div>
-    </div>
-    <div class="wishlist-item">
-      <div class="wishlist-item-name">Example Item</div>
-      <div class="wishlist-item-price">$19.99</div>
-      <div class="wishlist-item-availability">In Stock</div>
-      <div class="wishlist-item-actions">
+  <h2>Obserwowane</h2>
+  <table class="wishlist-table">
+    <thead>
+    <tr>
+      <th style="text-align: left">Nazwa</th>
+      <th>Cena</th>
+      <th>Dostępność</th>
+      <th>Dodaj do koszyka / Usuń</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="wishlist-item">
+      <td class="wishlist-item-name" [routerLink]="'event/detail'">Example Item</td>
+      <td class="wishlist-item-price">$19.99</td>
+      <td class="wishlist-item-availability">In Stock</td>
+      <td class="wishlist-item-actions">
         <div class="align-center-row">
           <button class="btn-wishlist">
             <i class="fa-solid fa-cart-plus icon"></i>
@@ -22,10 +24,24 @@
             <i class="fa-solid fa-trash-can icon"></i>
           </button>
         </div>
-      </div>
-    </div>
+      </td>
+    </tr>
+    <tr class="wishlist-item">
+      <td class="wishlist-item-name" [routerLink]="'event/detail'">Example dsaddddsdadasdaddadaddsItem</td>
+      <td class="wishlist-item-price">$19.99</td>
+      <td class="wishlist-item-availability">In Stock</td>
+      <td class="wishlist-item-actions">
+        <div class="align-center-row">
+          <button class="btn-wishlist">
+            <i class="fa-solid fa-cart-plus icon"></i>
+          </button>
+          <button class="btn-wishlist btn-delete">
+            <i class="fa-solid fa-trash-can icon"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
     <!-- Add more wishlist items here -->
-  </div>
+    </tbody>
+  </table>
 </div>
-
-<!--<main-button routerLink="event/detail" [text]="'Dodaj do koszyka'" [buttonClass]="'btn btn-special w-200'" [icon]="'fa-solid fa-cart-plus'">-->

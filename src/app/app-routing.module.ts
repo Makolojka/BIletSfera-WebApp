@@ -4,6 +4,8 @@ import {HomePageComponent} from "./components/home-page/home-page.component";
 import {LoginComponent} from "./components/login/login.component";
 import {EventDetailComponent} from "./components/event-detail/event-detail.component";
 import {WishListComponent} from "./components/wish-list/wish-list.component";
+import {LikedComponent} from "./components/liked/liked.component";
+import {CartComponent} from "./components/cart/cart.component";
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'wishlist',
     component: WishListComponent,
+  },
+  {
+    path: 'liked',
+    component: LikedComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
 ];
 
