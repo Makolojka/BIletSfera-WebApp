@@ -23,6 +23,7 @@ import { EventCategoriesComponent } from './components/event-categories/event-ca
 import { LoginComponent } from './components/login/login.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
 import { MultiItemCarouselComponent } from './components/multi-item-carousel/multi-item-carousel.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MultiItemCarouselComponent } from './components/multi-item-carousel/mul
     LoginComponent,
     EventDetailComponent,
     MultiItemCarouselComponent,
+    WishListComponent,
   ],
   imports: [
     BrowserModule,

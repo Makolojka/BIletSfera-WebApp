@@ -70,6 +70,22 @@
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
 
+.btn-special:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 550%;
+  width: 155%;
+  background: var(--main-bg-color);
+  transition: all .5s ease-in-out;
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn-special:hover:after {
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
 .btn:hover:after {
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
@@ -103,10 +119,31 @@
 .w-250{
   width: 250px;
 }
+.w-200{
+  width: 200px;
+}
 
 .btn-small{
   font-size: 8px;
   padding: 10px 10px;
   margin: 0 auto;
   width: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .btn.btn-special {
+    min-width: 75px;
+    max-width: 75px;
+  }
+  .btn-special:after {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    height: 500%;
+    width: 185%;
+    background: var(--main-bg-color);
+    transition: all .5s ease-in-out;
+    transform: translateX(-100%) translateY(-25%) rotate(60deg);
+  }
 }
