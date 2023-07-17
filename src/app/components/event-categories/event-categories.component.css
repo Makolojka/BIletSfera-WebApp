@@ -28,6 +28,7 @@ h1 {
   color: var(--main-background);
   border: none;
   width: 220px;
+  min-width: 150px;
   text-align: left;
   font-size: 18px;
   font-weight: 500;
@@ -56,4 +57,19 @@ h1 {
   transition: all 0.5s ease-in-out;
   background-color: var(--third-color-hover);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .cat-bu1ton{
+    width: 120px;
+    height: 20px;
+    min-width: 120px;
+
+  }
+  .cat-name{
+    font-size: 10px;
+  }
+  .cat-button .icon{
+    transform: scale(0.5);
+  }
 }

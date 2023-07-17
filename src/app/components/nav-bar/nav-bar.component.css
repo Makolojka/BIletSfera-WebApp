@@ -21,16 +21,14 @@
   font-weight: bold;
 }
 
-.dropdown-scrollable {
-  max-height: 100%;
-  overflow-y: auto;
-}
+/*Profil*/
 
 .ticket-item
 {
   border: 1px solid var(--third-color-hover);
 }
 
+/*Sidebar*/
 .sidebar {
   top: 0;
   right: 0;
@@ -60,10 +58,10 @@
   transition: opacity 0.3s ease-out; /* Add a transition effect for opacity */
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
   .sidebar {
-    right: -30%; /* Adjust the initial position of the sidebar */
-    width: 30%; /* Adjust the width for smaller screens */
+    right: -40%; /* Adjust the initial position of the sidebar */
+    width: 40%; /* Adjust the width for smaller screens */
     transform: translateX(100%); /* Reset the transform property */
   }
 
@@ -275,4 +273,51 @@ ul {
   background-color: var(--secondary-color);
   color: var(--third-color);
   transition: all 0.3s ease;
+}
+
+/*Dropdown 2*/
+.dropdown2{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.dropdown2 li{
+  font-size: 10px;
+  margin: 0 10px;
+}
+
+.dropdown2.show{
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown-menu{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .navbar{
+    overflow-y: auto;
+    height: 85px;
+  }
+
+  .dropdown-menu{
+    display: none;
+  }
+
+  .dropdown2 li{
+    font-size: 8px;
+    margin: 0 5px;
+    color: #222;
+  }
+
+  .dropdown2 a{
+    color: #222;
+  }
+
 }
