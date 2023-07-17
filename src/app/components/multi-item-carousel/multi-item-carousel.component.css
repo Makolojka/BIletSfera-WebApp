@@ -8,14 +8,14 @@
   transform: translateY(-50%);
 }
 @media (min-width: 768px) {
-  .carousel-item {
-    margin-right: 0;
-    flex: 0 0 33.333333%;
-    display: block;
-  }
-  .carousel-inner {
-    display: flex;
-  }
+  /*.carousel-item {*/
+  /*  margin-right: 0;*/
+  /*  flex: 0 0 33.333333%;*/
+  /*  display: block;*/
+  /*}*/
+  /*.carousel-inner {*/
+  /*  display: flex;*/
+  /*}*/
 }
 .card .img-wrapper {
   max-width: 100%;
@@ -37,7 +37,7 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: auto;
   overflow: hidden;
 }

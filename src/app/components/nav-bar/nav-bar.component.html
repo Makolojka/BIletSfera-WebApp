@@ -27,17 +27,6 @@
         />
       </a>
       <!-- Left links -->
-<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Dashboard</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Team</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Projects</a>-->
-<!--        </li>-->
-<!--      </ul>-->
       <div class="container-fluid">
         <form class="d-flex input-group w-50">
           <input
@@ -183,13 +172,14 @@
       <div class="backdrop" [ngClass]="{'show': isSidebarVisible}" (click)="toggleSidebar()"></div>
 
       <!-- Profil -->
-      <div class="dropdown">
+      <div class="dropdown" (window:resize)="onWindowResize()">
         <a
           class="dropdown-toggle d-flex align-items-center hidden-arrow"
           id="navbarDropdownMenuAvatar"
           role="button"
           data-mdb-toggle="dropdown"
           aria-expanded="false"
+          (click)="toggleDropdown()"
         >
           <img
             src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
@@ -229,7 +219,35 @@
     </div>
     <!-- Right elements -->
   </div>
+  <div id="dropdown2" class="dropdown2" [ngClass]="{'show': isDropdownVisible}">
+    <ul
+      class="align-center-column"
+    >
+      <div class="align-center-row"><li>
+        <a class="" >Wydarzenia</a>
+      </li>
+        <li>
+          <a class="" >Bilety(0)</a>
+        </li>
+        <li>
+          <a class="" >Polubienia(0)</a>
+        </li>
+        <li>
+          <a class="" >Obserwowane(0)</a>
+        </li>
+      </div>
+      <div class="align-center-row"><li>
+        <li>
+          <a [routerLink]="['/login']">Zaloguj się</a>
+        </li>
+        <li>
+          <a [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
+        </li>
+      </div>
+    </ul>
+  </div>
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
 
