@@ -142,6 +142,7 @@ span{
 .slider-container {
   width: 100%; /* Set the width of the container */
   overflow-x: auto; /* Enable horizontal scrolling */
+  padding-bottom: 10px;
 }
 
 .slider {

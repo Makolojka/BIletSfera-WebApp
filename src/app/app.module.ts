@@ -26,6 +26,8 @@ import { MultiItemCarouselComponent } from './components/multi-item-carousel/mul
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LikedComponent } from './components/liked/liked.component';
+import { LocalEventsComponent } from './components/local-events/local-events.component';
+import { CatMusicComponent } from './components/cat-music/cat-music.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { LikedComponent } from './components/liked/liked.component';
     WishListComponent,
     CartComponent,
     LikedComponent,
+    LocalEventsComponent,
+    CatMusicComponent,
   ],
   imports: [
     BrowserModule,

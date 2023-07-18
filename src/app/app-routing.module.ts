@@ -6,6 +6,7 @@ import {EventDetailComponent} from "./components/event-detail/event-detail.compo
 import {WishListComponent} from "./components/wish-list/wish-list.component";
 import {LikedComponent} from "./components/liked/liked.component";
 import {CartComponent} from "./components/cart/cart.component";
+import {CatMusicComponent} from "./components/cat-music/cat-music.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  //Categories
+  {
+    path: 'music',
+    component: CatMusicComponent,
   },
 ];
 
