@@ -1,9 +1,10 @@
 <nav-bar></nav-bar>
-<div class="wishlist">
+<div class="cart">
   <h2>Koszyk</h2>
-  <table class="wishlist-table">
+  <table class="cart-table">
     <thead>
-    <tr class="wishlist-header">
+    <tr class="cart-header">
+      <th style="text-align: left" *ngIf="screenSize > 460"></th>
       <th style="text-align: left">NAZWA BILETU</th>
       <th>CENA</th>
       <th>ILOŚĆ</th>
@@ -12,12 +13,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="wishlist-item">
-      <td class="wishlist-item-name" [routerLink]="'event/detail'">Example Item</td>
-      <td class="wishlist-item-price">$19.99</td>
-      <td class="wishlist-item-quantity">1</td>
-      <td class="wishlist-item-sum">$19.99</td>
-      <td class="wishlist-item-actions">
+    <tr class="cart-item">
+      <td class="cart-item-image" [routerLink]="'event/detail'" *ngIf="screenSize > 460">
+        <img src="https://www.ebilet.pl/media/cms/media/xcvpz3lq/552x736-profilowe-dd4c7ead-f5b0-9045-ee27-1ae2e092efdc.webp" alt="Event Image">
+      </td>
+      <td class="cart-item-name" [routerLink]="'event/detail'">Example Item</td>
+      <td class="cart-item-price">$19.99</td>
+      <td class="cart-item-quantity">
+        <div class="right-section">
+          <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
+          <div class="counter">0</div>
+          <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
+        </div>
+      </td>
+      <td class="cart-item-sum">$19.99</td>
+      <td class="cart-item-actions">
         <div class="align-center-row">
           <button class="btn-wishlist btn-delete">
             <i class="fa-solid fa-trash-can icon"></i>
@@ -28,4 +38,19 @@
     <!-- Add more wishlist items here -->
     </tbody>
   </table>
+  <div class="cart-coupon">
+    <h5>Zastosuj kod promocyjny</h5>
+    <div class="align-center-row">
+      <input type="text" placeholder="Wprowadź kod promocyjny">
+      <button><div>Zastosuj</div></button>
+    </div>
+  </div>
+  <div class="cart-sum">
+    <!-- <h4>Suma</h4> -->
+    <div class="align-left-row">
+      <h3>Łączna kwota:</h3>
+      <span>25.00zł</span>
+    </div>
+    <button>Kup bilety</button>
+  </div>
 </div>
