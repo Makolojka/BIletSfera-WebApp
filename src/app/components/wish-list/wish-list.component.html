@@ -1,0 +1,47 @@
+<nav-bar></nav-bar>
+<div class="wishlist">
+  <h2>Obserwowane</h2>
+  <table class="wishlist-table">
+    <thead>
+    <tr>
+      <th style="text-align: left">Nazwa</th>
+      <th>Cena</th>
+      <th>Dostępność</th>
+      <th>Dodaj do koszyka / Usuń</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="cart-item">
+      <td class="wishlist-item-name" [routerLink]="'event/detail'">Example Item</td>
+      <td class="wishlist-item-price">$19.99</td>
+      <td class="wishlist-item-availability">In Stock</td>
+      <td class="wishlist-item-actions">
+        <div class="align-center-row">
+          <button class="btn-wishlist">
+            <i class="fa-solid fa-cart-plus icon"></i>
+          </button>
+          <button class="btn-wishlist btn-delete">
+            <i class="fa-solid fa-trash-can icon"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr class="cart-item">
+      <td class="wishlist-item-name" [routerLink]="'event/detail'">Example dsaddddsdadasdaddadaddsItem</td>
+      <td class="wishlist-item-price">$19.99</td>
+      <td class="wishlist-item-availability">In Stock</td>
+      <td class="wishlist-item-actions">
+        <div class="align-center-row">
+          <button class="btn-wishlist">
+            <i class="fa-solid fa-cart-plus icon"></i>
+          </button>
+          <button class="btn-wishlist btn-delete">
+            <i class="fa-solid fa-trash-can icon"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <!-- Add more wishlist items here -->
+    </tbody>
+  </table>
+</div>

@@ -1,8 +1,9 @@
 .main{
-  padding: 25px 50px;
+  padding: 0px 50px;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* Add this line to center the element */
 }
-
 .popular
 {
   display: flex;

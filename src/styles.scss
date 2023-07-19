@@ -29,6 +29,12 @@ body { margin: 0;
   justify-content: center;
   align-items: center;
 }
+.align-left-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';

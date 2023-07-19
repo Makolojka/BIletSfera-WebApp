@@ -23,6 +23,11 @@ import { EventCategoriesComponent } from './components/event-categories/event-ca
 import { LoginComponent } from './components/login/login.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
 import { MultiItemCarouselComponent } from './components/multi-item-carousel/multi-item-carousel.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { CartComponent } from './components/cart/cart.component';
+import { LikedComponent } from './components/liked/liked.component';
+import { LocalEventsComponent } from './components/local-events/local-events.component';
+import { CatMusicComponent } from './components/cat-music/cat-music.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { MultiItemCarouselComponent } from './components/multi-item-carousel/mul
     LoginComponent,
     EventDetailComponent,
     MultiItemCarouselComponent,
+    WishListComponent,
+    CartComponent,
+    LikedComponent,
+    LocalEventsComponent,
+    CatMusicComponent,
   ],
   imports: [
     BrowserModule,

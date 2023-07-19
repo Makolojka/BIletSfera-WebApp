@@ -53,7 +53,7 @@ export class MultiItemCarouselComponent implements OnInit{
 
   private showSlide(slideIndex: number): void {
     if (this.carouselInner) {
-      if(this.carousel!.offsetWidth % 240 !== 0){
+      if(this.carousel!.offsetWidth % 220 !== 0){
 
       }else{
 
