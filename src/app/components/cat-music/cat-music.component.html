@@ -5,52 +5,91 @@
 </div>
 <div class="content">
   <div class="carousel">
-    <h1>Popularne</h1>
-    <multi-item-carousel></multi-item-carousel>
+    <h1>Muzyka</h1>
   </div>
 
-  <div class="music-events">
-    <div class="filters-outer">
+  <div class="main">
+
       <div class="filters">
+        <mat-form-field appearance="outline">
+          <mat-label>Lokalizacja</mat-label>
+          <input matInput placeholder="Warszawa">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Kategoria</mat-label>
+          <mat-select>
+            <mat-option value="one">Festiwale</mat-option>
+            <mat-option value="two">Pop</mat-option>
+            <mat-option value="two">Rock</mat-option>
+            <mat-option value="two">Jazz i Blues</mat-option>
+            <mat-option value="two">Metal</mat-option>
+            <mat-option value="two">Disco Polo</mat-option>
+            <mat-option value="two">Techno/Elektro</mat-option>
+            <mat-option value="two">Muzyka Klasyczna</mat-option>
+            <mat-option value="two">Inne</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zakres dat</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin: 0 20px 0 0;">
+          <mat-label>Sortowanie</mat-label>
+          <mat-select>
+            <mat-option value="default">Domyślne sortowanie</mat-option>
+            <mat-option value="popularity">Sortuj wg. popularności</mat-option>
+            <mat-option value="newest">Sortuj od najnowszych</mat-option>
+            <mat-option value="highest_price">Sortuj po cenie od najwyższej</mat-option>
+            <mat-option value="lowest_price">Sortuj po cenie od najniższej</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div class="align-center-column">
-          <div class="align-center-row">
-            <div class="filter">
-              <div class="filter-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <input type="text" placeholder="City">
-            </div>
-            <div class="filter">
-              <div class="filter-icon"><i class="fas fa-dollar-sign"></i></div>
-              <input type="range" min="0" max="100" value="0">
-            </div>
-            <div class="filter">
-              <div class="filter-icon"><i class="fas fa-calendar-alt"></i></div>
-              <input type="text" placeholder="Date">
-            </div>
-            <div class="filter">
-              <button class="tags-filter-button" (click)="toggleTagsDropdown()">
-                Tags <i class="fas fa-caret-down"></i>
-              </button>
-            </div>
-          </div>
-          <div class="tags" [ngClass]="{ 'show': isTagsDropdownOpen }">
-            <div class="align-center-row">
-              <button class="tag-button">Tag 1</button>
-              <button class="tag-button">Tag 2</button>
-              <button class="tag-button">Tag 3</button>
-            </div>
-          </div>
+        <span style="margin: -10px; padding: 0">Wybierz przedział cenowy</span>
+          <mat-slider min="0" max="500" discrete>
+
+            <input value="0" matSliderStartThumb>
+            <input value="100" matSliderEndThumb>
+          </mat-slider>
         </div>
         <!--  End of filters -->
       </div>
+
+    <!--    TODO: zmienić żeby nie pobierać dwa razy tych samych kart-->
+    <!--Change view-->
+    <div class="change-view">
+      <div *ngIf="isRegularView" (click)="toggleView('wide')">
+        <i class="fa-solid fa-table-cells fa-lg icon" [ngClass]="{ active: !isRegularView }"></i>
+      </div>
+      <div *ngIf="!isRegularView" (click)="toggleView('regular')">
+        <i class="fa-solid fa-table-list fa-lg icon" [ngClass]="{ active: isRegularView }"></i>
+      </div>
     </div>
-    <div class="sort">
-      <!-- Sort options -->
+
+    <div class="events" *ngIf="isRegularView">
+      <event-card></event-card>
+      <event-card></event-card>
+      <event-card></event-card>
+      <event-card></event-card>
+      <event-card></event-card>
+      <event-card></event-card>
     </div>
-    <div class="events">
-      <div class="event-card"></div>
-      <div class="event-card"></div>
-      <div class="event-card"></div>
-      <div class="event-card"></div>
+
+    <div class="events-wide" *ngIf="!isRegularView">
+      <event-card-wide></event-card-wide>
+      <event-card-wide></event-card-wide>
+      <event-card-wide></event-card-wide>
+      <event-card-wide></event-card-wide>
+      <event-card-wide></event-card-wide>
+      <event-card-wide></event-card-wide>
     </div>
   </div>
 
