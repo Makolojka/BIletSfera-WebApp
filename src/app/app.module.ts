@@ -27,7 +27,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LikedComponent } from './components/liked/liked.component';
 import { LocalEventsComponent } from './components/local-events/local-events.component';
-import { CatMusicComponent } from './components/cat-music/cat-music.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -55,7 +55,7 @@ import { EventCardWideComponent } from './components/event-card-wide/event-card-
     CartComponent,
     LikedComponent,
     LocalEventsComponent,
-    CatMusicComponent,
+    CategoriesComponent,
     EventCardWideComponent,
   ],
   imports: [

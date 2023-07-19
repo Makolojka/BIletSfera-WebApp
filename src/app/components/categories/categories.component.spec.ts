@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CatMusicComponent } from './cat-music.component';
+import { CategoriesComponent } from './categories.component';
 
 describe('CatMusicComponent', () => {
-  let component: CatMusicComponent;
-  let fixture: ComponentFixture<CatMusicComponent>;
+  let component: CategoriesComponent;
+  let fixture: ComponentFixture<CategoriesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CatMusicComponent]
+      declarations: [CategoriesComponent]
     });
-    fixture = TestBed.createComponent(CatMusicComponent);
+    fixture = TestBed.createComponent(CategoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

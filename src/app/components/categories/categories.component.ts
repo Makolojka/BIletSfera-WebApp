@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'cat-music',
-  templateUrl: './cat-music.component.html',
-  styleUrls: ['./cat-music.component.css']
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css']
 })
-export class CatMusicComponent {
+export class CategoriesComponent {
   isRegularView = false; // Set the initial view to wide cards
 
   toggleView(view: 'regular' | 'wide'): void {
