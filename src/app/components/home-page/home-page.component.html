@@ -6,7 +6,7 @@
     <div class="spacer"></div>
 
     <h1>Najpopularniejsze wydarzenia</h1>
-    <latest-events [items$]="items$"></latest-events>
+    <latest-events [items$]="items$" *ngIf="dataLoaded"></latest-events>
     <div class="spacer"></div>
 
     <div class="local">

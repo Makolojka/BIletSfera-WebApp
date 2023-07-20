@@ -8,6 +8,7 @@ import {DataService} from "../../services/data.service";
 export class HomePageComponent implements OnInit{
 
   public items$: any;
+  public dataLoaded = false;
   constructor(private service: DataService) {
   }
   ngOnInit() {
@@ -16,9 +17,10 @@ export class HomePageComponent implements OnInit{
   getAll(){
     this.service.getAll().subscribe(response => {
       this.items$ = response;
-      console.log(this.items$);
-      console.log(JSON.stringify(this.items$[0].id));
-      console.log("Id:"+this.items$);
+      this.dataLoaded = true;
+      // console.log(this.items$);
+      // console.log(JSON.stringify(this.items$[0].id));
+      // console.log("Id:"+this.items$);
     });
   }
 }
