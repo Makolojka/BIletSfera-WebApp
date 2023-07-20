@@ -27,7 +27,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LikedComponent } from './components/liked/liked.component';
 import { LocalEventsComponent } from './components/local-events/local-events.component';
-import { CategoriesComponent } from './components/categories/categories.component';
+import {CategoriesComponent} from "./components/categories/categories.component";
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,7 +35,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatSliderModule} from '@angular/material/slider';
 import { EventCardWideComponent } from './components/event-card-wide/event-card-wide.component';
-
+import {DataService} from "./services/data.service";
+import { TextRestrainPipe } from './pipes/text-restrain.pipe';
+import {NgOptimizedImage} from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { EventCardWideComponent } from './components/event-card-wide/event-card-
     LocalEventsComponent,
     CategoriesComponent,
     EventCardWideComponent,
+    TextRestrainPipe,
   ],
   imports: [
     BrowserModule,
@@ -74,10 +77,13 @@ import { EventCardWideComponent } from './components/event-card-wide/event-card-
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    NgOptimizedImage
 
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

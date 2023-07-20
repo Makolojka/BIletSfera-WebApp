@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cat-music',
+  selector: 'categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })

@@ -7,6 +7,9 @@ import {ViewportScroller} from "@angular/common";
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent{
+  public image: string =
+    'https://www.ebilet.pl/media/cms/media/xcvpz3lq/552x736-profilowe-dd4c7ead-f5b0-9045-ee27-1ae2e092efdc.webp';
+  public text: string = 'Tytuł';
   constructor(private viewportScroller: ViewportScroller) {}
 
   scrollTo(id: string) {
