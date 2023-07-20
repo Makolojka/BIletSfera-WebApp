@@ -27,7 +27,14 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LikedComponent } from './components/liked/liked.component';
 import { LocalEventsComponent } from './components/local-events/local-events.component';
-import { CatMusicComponent } from './components/cat-music/cat-music.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatSliderModule} from '@angular/material/slider';
+import { EventCardWideComponent } from './components/event-card-wide/event-card-wide.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,8 @@ import { CatMusicComponent } from './components/cat-music/cat-music.component';
     CartComponent,
     LikedComponent,
     LocalEventsComponent,
-    CatMusicComponent,
+    CategoriesComponent,
+    EventCardWideComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +69,13 @@ import { CatMusicComponent } from './components/cat-music/cat-music.component';
     MatIconModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSliderModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
