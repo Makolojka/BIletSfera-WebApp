@@ -17,6 +17,8 @@ export class HomePageComponent implements OnInit{
     this.service.getAll().subscribe(response => {
       this.items$ = response;
       console.log(this.items$);
+      console.log(JSON.stringify(this.items$[0].id));
+      console.log("Id:"+this.items$);
     });
   }
 }

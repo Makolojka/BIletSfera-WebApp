@@ -8,6 +8,10 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
   getAll() {
-    return this.http.get(this.url + '/api/posts');
+    return this.http.get(this.url + '/api/events');
   }
+  getById(id: string) {
+    return this.http.get(this.url + '/api/events/' + id);
+  }
+
 }

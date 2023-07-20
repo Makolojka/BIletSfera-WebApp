@@ -6,24 +6,14 @@
     <div class="spacer"></div>
 
     <h1>Najpopularniejsze wydarzenia</h1>
-    <latest-events></latest-events>
+    <latest-events [items$]="items$"></latest-events>
     <div class="spacer"></div>
 
     <div class="local">
       <h1>Wydarzenia w twoim mieście</h1>
         <div class="align-center-row" style="display: flex; flex-wrap: wrap;">
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
-<!--          <event-card></event-card>-->
           <div *ngFor="let item of items$">
-            <event-card [image]="item.image" [text]="item.text">
+            <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
             </event-card>
           </div>
         </div>

@@ -3,15 +3,16 @@
 <div class="main">
   <div class="banner">
   <div class="banner-row-space">
-    <div><h1>OD NOWA FESTIWAL</h1></div>
+    <div><h1>{{ title }}</h1></div>
     <div>
       <i class="fa-regular fa-heart icon icon-big" data-tooltip="Polub"></i>
       <i class="fa-regular fa-bell icon icon-big" data-tooltip="Obserwuj"></i>
     </div>
   </div>
   <div class="banner-row" id="about">
-    <span><i class="fas fa-calendar icon" data-tooltip="Data"></i>15.08-02.09.2023</span>
-    <span><i class="fas fa-location icon" data-tooltip="Lokalizacja"></i>Kielce, Opole</span>
+    <span><i class="fas fa-calendar icon" data-tooltip="Data"></i>{{ date }}</span>
+    <span><i class="fas fa-location icon" data-tooltip="Lokalizacja"></i>{{ location }}</span>
+<!--    TODO: organizator do modelu dodać-->
     <span><i class="fa-solid fa-user-tie icon" data-tooltip="Organizator"></i>COPA - Agencja Artystyczna</span>
   </div>
   <div class="banner-line"></div>
@@ -42,65 +43,27 @@
       <div class="tickets">
         <h2>Bilety</h2>
         <div class="ticket-items">
-          <div class="ticket">
+          <div *ngFor="let ticket of tickets" class="ticket">
             <div class="left-vertical"></div>
             <div class="content-ticket">
               <div class="align-center-column" style="max-width: 500px; flex-wrap: wrap">
-                <h3>OD  NOWA: Krzysztof Zalewski, Ralph Kaminski, Mrozum Sorry Boys</h3>
+                <h3>{{ ticket.type }}</h3>
               </div>
               <div class="content-left">
-                <p style="font-weight: 500">wtorek</p>
-                <p>15.08.2023</p>
-                <p>Kielce, Amfiteatr</p>
+                <p style="font-weight: 500">{{ ticket.dayOfWeek }}</p>
+                <p>{{ ticket.date }}</p>
+                <p>{{ location }}</p>
               </div>
               <div class="content-line"></div>
               <div class="content-right">
-                <h2>Od 99,00 zł</h2>
+                <h2>Od {{ ticket.price }} zł</h2>
                 <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
               </div>
             </div>
           </div>
-
-<!--          <div class="ticket">-->
-<!--            <div class="left-vertical"></div>-->
-<!--            <div class="content-ticket">-->
-<!--              <div class="align-center-column" style="max-width: 500px; flex-wrap: wrap">-->
-<!--                <h3>OD  NOWA: Krzysztof Zalewski, Ralph Kaminski, Mrozum Sorry Boys</h3>-->
-<!--              </div>-->
-<!--              <div class="content-left">-->
-<!--                <p style="font-weight: 500">wtorek</p>-->
-<!--                <p>15.08.2023</p>-->
-<!--                <p>Kielce, Amfiteatr</p>-->
-<!--              </div>-->
-<!--              <div class="content-line"></div>-->
-<!--              <div class="content-right">-->
-<!--                <h2>Od 99,00 zł</h2>-->
-<!--                <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="ticket">-->
-<!--            <div class="left-vertical"></div>-->
-<!--            <div class="content-ticket">-->
-<!--              <div class="align-center-column" style="max-width: 500px; flex-wrap: wrap">-->
-<!--                <h3>OD  NOWA: Krzysztof Zalewski, Ralph Kaminski, Mrozum Sorry Boys</h3>-->
-<!--              </div>-->
-<!--              <div class="content-left">-->
-<!--                <p style="font-weight: 500">wtorek</p>-->
-<!--                <p>15.08.2023</p>-->
-<!--                <p>Kielce, Amfiteatr</p>-->
-<!--              </div>-->
-<!--              <div class="content-line"></div>-->
-<!--              <div class="content-right">-->
-<!--                <h2>Od 99,00 zł</h2>-->
-<!--                <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
         </div>
       </div>
+      <!--End of tickets-->
       <div class="additional-info">
         <h2 id="additional">Dodatkowe informacje</h2>
         <p>10 czerwca zapraszamy do Amfiteatru w Płocku, gdzie w ciągu jednego wieczoru wystąpią na

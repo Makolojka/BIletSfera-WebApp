@@ -14,15 +14,15 @@
   <!--    <h4 class="card-title">OD NOWA FESTIWAL</h4>-->
       <like-button></like-button>
       <div class="card-details">
-        <p class="card-description">{{text}}</p>
-        <h2>Od 100,00 zł</h2>
-        <main-button [routerLink]="['event/detail/1']" [text]="'Kup bilet'" [buttonClass]="'mt-1 btn btn-special'" [icon]="'fa-ticket'"></main-button>
+        <p class="card-description">{{text | textRestrain:110}}</p>
+        <h2>Od {{ getLowestTicketPrice() }} zł </h2>
+        <main-button [routerLink]="['event/detail/' + id]" [text]="'Kup bilet'" [buttonClass]="'mt-1 btn btn-special'" [icon]="'fa-ticket'"></main-button>
       </div>
     </div>
   </div>
   <div>
-    <h3>OD NOWA Festiwal</h3>
-    <p class="date">01.01.2024</p>
-    <p class="date">Poznań</p>
+    <h3>{{ title}}</h3>
+    <p class="date">{{ date }}</p>
+    <p class="date">{{ location }}</p>
   </div>
 </div>
