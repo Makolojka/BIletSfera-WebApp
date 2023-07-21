@@ -9,8 +9,8 @@
     <latest-events [items$]="items$" *ngIf="dataLoaded"></latest-events>
     <div class="spacer"></div>
 
+    <h1>Wydarzenia w twoim mieście</h1>
     <div class="local">
-      <h1>Wydarzenia w twoim mieście</h1>
         <div class="align-center-row" style="display: flex; flex-wrap: wrap;">
           <div *ngFor="let item of items$">
             <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
