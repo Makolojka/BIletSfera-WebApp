@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'music',
     component: CategoriesComponent,
   },
+  {
+    path: 'event/detail/:id',
+    component: EventDetailComponent
+  },
 ];
 
 @NgModule({

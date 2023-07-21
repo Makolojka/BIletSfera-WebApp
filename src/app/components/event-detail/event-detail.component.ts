@@ -1,13 +1,40 @@
-import {Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import * as $ from 'jquery';
 import {ViewportScroller} from "@angular/common";
+import {Ticket} from "../event-card/Ticket";
+import {ActivatedRoute} from "@angular/router";
+import {DataService} from "../../services/data.service";
 @Component({
   selector: 'event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.css']
 })
-export class EventDetailComponent{
-  constructor(private viewportScroller: ViewportScroller) {}
+export class EventDetailComponent implements OnInit{
+  public image: string = '';
+  public text: string = '';
+  public title: string = '';
+  public date: string = '';
+  public tickets: Ticket[] = [];
+  public location: string = '';
+  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService) {}
+
+  ngOnInit() {
+    let id: string = '';
+    this.route.paramMap
+      .subscribe((params: any) => {
+        id = params.get('id');
+      });
+
+    this.service.getById(id).subscribe((res: any) => {
+      this.image = res['image'];
+      this.text = res['text'];
+      this.title = res['title'];
+      this.date = res['date'];
+      this.tickets = res['tickets'];
+      console.log(this.tickets);
+      this.location = res['location'];
+    });
+  }
 
   scrollTo(id: string) {
     this.viewportScroller.scrollToAnchor(id);

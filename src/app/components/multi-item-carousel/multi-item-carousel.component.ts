@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Input} from '@angular/core';
 
 @Component({
   selector: 'multi-item-carousel',
@@ -6,6 +6,7 @@ import {Component, OnInit, AfterViewInit} from '@angular/core';
   styleUrls: ['./multi-item-carousel.component.css']
 })
 export class MultiItemCarouselComponent implements OnInit{
+  @Input() items: any;
 
   private carousel: HTMLElement | null = null;
   private carouselInner: HTMLElement | null = null;
