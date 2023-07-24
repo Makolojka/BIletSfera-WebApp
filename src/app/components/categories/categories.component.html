@@ -11,10 +11,28 @@
   <div class="main">
 
       <div class="filters">
-        <mat-form-field appearance="outline">
-          <mat-label>Lokalizacja</mat-label>
-          <input matInput placeholder="Warszawa">
-        </mat-form-field>
+
+        <div class="input-container">
+          <input type="text" class="input-field" id="location" placeholder="Warszawa">
+          <label for="input" class="input-label">Lokalizacja</label>
+        </div>
+
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Lokalizacja</mat-label>-->
+<!--          <input matInput placeholder="Warszawa">-->
+<!--        </mat-form-field>-->
+
+
+        <div class="input-container">
+          <input type="text" class="input-field" id="input" placeholder="Warszawa">
+          <label for="input" class="input-label">Lokalizacja</label>
+          <div class="dropdown-menu">
+            <div class="dropdown-option">Location 1</div>
+            <div class="dropdown-option">Location 2</div>
+            <div class="dropdown-option">Location 3</div>
+            <!-- Add more locations here -->
+          </div>
+        </div>
 
         <mat-form-field appearance="outline">
           <mat-label>Kategoria</mat-label>

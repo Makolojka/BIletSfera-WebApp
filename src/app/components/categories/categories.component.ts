@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit{
     this.isRegularView = view === 'regular';
   }
 
+
   constructor(private service: DataService) {
   }
   ngOnInit() {
@@ -27,6 +28,7 @@ export class CategoriesComponent implements OnInit{
       // console.log("Id:"+this.items$);
     });
   }
+
   // states = [
   //   {
   //     name: 'State 1',

@@ -1,5 +1,5 @@
 .content{
-  padding: 25px 160px;
+  padding: 25px 320px;
 }
 .carousel{
   /*padding: 0px 50px;*/
@@ -100,6 +100,113 @@
   margin: 25px;
 }
 
+/*Custom inputs*/
+.input-container {
+  position: relative;
+  width: 300px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.input-label {
+  position: absolute;
+  top: 17px;
+  left: 15px;
+  pointer-events: none;
+  color: #777;
+  font-size: 16px;
+  transition: 0.2s;
+  background-color: white;
+}
+
+.input-field:focus {
+  border-color: var(--third-color);
+}
+
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 4px;
+}
+
+/* Custom dropdown */
+/* Custom styles for the input and dropdown */
+.input-container {
+  position: relative;
+}
+
+.input-field {
+  width: 300px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.input-label {
+  position: absolute;
+  top: 17px;
+  left: 15px;
+  pointer-events: none;
+  color: #777;
+  font-size: 16px;
+  transition: 0.2s;
+  background-color: white;
+}
+
+.input-field:focus ~ .input-label,
+.input-field:not(:placeholder-shown) ~ .input-label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 4px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.dropdown-option {
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #f2f2f2;
+}
+
+@media only screen and (max-width: 1300px) {
+  .content{
+    padding: 25px 200px;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .content{
+    padding: 25px 100px;
+  }
+}
 @media only screen and (max-width: 768px) {
   .content{
     padding: 25px 80px;
