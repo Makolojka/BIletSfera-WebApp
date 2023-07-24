@@ -66,7 +66,7 @@
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  top: 35%;
+  top: 30%;
   transform: translateY(-50%);
   padding: 10px;
   background-color: var(--third-color);

@@ -75,22 +75,18 @@
     </div>
 
     <div class="events" *ngIf="isRegularView">
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
+      <div *ngFor="let item of items$">
+        <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        </event-card>
+      </div>
     </div>
 
     <div class="events-wide" *ngIf="!isRegularView">
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-    </div>
+      <div *ngFor="let item of items$">
+        <event-card-wide [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        </event-card-wide>
+      </div>
+     </div>
   </div>
 
   <!--End of music events-->
