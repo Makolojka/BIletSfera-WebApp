@@ -16,6 +16,9 @@ export class EventDetailComponent implements OnInit{
   public date: string = '';
   public tickets: Ticket[] = [];
   public location: string = '';
+  public organiser: string = '';
+  public additionalText: string = '';
+
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService) {}
 
   ngOnInit() {
@@ -33,6 +36,8 @@ export class EventDetailComponent implements OnInit{
       this.tickets = res['tickets'];
       console.log(this.tickets);
       this.location = res['location'];
+      this.organiser = res['organiser'];
+      this.additionalText = res['additionalText'];
     });
   }
 

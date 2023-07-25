@@ -13,7 +13,8 @@
     <div class="local">
         <div class="align-center-row" style="display: flex; flex-wrap: wrap;">
           <div *ngFor="let item of items$">
-            <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+            <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets"
+                        [date]="item.date" [location]="item.location">
             </event-card>
           </div>
         </div>

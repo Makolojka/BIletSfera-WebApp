@@ -14,4 +14,12 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + id);
   }
 
+  getAllArtists() {
+    return this.http.get(this.url + '/api/artists');
+  }
+
+  getArtistsForEvent(eventId: string) {
+    return this.http.get(this.url + '/api/events/' + eventId + '/artists');
+  }
+
 }

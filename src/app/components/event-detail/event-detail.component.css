@@ -301,12 +301,18 @@ span{
 }
 
 .content-right h2{
+  font-size: 22px;
   margin: 0;
 }
 
 h2
 {
+  font-size: 18px;
   padding-bottom: 15px;
+}
+
+.text{
+  font-size: 16px;
 }
 
 .ticket:hover {

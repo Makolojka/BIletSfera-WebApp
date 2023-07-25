@@ -13,7 +13,7 @@
     <span><i class="fas fa-calendar icon" data-tooltip="Data"></i>{{ date }}</span>
     <span><i class="fas fa-location icon" data-tooltip="Lokalizacja"></i>{{ location }}</span>
 <!--    TODO: organizator do modelu dodać-->
-    <span><i class="fa-solid fa-user-tie icon" data-tooltip="Organizator"></i>COPA - Agencja Artystyczna</span>
+    <span><i class="fa-solid fa-user-tie icon" data-tooltip="Organizator"></i>{{ organiser }}</span>
   </div>
   <div class="banner-line"></div>
 </div>
@@ -38,7 +38,7 @@
     <div class="content-right">
       <div class="description" id="tickets">
         <h2>O wydarzeniu</h2>
-        <p>{{text}}</p>
+        <p class="text">{{text}}</p>
       </div>
       <div class="tickets">
         <h2>Bilety</h2>
@@ -66,29 +66,12 @@
       <!--End of tickets-->
       <div class="additional-info">
         <h2 id="additional">Dodatkowe informacje</h2>
-        <p>10 czerwca zapraszamy do Amfiteatru w Płocku, gdzie w ciągu jednego wieczoru wystąpią na
-          czterech koncertach: Ralph Kaminski, Mrozu, Vito Bambino, Sorry Boys.</p>
-        <p>10 czerwca zapraszamy do Amfiteatru w Płocku, gdzie w ciągu jednego wieczoru wystąpią na
-          czterech koncertach: Ralph Kaminski, Mrozu, Vito Bambino, Sorry Boys.</p>
-        <p>10 czerwca zapraszamy do Amfiteatru w Płocku, gdzie w ciągu jednego wieczoru wystąpią na
-          czterech koncertach: Ralph Kaminski, Mrozu, Vito Bambino, Sorry Boys.</p>
+        <p class="text">{{ additionalText }}</p>
       </div>
       <div class="artists">
         <h2 id="artists">Artyści</h2>
         <div class="slider-container">
           <div class="slider">
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
-            <div class="artist-circle"></div>
             <div class="artist-circle"></div>
             <!-- Add more artist circles here -->
           </div>
