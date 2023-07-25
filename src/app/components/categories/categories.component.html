@@ -5,7 +5,7 @@
 </div>
 <div class="content">
   <div class="carousel">
-    <h1>Muzyka</h1>
+    <h1>Znajdź bilety w kategorii Muzyka</h1>
   </div>
 
   <div class="main">
@@ -17,15 +17,10 @@
           <label for="location" class="input-label">Lokalizacja</label>
         </div>
 
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Lokalizacja</mat-label>-->
-<!--          <input matInput placeholder="Warszawa">-->
-<!--        </mat-form-field>-->
-
         <div class="input-container">
-          <select class="form-select input-field-form" aria-label="Default select example">
-            <option selected>Kategorie</option>
-            <option value="Festiwale">Festiwale</option>-->
+          <select class="form-select input-field-form" aria-label="cat_select">
+            <option selected disabled>Kategorie</option>
+            <option value="Festiwale">Festiwale</option>
             <option value="Pop">Pop</option>
             <option value="Rock">Rock</option>
             <option value="Jazz_blues">Jazz i Blues</option>
@@ -36,6 +31,36 @@
             <option value="Inne">Inne</option>
           </select>
         </div>
+
+        <div class="input-container input-date">
+          <input type="date" class="input-field" id="startDate" >
+          <label for="startDate" class="input-label">Data od</label>
+        </div>
+
+        <div class="input-container input-date">
+          <input type="date" class="input-field" id="endDate" >
+          <label for="endDate" class="input-label">do</label>
+        </div>
+
+        <div class="input-container">
+          <select class="form-select input-field-form" aria-label="sort_select">
+            <option selected>Domyślne sortowanie</option>
+            <option value="Festiwale">Sortuj wg. popularności</option>
+            <option value="Pop">Sortuj od najnowszych</option>
+            <option value="Rock">Sortuj po cenie od najniższej</option>
+            <option value="Rock">Sortuj po cenie od najwyższej</option>
+          </select>
+        </div>
+
+
+
+
+
+<!--        Old menu -->
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Lokalizacja</mat-label>-->
+<!--          <input matInput placeholder="Warszawa">-->
+<!--        </mat-form-field>-->
 
 <!--        <div class="input-container">-->
 <!--          <input type="text" class="input-field" id="input" placeholder="Rock">-->

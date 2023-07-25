@@ -14,7 +14,6 @@ export class CategoriesComponent implements OnInit{
     this.isRegularView = view === 'regular';
   }
 
-
   constructor(private service: DataService) {
   }
   ngOnInit() {
