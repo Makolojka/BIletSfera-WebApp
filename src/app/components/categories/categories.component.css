@@ -1,5 +1,5 @@
 .content{
-  padding: 25px 320px;
+  padding: 25px 180px;
 }
 .carousel{
   /*padding: 0px 50px;*/
@@ -49,9 +49,9 @@
 /* Music events */
 .filters{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
-  padding: 25px 50px 0px 50px;
+  padding: 25px 50px 25px 50px;
   flex-wrap: wrap;
   /*width: 100%;*/
   /*max-width: 1200px;*/
@@ -104,16 +104,17 @@
 .input-container {
   position: relative;
   width: 300px;
+  margin: 5px 20px;
 }
 
-.input-field {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.2s;
-}
+/*.input-field {*/
+/*  width: 100%;*/
+/*  padding: 15px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 5px;*/
+/*  font-size: 16px;*/
+/*  transition: border-color 0.2s;*/
+/*}*/
 
 .input-label {
   position: absolute;
@@ -127,7 +128,8 @@
 }
 
 .input-field:focus {
-  border-color: var(--third-color);
+  outline: 1px solid var(--main-bg-color);
+  /*border: 1px solid var(--main-bg-color);*/
 }
 
 .input-field:focus + .input-label,
@@ -139,7 +141,6 @@
   padding: 0 4px;
 }
 
-/* Custom dropdown */
 /* Custom styles for the input and dropdown */
 .input-container {
   position: relative;
@@ -152,6 +153,7 @@
   border-radius: 5px;
   font-size: 16px;
   transition: border-color 0.2s;
+  max-height: 50px;
 }
 
 .input-label {
@@ -174,27 +176,21 @@
   padding: 0 4px;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  background-color: #fff;
+/*Select input*/
+.input-field-form{
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: none;
-}
-
-.dropdown-option {
-  padding: 8px 15px;
   font-size: 16px;
-  cursor: pointer;
+  max-height: 50px;
+  outline: none;
 }
 
-.dropdown-option:hover {
-  background-color: #f2f2f2;
+.input-field-form:focus{
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--main-bg-color);
+  border-color: #6B3FA0;
 }
 
 @media only screen and (max-width: 1300px) {
