@@ -134,6 +134,42 @@
   width: 20px;
 }
 
+
+/*Button special wide*/
+.btn.btn-special-wide {
+  min-width: 150px;
+  padding: 6px 18px;
+  background-color: var(--main-bg-color);
+  font-size: 12px;
+  color: white;
+  transition: all .5s ease-in-out;
+  font-weight: normal;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border-radius: 0px;
+}
+
+.btn.btn-special-wide:after {
+  background: var(--secondary-color);
+}
+
+.btn-special-wide:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 850%;
+  width: 255%;
+  background: var(--main-bg-color);
+  transition: all .5s ease-in-out;
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn.btn-special-wide:hover
+{
+  color: black;
+  transition: all .5s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
   .btn.btn-special {
     min-width: 75px;

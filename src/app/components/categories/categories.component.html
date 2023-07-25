@@ -5,61 +5,118 @@
 </div>
 <div class="content">
   <div class="carousel">
-    <h1>Muzyka</h1>
+    <h1>Znajdź bilety w kategorii Muzyka</h1>
   </div>
 
   <div class="main">
 
       <div class="filters">
-        <mat-form-field appearance="outline">
-          <mat-label>Lokalizacja</mat-label>
-          <input matInput placeholder="Warszawa">
-        </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Kategoria</mat-label>
-          <mat-select>
-            <mat-option value="one">Festiwale</mat-option>
-            <mat-option value="two">Pop</mat-option>
-            <mat-option value="two">Rock</mat-option>
-            <mat-option value="two">Jazz i Blues</mat-option>
-            <mat-option value="two">Metal</mat-option>
-            <mat-option value="two">Disco Polo</mat-option>
-            <mat-option value="two">Techno/Elektro</mat-option>
-            <mat-option value="two">Muzyka Klasyczna</mat-option>
-            <mat-option value="two">Inne</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Zakres dat</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate placeholder="Start date">
-              <input matEndDate placeholder="End date">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-          </mat-form-field>
-
-        <mat-form-field appearance="outline" style="margin: 0 20px 0 0;">
-          <mat-label>Sortowanie</mat-label>
-          <mat-select>
-            <mat-option value="default">Domyślne sortowanie</mat-option>
-            <mat-option value="popularity">Sortuj wg. popularności</mat-option>
-            <mat-option value="newest">Sortuj od najnowszych</mat-option>
-            <mat-option value="highest_price">Sortuj po cenie od najwyższej</mat-option>
-            <mat-option value="lowest_price">Sortuj po cenie od najniższej</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <div class="align-center-column">
-        <span style="margin: -10px; padding: 0">Wybierz przedział cenowy</span>
-          <mat-slider min="0" max="500" discrete>
-
-            <input value="0" matSliderStartThumb>
-            <input value="100" matSliderEndThumb>
-          </mat-slider>
+        <div class="input-container">
+          <input type="text" class="input-field" id="location" placeholder="Warszawa">
+          <label for="location" class="input-label">Lokalizacja</label>
         </div>
+
+        <div class="input-container">
+          <select class="form-select input-field-form" aria-label="cat_select">
+            <option selected disabled>Kategorie</option>
+            <option value="Festiwale">Festiwale</option>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Jazz_blues">Jazz i Blues</option>
+            <option value="Metal">Metal</option>
+            <option value="Disco_polo">Disco Polo</option>
+            <option value="Techno/Elektro">Techno/Elektro</option>
+            <option value="Muzyka Klasyczna">Muzyka Klasyczna</option>
+            <option value="Inne">Inne</option>
+          </select>
+        </div>
+
+        <div class="input-container input-date">
+          <input type="date" class="input-field" id="startDate" >
+          <label for="startDate" class="input-label">Data od</label>
+        </div>
+
+        <div class="input-container input-date">
+          <input type="date" class="input-field" id="endDate" >
+          <label for="endDate" class="input-label">do</label>
+        </div>
+
+        <div class="input-container">
+          <select class="form-select input-field-form" aria-label="sort_select">
+            <option selected>Domyślne sortowanie</option>
+            <option value="Festiwale">Sortuj wg. popularności</option>
+            <option value="Pop">Sortuj od najnowszych</option>
+            <option value="Rock">Sortuj po cenie od najniższej</option>
+            <option value="Rock">Sortuj po cenie od najwyższej</option>
+          </select>
+        </div>
+
+
+
+
+
+<!--        Old menu -->
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Lokalizacja</mat-label>-->
+<!--          <input matInput placeholder="Warszawa">-->
+<!--        </mat-form-field>-->
+
+<!--        <div class="input-container">-->
+<!--          <input type="text" class="input-field" id="input" placeholder="Rock">-->
+<!--          <label for="input" class="input-label">Kategorie</label>-->
+<!--          <div class="dropdown-menu">-->
+<!--            <div class="dropdown-option">Location 1</div>-->
+<!--            <div class="dropdown-option">Location 2</div>-->
+<!--            <div class="dropdown-option">Location 3</div>-->
+<!--            &lt;!&ndash; Add more locations here &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Kategoria</mat-label>-->
+<!--          <mat-select>-->
+<!--            <mat-option value="one">Festiwale</mat-option>-->
+<!--            <mat-option value="two">Pop</mat-option>-->
+<!--            <mat-option value="two">Rock</mat-option>-->
+<!--            <mat-option value="two">Jazz i Blues</mat-option>-->
+<!--            <mat-option value="two">Metal</mat-option>-->
+<!--            <mat-option value="two">Disco Polo</mat-option>-->
+<!--            <mat-option value="two">Techno/Elektro</mat-option>-->
+<!--            <mat-option value="two">Muzyka Klasyczna</mat-option>-->
+<!--            <mat-option value="two">Inne</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field appearance="outline">-->
+<!--            <mat-label>Zakres dat</mat-label>-->
+<!--            <mat-date-range-input [rangePicker]="picker">-->
+<!--              <input matStartDate placeholder="Start date">-->
+<!--              <input matEndDate placeholder="End date">-->
+<!--            </mat-date-range-input>-->
+<!--            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--            <mat-date-range-picker #picker></mat-date-range-picker>-->
+<!--          </mat-form-field>-->
+
+<!--        <mat-form-field appearance="outline" style="margin: 0 20px 0 0;">-->
+<!--          <mat-label>Sortowanie</mat-label>-->
+<!--          <mat-select>-->
+<!--            <mat-option value="default">Domyślne sortowanie</mat-option>-->
+<!--            <mat-option value="popularity">Sortuj wg. popularności</mat-option>-->
+<!--            <mat-option value="newest">Sortuj od najnowszych</mat-option>-->
+<!--            <mat-option value="highest_price">Sortuj po cenie od najwyższej</mat-option>-->
+<!--            <mat-option value="lowest_price">Sortuj po cenie od najniższej</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+
+<!--        <div class="align-center-column">-->
+<!--        <span style="margin: -10px; padding: 0">Wybierz przedział cenowy</span>-->
+<!--          <mat-slider min="0" max="500" discrete>-->
+
+<!--            <input value="0" matSliderStartThumb>-->
+<!--            <input value="100" matSliderEndThumb>-->
+<!--          </mat-slider>-->
+<!--        </div>-->
         <!--  End of filters -->
       </div>
 
@@ -75,22 +132,18 @@
     </div>
 
     <div class="events" *ngIf="isRegularView">
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
-      <event-card></event-card>
+      <div *ngFor="let item of items$">
+        <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        </event-card>
+      </div>
     </div>
 
     <div class="events-wide" *ngIf="!isRegularView">
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-      <event-card-wide></event-card-wide>
-    </div>
+      <div *ngFor="let item of items$">
+        <event-card-wide [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        </event-card-wide>
+      </div>
+     </div>
   </div>
 
   <!--End of music events-->

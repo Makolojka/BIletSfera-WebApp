@@ -1,5 +1,5 @@
 .content{
-  padding: 25px 160px;
+  padding: 25px 180px;
 }
 .carousel{
   /*padding: 0px 50px;*/
@@ -49,14 +49,14 @@
 /* Music events */
 .filters{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
-  padding: 25px 50px 0px 50px;
+  padding: 10px 25px 10px 25px;
   flex-wrap: wrap;
   /*width: 100%;*/
   /*max-width: 1200px;*/
   margin: 0 auto;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -100,6 +100,114 @@
   margin: 25px;
 }
 
+/*Custom inputs*/
+.input-container {
+  position: relative;
+  width: 200px;
+  /*width: 300px;*/
+  margin: 5px 10px;
+}
+
+.input-label {
+  position: absolute;
+  top: 17px;
+  left: 15px;
+  pointer-events: none;
+  color: #777;
+  font-size: 16px;
+  transition: 0.2s;
+  background-color: white;
+}
+
+.input-field:focus {
+  outline: 1px solid var(--main-bg-color);
+  /*border: 1px solid var(--main-bg-color);*/
+}
+
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 4px;
+}
+
+.input-field {
+  width: 200px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  max-height: 50px;
+}
+
+.input-label {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  pointer-events: none;
+  color: #777;
+  font-size: 16px;
+  transition: 0.2s;
+  background-color: white;
+}
+
+.input-field:focus ~ .input-label,
+.input-field:not(:placeholder-shown) ~ .input-label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 4px;
+}
+
+/*Select input*/
+.input-field-form{
+  padding: 7px 15px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 16px;
+  max-height: 50px;
+  outline: none;
+}
+
+.input-field-form:focus{
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--main-bg-color);
+  border-color: #6B3FA0;
+}
+
+.form-select option{
+  padding: 5px 10px;
+  /*margin: 5px 10px;*/
+  background-color: white;
+}
+
+.form-select:focus{
+  color: var(--third-color);
+  background-color: white;
+}
+
+/*Data picker*/
+.input-date{
+}
+
+/*Sort*/
+
+
+@media only screen and (max-width: 1300px) {
+  .content{
+    padding: 25px 200px;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .content{
+    padding: 25px 100px;
+  }
+}
 @media only screen and (max-width: 768px) {
   .content{
     padding: 25px 80px;

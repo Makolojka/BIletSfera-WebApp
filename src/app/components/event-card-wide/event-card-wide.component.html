@@ -2,7 +2,7 @@
   <!-- Image container -->
   <div class="image-container">
     <!-- Your image here -->
-    <img src="https://www.ebilet.pl/media/cms/media/xcvpz3lq/552x736-profilowe-dd4c7ead-f5b0-9045-ee27-1ae2e092efdc.webp" alt="Event Image">
+    <img [src]="image" alt="Event Image" class="">
   </div>
 
   <!-- Content section -->
@@ -11,22 +11,22 @@
     <div class="top-bottom-container">
       <!-- Top section -->
       <div class="top-section">
-        <div class="title">OD NOWA FESTIWAL</div>
+        <div class="title">{{ title }}</div>
         <div class="date-location">
-          <div class="date">01.01.2024</div>
-          <div class="location">Poznań</div>
+          <div class="date">{{ date }}</div>
+          <div class="location">{{ location }}</div>
         </div>
-        <div class="btn-small-screen"><main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'btn btn-special w-250 m-l'" [icon]="'fa-ticket'"></main-button></div>
+        <div class="btn-small-screen"><main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'btn btn-special-wide m-l w-200'" [icon]="'fa-ticket'"></main-button></div>
       </div>
 
       <!-- Bottom section -->
       <div class="bottom-section">
-        <div class="price">Od 99 zł</div>
-        <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-1 btn btn-special w-200'" [icon]="'fa-ticket'"></main-button>
+        <div class="price">Od {{ getLowestTicketPrice() }} zł</div>
+        <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-1 btn btn-special-wide w-200'" [icon]="'fa-ticket'"></main-button>
       </div>
     </div>
 
     <!-- Short description -->
-    <div class="short-description">Short event description goes here.</div>
+    <div class="short-description">{{text | textRestrain:170}}</div>
   </div>
 </div>

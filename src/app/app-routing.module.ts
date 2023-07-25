@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   //Categories
   {
-    path: 'music',
+    path: 'events',
     component: CategoriesComponent,
   },
   {
