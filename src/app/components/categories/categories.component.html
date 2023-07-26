@@ -10,26 +10,26 @@
 
   <div class="main">
     <div class="sort-container">
-      <select class="form-select input-field-form" aria-label="sort_select">
+      <select class="form-select input-field-form" [(ngModel)]="sortOption" (change)="applyFilters()" aria-label="sort_select">
         <option selected>Domyślne sortowanie</option>
-        <option value="Festiwale">Sortuj wg. popularności</option>
-        <option value="Pop">Sortuj od najnowszych</option>
-        <option value="Rock">Sortuj po cenie od najniższej</option>
-        <option value="Rock">Sortuj po cenie od najwyższej</option>
+        <option value="popularity">Sortuj wg. popularności</option>
+        <option value="newest">Sortuj od najnowszych</option>
+        <option value="lowest">Sortuj po cenie od najniższej</option>
+        <option value="highest">Sortuj po cenie od najwyższej</option>
       </select>
       <div class="btn-container">
-        <button class="btn">Filtruj</button>
+        <button class="btn" (click)="applyFilters()">Filtruj</button>
       </div>
     </div>
 
       <div class="filters">
         <div class="input-container">
-          <input type="text" class="input-field" id="location" placeholder="Warszawa">
+          <input type="text" class="input-field" [(ngModel)]="locationFilter" id="location" placeholder="Warszawa">
           <label for="location" class="input-label">Lokalizacja</label>
         </div>
 
         <div class="input-container">
-          <select class="form-select input-field-form" aria-label="cat_select">
+          <select class="form-select input-field-form" [(ngModel)]="categoriesFilter" aria-label="cat_select">
             <option selected disabled>Kategorie</option>
             <option value="Festiwale">Muzyka</option>
             <option value="Pop">Kino</option>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="input-container">
-          <select class="form-select input-field-form" aria-label="cat_select">
+          <select class="form-select input-field-form" [(ngModel)]="subCategoriesFilter" aria-label="cat_select">
             <option selected disabled>Podkategorie</option>
             <option value="Festiwale">Festiwale</option>
             <option value="Pop">Pop</option>
@@ -56,6 +56,40 @@
             <option value="Inne">Inne</option>
           </select>
         </div>
+
+<!--        <div class="input-container">-->
+<!--          <input type="text" class="input-field" id="location" placeholder="Warszawa">-->
+<!--          <label for="location" class="input-label">Lokalizacja</label>-->
+<!--        </div>-->
+
+<!--        <div class="input-container">-->
+<!--          <select class="form-select input-field-form" aria-label="cat_select">-->
+<!--            <option selected disabled>Kategorie</option>-->
+<!--            <option value="Festiwale">Muzyka</option>-->
+<!--            <option value="Pop">Kino</option>-->
+<!--            <option value="Rock">Teatr</option>-->
+<!--            <option value="Jazz_blues">Targi</option>-->
+<!--            <option value="Metal">Konwenty</option>-->
+<!--            <option value="Disco_polo">Sport</option>-->
+<!--            <option value="Techno/Elektro">Zwiedzanie</option>-->
+<!--            <option value="Muzyka Klasyczna">Inne</option>-->
+<!--          </select>-->
+<!--        </div>-->
+
+<!--        <div class="input-container">-->
+<!--          <select class="form-select input-field-form" aria-label="cat_select">-->
+<!--            <option selected disabled>Podkategorie</option>-->
+<!--            <option value="Festiwale">Festiwale</option>-->
+<!--            <option value="Pop">Pop</option>-->
+<!--            <option value="Rock">Rock</option>-->
+<!--            <option value="Jazz_blues">Jazz i Blues</option>-->
+<!--            <option value="Metal">Metal</option>-->
+<!--            <option value="Disco_polo">Disco Polo</option>-->
+<!--            <option value="Techno/Elektro">Techno/Elektro</option>-->
+<!--            <option value="Muzyka Klasyczna">Muzyka Klasyczna</option>-->
+<!--            <option value="Inne">Inne</option>-->
+<!--          </select>-->
+<!--        </div>-->
 
         <div class="input-container input-date">
           <input type="date" class="input-field" id="startDate" >

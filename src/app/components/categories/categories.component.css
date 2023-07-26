@@ -1,5 +1,5 @@
 .content{
-  padding: 25px 180px;
+  padding: 25px 320px;
 }
 .carousel{
   /*padding: 0px 50px;*/
@@ -20,17 +20,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7); /* Adjust the brightness value as needed */
+  filter: brightness(0.7);
 }
 
 .banner-text {
   position: absolute;
   top: 50%;
-  left: 20px; /* Adjust the left value as needed for desired positioning */
+  left: 20px;
   transform: translateY(-50%);
   color: #fff;
-  font-size: 24px; /* Adjust the font size as needed */
-  font-weight: bold; /* Add font-weight as needed */
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .content h1{
