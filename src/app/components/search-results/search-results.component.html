@@ -1,0 +1,16 @@
+<!-- Display a message when there are no search results -->
+<div *ngFor="let item of items$ | filterSearch:filterText">
+  <div class="row-items">
+    <div>
+      <img [src]="item.image" class="image">
+    </div>
+    <div class="info">
+      <h3>{{item.title}}</h3>
+      <p>{{item.text | textRestrain:60}}</p>
+    </div>
+  </div>
+</div>
+
+<!--id: string;-->
+<!--image: string;-->
+<!--text: string;-->

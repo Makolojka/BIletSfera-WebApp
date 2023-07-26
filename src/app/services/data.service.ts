@@ -15,6 +15,12 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + id);
   }
 
+  // Search fetch
+  getSearchData(filter?: string) {
+    const queryParams = filter ? { params: { name: filter } } : {};
+    return this.http.get(this.url + '/api/events', queryParams);
+  }
+
   // Artists endpoints
   getAllArtists() {
     return this.http.get(this.url + '/api/artists');

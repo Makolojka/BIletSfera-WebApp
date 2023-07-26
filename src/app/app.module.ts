@@ -38,6 +38,10 @@ import { EventCardWideComponent } from './components/event-card-wide/event-card-
 import {DataService} from "./services/data.service";
 import { TextRestrainPipe } from './pipes/text-restrain.pipe';
 import {NgOptimizedImage} from "@angular/common";
+import { SearchBarComponent } from './shared/search-bar/search-bar.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { FilterSearchPipe } from './pipes/filter-search.pipe';
+import { SearchFocusDirective } from './directives/search-focus.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +64,10 @@ import {NgOptimizedImage} from "@angular/common";
     CategoriesComponent,
     EventCardWideComponent,
     TextRestrainPipe,
+    SearchBarComponent,
+    SearchResultsComponent,
+    FilterSearchPipe,
+    SearchFocusDirective,
   ],
   imports: [
     BrowserModule,
