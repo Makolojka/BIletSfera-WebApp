@@ -236,6 +236,28 @@
   content: attr(data-tooltip);
 }
 
+/*Filter button*/
+.btn {
+  width: 100px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.2s;
+  max-height: 50px;
+  background-color: var(--third-color);
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn-container {
+  position: relative;
+  width: 100px;
+  margin: 5px 10px;
+}
+
+
 @media only screen and (max-width: 1300px) {
   .content{
     padding: 25px 200px;
