@@ -90,16 +90,20 @@ form {
 
 input {
   background-color: #eee;
-  border: none;
+  /*border: none;*/
   padding: 15px 20px;
   margin: 8px 0;
   width: 100%;
   font-size: 18px;
   transition: all 0.2s ease;
+  border: 1px solid #222;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 input:focus
 {
-  outline: 2px solid var(--third-color);
+  outline: none;
+  border: 1px solid var(--main-bg-color);
   transition: all 0.2s ease;
 }
 
@@ -176,8 +180,8 @@ input:focus
 
 .overlay {
   /*background: #FF416C;*/
-  background: -webkit-linear-gradient(to right, var(--fifth-color), var(--main-bg-color));
-  background: linear-gradient(to right, var(--fifth-color), var(--main-bg-color));
+  background: -webkit-linear-gradient(to right, var(--third-color), var(--fifth-color));
+  background: linear-gradient(to right, var(--main-bg-color), var(--main-bg-color));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

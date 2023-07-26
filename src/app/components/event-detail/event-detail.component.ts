@@ -4,6 +4,7 @@ import {ViewportScroller} from "@angular/common";
 import {Ticket} from "../event-card/Ticket";
 import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../services/data.service";
+import {Artist} from "../../interfaces/artist";
 @Component({
   selector: 'event-detail',
   templateUrl: './event-detail.component.html',
@@ -18,7 +19,7 @@ export class EventDetailComponent implements OnInit{
   public location: string = '';
   public organiser: string = '';
   public additionalText: string = '';
-
+  public artists: Artist[] = [];
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService) {}
 
   ngOnInit() {
@@ -39,6 +40,12 @@ export class EventDetailComponent implements OnInit{
       this.organiser = res['organiser'];
       this.additionalText = res['additionalText'];
     });
+
+    this.service.getArtistsForEvent(id).subscribe((res: any) => {
+      this.artists = res;
+    });
+
+    console.log("Artists:"+this.artists);
   }
 
   scrollTo(id: string) {
@@ -74,4 +81,7 @@ export class EventDetailComponent implements OnInit{
   //   }
   // }
 
+  showArtistDetails(aaa: string) {
+    console.log('aaaa');
+  }
 }

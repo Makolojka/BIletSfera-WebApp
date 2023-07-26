@@ -169,15 +169,90 @@ span{
 ::-webkit-scrollbar-thumb:hover {
   background: var(--main-bg-color);
 }
+/*Artist circle*/
+/*.artist-circle {*/
+/*  min-width: 100px;*/
+/*  min-height: 100px;*/
+/*  max-width: 125px;*/
+/*  max-height: 125px;*/
+/*  border-radius: 50%;*/
+/*  background-color: #ccc;*/
+/*  margin-right: 10px;*/
+/*}*/
+
+.artist-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Add position relative to the wrapper */
+}
 
 .artist-circle {
-  min-width: 100px;
-  min-height: 100px;
-  max-width: 125px;
-  max-height: 125px;
+  position: relative;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
-  background-color: #ccc;
-  margin-right: 10px;
+  margin: 5px 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.artist-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: blur(0);
+  filter: brightness(0.8);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.artist-circle h3 {
+  text-align: center;
+  margin-top: 10px;
+  position: absolute; /* Position the artist name absolutely within the circle */
+  bottom: 10px; /* Adjust the bottom position as per your preference */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.artist-wrapper h3{
+  font-size: 16px;
+  color: var(--third-color);
+  font-weight: bold;
+}
+
+.read-more-button {
+  background-color: var(--third-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute; /* Position the button absolutely within the circle */
+  top: 40%; /* Adjust the top position to vertically center the button */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.read-more-button:hover {
+  background-color: var(--third-color-hover);
+}
+
+.artist-wrapper:hover .read-more-button {
+  opacity: 1;
+}
+
+.artist-wrapper:hover .artist-circle img {
+  filter: blur(2px);
+  transform: scale(1.1);
+  filter: brightness(0.5);
 }
 
 /*SIDE MENU*/
@@ -228,14 +303,14 @@ span{
 
 
 /*TICKET*/
-.tickets{
+.tickets {
   display: flex;
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
-.ticket-items{
+.ticket-items {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,10 +319,8 @@ span{
 }
 
 .ticket {
-  position: relative;
   display: flex;
   align-items: center;
-  flex-direction: row;
   height: 150px;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid #ddd;
@@ -255,63 +328,65 @@ span{
   overflow: hidden;
   color: black;
   transition: all 0.5s ease;
-  margin: 20px 0px;
-  max-width: 100%;
+  margin: 10px 0px;
+  width: 100%;
 }
 
-.left-vertical {
-  width: 20px;
-  height: 100%;
-  background-color: var(--third-color);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-  /*border: 0px solid var(--third-color);*/
-  transition: all 0.5s ease;
-}
-
-.content-ticket {
-  display: flex;
-  justify-content: center;
-}
-
-.content-ticket .content-left {
+.left-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  border-right: 2px dashed var(--fourth-color);
+  margin: 0 10px;
 }
 
-.content-ticket .content-right {
+.top-section {
+  padding: 10px;
+}
+
+.top-section h3{
+  font-weight: 500;
+}
+
+.top-section h3 {
+  margin: 0;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.left-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
+}
+
+.right-bottom {
+  flex: 1;
+}
+
+.right-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1;
-  margin: 15px;
+  margin: 50px;
 }
 
-.content-ticket h3 {
-  padding: 10px;
+.price h2 {
+  font-size: 26px;
   margin: 0;
 }
 
-.content-line
-{
-  border-right: 2px dashed var(--third-color);
-  opacity: 0.7;
-  transition: all 0.5s ease;
-}
-
-.content-right h2{
-  font-size: 22px;
-  margin: 0;
-}
-
-h2
-{
+h2 {
   font-size: 18px;
   padding-bottom: 15px;
 }
 
-.text{
+.text {
   font-size: 16px;
 }
 
@@ -320,27 +395,27 @@ h2
   transition: all 0.2s ease;
 }
 
-.ticket:hover .left-vertical {
-  background-color: var(--main-bg-color);
+.ticket:hover .left-section {
+  border-right: 2px dashed var(--third-color);
   transition: all 0.5s ease;
 }
 
-.ticket:hover + .left-vertical {
-  transition: all 0.5s ease;
-}
+/*.ticket:hover + .left-section {*/
+/*  transition: all 0.5s ease;*/
+/*}*/
 
-.ticket:hover .content-line {
-  border-right: 2px dashed var(--main-bg-color);
-  opacity: 1;
-  transition: all 0.5s ease;
-}
+/*.ticket:hover .left-section {*/
+/*  border-right: 2px dashed var(--main-bg-color);*/
+/*  opacity: 1;*/
+/*  transition: all 0.5s ease;*/
+/*}*/
 
 /*.ticket:hover + .content-line {*/
 /*  !*border-right: 2px dashed var(--third-color);*!*/
 /*  !*opacity: 1;*!*/
 /*  !*transition: all 0.5s ease;*!*/
 /*}*/
-@media screen and (max-width: 728px) {
+@media screen and (max-width: 860px) {
   .main{
     padding: 0;
   }
@@ -351,7 +426,7 @@ h2
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 578px) {
   .main{
     padding: 0;
   }
@@ -376,10 +451,14 @@ h2
     margin-bottom: 10px;
   }
 
-  /*.content-right{*/
-  /*  margin-left: 0px;*/
-  /*  width: 100%;*/
-  /*}*/
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: none;
+    border-bottom: 2px dashed var(--third-color);
+    margin: 0 10px;
+  }
 
   .content-line{
     width: 100%;
