@@ -211,6 +211,18 @@
   background-color: white;
 }
 
+.select-label{
+  position: absolute;
+  pointer-events: none;
+  color: #777;
+  transition: 0.2s;
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 4px;
+}
+
 /*Icon tooltip*/
 .icon{
   position: relative;
@@ -257,6 +269,10 @@
   margin: 5px 10px;
 }
 
+.empty-results{
+  display: flex;
+  justify-content: center;
+}
 
 @media only screen and (max-width: 1300px) {
   .content{
