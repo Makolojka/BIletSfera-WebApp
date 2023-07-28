@@ -7,6 +7,7 @@ import {WishListComponent} from "./components/wish-list/wish-list.component";
 import {LikedComponent} from "./components/liked/liked.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
+import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [
   {
@@ -24,10 +25,12 @@ const routes: Routes = [
   {
     path: 'wishlist',
     component: WishListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'liked',
     component: LikedComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cart',

@@ -48,7 +48,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Likes -->
-      <div class="position-relative me-5" >
+      <div class="position-relative me-5" *ngIf="authService.isLoggedIn()">
         <a [routerLink]="['/wishlist']">
 <!--        <i class="fas fa-heart fa-lg icon"></i>-->
         <i class="fa-solid fa-bell fa-lg icon"></i>
@@ -202,18 +202,21 @@
           <li>
             <a class="dropdown-item" [routerLink]="['/cart']">Koszyk(0)</a>
           </li>
-          <li>
+          <li *ngIf="authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/wishlist']">Obserwowane(0)</a>
           </li>
-          <li>
+          <li *ngIf="authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/liked']">Polubione(0)</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Opcje</h5></li>
-          <li>
+          <li *ngIf="!authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/login']">Zaloguj się</a>
           </li>
-          <li>
+          <li *ngIf="!authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
+          </li>
+          <li *ngIf="authService.isLoggedIn()">
+            <a class="dropdown-item" (click)="signOut()">Wyloguj się</a>
           </li>
         </ul>
       </div>
