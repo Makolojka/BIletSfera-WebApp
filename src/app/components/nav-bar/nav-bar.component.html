@@ -196,7 +196,7 @@
         >
           <li><h5 class="dropdown-header mb-0 text">Główne</h5></li>
           <li>
-            <a class="dropdown-item" >Wydarzenia</a>
+            <a class="dropdown-item" [routerLink]="'/events'">Wydarzenia</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>
@@ -216,7 +216,7 @@
             <a class="dropdown-item" [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
           </li>
           <li *ngIf="authService.isLoggedIn()">
-            <a class="dropdown-item" (click)="signOut()">Wyloguj się</a>
+            <a class="dropdown-item" (click)="signOut()" style="cursor: pointer">Wyloguj się</a>
           </li>
         </ul>
       </div>
@@ -227,25 +227,27 @@
     <ul
       class="align-center-column"
     >
-      <div class="align-center-row"><li>
-        <a class="" >Wydarzenia</a>
-      </li>
+      <div class="align-center-row">
         <li>
-          <a class="" >Koszyk(0)</a>
+          <a [routerLink]="'/events'">Wydarzenia</a>
         </li>
         <li>
-          <a class="" >Polubienia(0)</a>
+          <a [routerLink]="['/cart']">Koszyk(0)</a>
         </li>
-        <li>
-          <a class="" >Obserwowane(0)</a>
+        <li *ngIf="authService.isLoggedIn()">
+          <a [routerLink]="['/liked']" >Polubienia(0)</a>
         </li>
-      </div>
-      <div class="align-center-row"><li>
-        <li>
+        <li *ngIf="authService.isLoggedIn()" >
+          <a [routerLink]="['/wishlist']">Obserwowane(0)</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()" >
           <a [routerLink]="['/login']">Zaloguj się</a>
         </li>
-        <li>
+        <li *ngIf="!authService.isLoggedIn()">
           <a [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn()" (click)="signOut()">
+          <a style="cursor: pointer">Wyloguj się</a>
         </li>
       </div>
     </ul>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {Ticket} from "../event-card/Ticket";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CategoryFilterService} from "../../services/category-filter.service";
 
 @Component({
   selector: 'categories',
@@ -46,11 +47,14 @@ export class CategoriesComponent implements OnInit {
   }
 
   constructor(private service: DataService, private router: Router, private route:
-    ActivatedRoute) {
+    ActivatedRoute, private categoryFilterService: CategoryFilterService) {
   }
 
   ngOnInit() {
     this.getAll();
+    this.categoriesFilterValue = this.categoryFilterService.selectedCategory;
+    console.log('Selected category from home:', this.categoryFilterService.selectedCategory);
+    this.applyFilters();
   }
 
   getAll() {
@@ -59,6 +63,10 @@ export class CategoriesComponent implements OnInit {
       this.originalItems$ = response;
       this.startDate = '06.12.1999 18:00';
       this.endDate = '06.12.2100 18:00';
+      if(!this.categoryFilterService.selectedCategory){
+        this.categoriesFilterValue = 'Wszystkie';
+      }
+      this.subCategoriesFilterValue = 'Wszystkie';
       this.sortOption = 'default';
       this.applyFilters();
     });
@@ -100,7 +108,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     // Filter by categories
-    if (this.categoriesFilterValue) {
+    if (this.categoriesFilterValue && this.categoriesFilterValue !== 'Wszystkie') {
       filteredItems = filteredItems.filter((item: any) => {
         if (item.category && Array.isArray(item.category)) {
           return item.category.includes(this.categoriesFilterValue);
@@ -112,7 +120,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     // Filter by subcategories
-    if (this.subCategoriesFilterValue) {
+    if (this.subCategoriesFilterValue && this.subCategoriesFilterValue !== 'Wszystkie') {
       filteredItems = filteredItems.filter((item: any) => {
         if (item.subCategory && Array.isArray(item.subCategory)) {
           return item.subCategory.includes(this.subCategoriesFilterValue);

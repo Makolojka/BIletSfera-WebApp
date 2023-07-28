@@ -40,6 +40,7 @@ import { TextRestrainPipe } from './pipes/text-restrain.pipe';
 import {NgOptimizedImage} from "@angular/common";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
+import {CategoryFilterService} from "./services/category-filter.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +86,7 @@ import {AuthInterceptor} from "./services/auth.interceptor";
   ],
   providers: [
     DataService,
+    CategoryFilterService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

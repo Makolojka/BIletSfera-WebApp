@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AuthService} from "./auth.service";
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private url = 'http://localhost:3001';
-  constructor(private http: HttpClient) {
+  private token = this.authService.getToken();
+  constructor(private http: HttpClient, public authService: AuthService) {
   }
   // Events endpoints
   getAll() {
