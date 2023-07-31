@@ -17,7 +17,7 @@
 
 h1 {
   font-weight: bold;
-  margin: 25px;
+  margin: 5px 25px;
   font-size: 28px;
 }
 
@@ -95,22 +95,23 @@ form {
 }
 
 input {
-  background-color: #eee;
+  background-color: transparent;
   /*border: none;*/
   padding: 15px 20px;
   margin: 8px 0;
   width: 100%;
   font-size: 18px;
   transition: all 0.2s ease;
-  border: 1px solid #ccc;
-  border-bottom: 1px solid var(--third-color);
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  /*border: 1px solid #ccc;*/
+  border: none;
+  border-bottom: 1px solid #ccc;
+  /*border-top-right-radius: 10px;*/
+  /*border-bottom-left-radius: 10px;*/
 }
 input:focus
 {
   outline: none;
-  border: 1px solid var(--third-color);
+  border-bottom: 1px solid var(--third-color);
   transition: all 0.2s ease;
 }
 

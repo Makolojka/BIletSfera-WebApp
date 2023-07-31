@@ -34,8 +34,8 @@ export class EventDetailComponent implements OnInit{
       this.text = res['text'];
       this.title = res['title'];
       this.date = res['date'];
-      this.tickets = res['tickets'];
-      console.log(this.tickets);
+      // this.tickets = res['tickets'];
+      // console.log(this.tickets);
       this.location = res['location'];
       this.organiser = res['organiser'];
       this.additionalText = res['additionalText'];
@@ -43,6 +43,11 @@ export class EventDetailComponent implements OnInit{
 
     this.service.getArtistsForEvent(id).subscribe((res: any) => {
       this.artists = res;
+    });
+
+    //TODO: przekazywać jako parametr z home
+    this.service.getTicketsForEvent(id).subscribe((res: any) => {
+      this.tickets = res;
     });
 
     console.log("Artists:"+this.artists);

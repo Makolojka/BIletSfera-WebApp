@@ -31,11 +31,11 @@
              placeholder="Powtórz hasło" [(ngModel)]="cpassword" required>
       <div *ngIf="isSignUpFormSubmitted && signUpCredentials.password !== cpassword" class="error">Hasła się nie zgadzają.</div>
       <div *ngIf="inSignUpCorrectCredentials" class="error">Email lub login zajęte.</div>
-      <button (click)="submitForm()">Zarejestruj się</button>
+      <button (click)="submitForm()" style="margin-top: 25px">Zarejestruj się</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <a class="logo" [routerLink]="['/login']"><img src="assets/log.png">BiletSfera</a>
+    <a class="logo" [routerLink]="['/']"><img src="assets/log.png">BiletSfera</a>
     <form action="post" autocomplete="off" method="POST">
       <h1>Zaloguj się</h1>
 <!--      <div class="social-container">-->

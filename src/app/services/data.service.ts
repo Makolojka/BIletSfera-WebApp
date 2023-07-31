@@ -25,4 +25,9 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + eventId + '/artists');
   }
 
+  //Tickets endpoints
+  getTicketsForEvent(eventId: string) {
+    return this.http.get(this.url + '/api/events/' + eventId + '/tickets');
+  }
+
 }
