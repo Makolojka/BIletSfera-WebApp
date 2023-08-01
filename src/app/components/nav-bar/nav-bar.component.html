@@ -60,7 +60,7 @@
       <div class="position-relative me-5" style="cursor: pointer;">
         <a id="ticketIcon" class="text-reset me-3 ticket-icon" (click)="toggleSidebar()">
           <i class="fas fa-ticket fa-lg icon"></i>
-          <span class="badge rounded-pill badge-notification icon-bg">0</span>
+          <span class="badge rounded-pill badge-notification icon-bg">{{ ticketCount }}</span>
         </a>
       </div>
 
@@ -130,7 +130,7 @@
           </li>
           <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>
-            <a class="dropdown-item" [routerLink]="['/cart']">Koszyk(0)</a>
+            <a class="dropdown-item" [routerLink]="['/cart']">Koszyk({{ ticketCount }})</a>
           </li>
           <li *ngIf="authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/wishlist']">Obserwowane(0)</a>
@@ -162,7 +162,7 @@
           <a [routerLink]="'/events'">Wydarzenia</a>
         </li>
         <li>
-          <a [routerLink]="['/cart']">Koszyk(0)</a>
+          <a [routerLink]="['/cart']">Koszyk({{ ticketCount }})</a>
         </li>
         <li *ngIf="authService.isLoggedIn()">
           <a [routerLink]="['/liked']" >Polubienia(0)</a>

@@ -79,6 +79,27 @@ export class EventDetailComponent implements OnInit{
     );
   }
 
+  likeEvent(){
+    this.service.addEventLikeOrFollower(this.userId, this.id, 'like').subscribe(
+      (response) => {
+        //   Toast message
+        console.log("Event gets a like");
+      },
+      (error) => {
+        throw error;
+      }
+    );
+    this.service.addUserLikeOrFollower(this.userId, this.id, 'likedEvents').subscribe(
+      (response) => {
+        //   Toast message
+        console.log("Event added to liked");
+      },
+      (error) => {
+        throw error;
+      }
+    );
+  }
+
   showArtistDetails(aaa: string) {
     console.log('aaaa');
   }

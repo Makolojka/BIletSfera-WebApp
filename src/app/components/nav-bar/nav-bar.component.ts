@@ -13,27 +13,28 @@ export class NavBarComponent implements OnInit{
   isDropdownVisible = false;
   public userId: string = '';
   cartData: any;
+  ticketCount: number = 0;
 
   constructor(public authService: AuthService, public router: Router, private service: DataService) {
   }
 
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
-    if(this.authService.isLoggedIn()){
-      this.userId = this.authService.getUserId();
-      this.getCartItems();
-    }
   }
 
   toggleDropdown(): void {
     if(window.innerWidth <= 768){
       this.isDropdownVisible = !this.isDropdownVisible;
-      this.userId = '';
-      this.cartData = '';
+      // this.userId = '';
+      // this.cartData = '';
     }
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn()){
+      this.userId = this.authService.getUserId();
+      this.getCartItems();
+    }
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }
 
@@ -55,6 +56,7 @@ export class NavBarComponent implements OnInit{
     this.service.getCart(this.userId).subscribe(
       (cartData: any) => {
         this.cartData = cartData; // Assign the fetched cart data to the cartData variable
+        this.calculateTicketCount();
         // console.log("cartData: "+JSON.stringify(this.cartData))
       },
       (error: any) => {
@@ -96,6 +98,19 @@ export class NavBarComponent implements OnInit{
       }
     }
     return totalSum;
+  }
+
+  calculateTicketCount() {
+    if (this.cartData && this.cartData.cart) {
+      let ticketCount = 0;
+      for (const cartItem of this.cartData.cart) {
+        for (const ticket of cartItem.tickets) {
+          ticketCount += ticket.quantity;
+        }
+      }
+      this.ticketCount = ticketCount;
+    }
+    console.log("calculateTicketCount this.ticketCount"+this.ticketCount)
   }
 
 }

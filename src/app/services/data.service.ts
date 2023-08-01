@@ -49,4 +49,27 @@ export class DataService {
       'Content-Type': 'application/json'})
     return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {}, {headers: headers});
   }
+
+  //User Like and follow endpoints /api/profile/:userId/:actionType
+  addUserLikeOrFollower(userId: string, eventId: string, actionType: string) {
+    console.log("eventId: "+eventId)
+    const body = { eventId: eventId };
+    return this.http.post(this.url + '/api/profile/' + userId + '/' + actionType, {body});
+  }
+
+  // Get users follows and likes
+  getUserLikedOrFollowedEvents(userId: string, actionType: string) {
+    return this.http.get(this.url + '/api/profile/' + userId + '/' + actionType);
+  }
+
+  //Event Like and follow endpoints /api/event/likes-follows/:userId/:actionType
+  addEventLikeOrFollower(userId: string, eventId: string, actionType: string) {
+    const body = { eventId: eventId };
+    return this.http.post(this.url + '/api/event/likes-follows/' + userId + '/' + actionType, {body});
+  }
+
+  // Get users follows and likes /api/event/:eventId/follow-likes/:actionType
+  getEventLikedOrFollowedCount(eventId: string, actionType: string) {
+    return this.http.get(this.url + '/api/event/' + eventId + '/follow-likes/' + actionType);
+  }
 }
