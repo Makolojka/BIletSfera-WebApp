@@ -48,7 +48,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Likes -->
-      <div class="position-relative me-5" >
+      <div class="position-relative me-5" *ngIf="authService.isLoggedIn()">
         <a [routerLink]="['/wishlist']">
 <!--        <i class="fas fa-heart fa-lg icon"></i>-->
         <i class="fa-solid fa-bell fa-lg icon"></i>
@@ -72,97 +72,27 @@
           </div>
           <h2>Twoje bilety</h2>
           <ul>
-            <li>
+            <li *ngFor="let cartItem of cartData?.cart">
               <div class="menu-item">
                 <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
+                  <div class="title">{{ cartItem.event.title }}</div>
+                  <p class="date">Date: <span>{{ cartItem.event.date }}</span></p>
+                  <p class="location">Location: <span>{{ cartItem.event.location }}</span></p>
                 </div>
                 <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
+                  <button class="btn minus-btn" (click)="removeTicketFromCart(cartItem.event._id, cartItem.tickets[0]._id)"><i class="fas fa-minus"></i></button>
+                  <div class="counter">{{ cartItem.tickets[0].quantity }}</div>
+                  <button class="btn plus-btn" (click)="addTicketToCart(cartItem.event._id, cartItem.tickets[0]._id)"><i class="fas fa-plus"></i></button>
                 </div>
               </div>
             </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li><li>
-            <div class="menu-item">
-              <div class="left-section">
-                <div class="title">Product 1</div>
-                <p class="date">Date: <span>Some Date</span></p>
-                <p class="location">Location: <span>Some Location</span></p>
-              </div>
-              <div class="right-section">
-                <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                <div class="counter">0</div>
-                <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-              </div>
-            </div>
-          </li>
-            <!-- More menu items here -->
           </ul>
 
           <!--Bottom section-->
           <div class="bottom-section">
             <div class="cart-summary">
               <span class="label">Suma:</span>
-              <span class="price">150,00zł</span>
+              <span class="price">{{ getTotalSum() }} zł</span>
             </div>
             <button class="sidebar-btn" [routerLink]="['/cart']">Koszyk</button>
             <button class="sidebar-btn-var">Kup bilety</button>
@@ -196,24 +126,27 @@
         >
           <li><h5 class="dropdown-header mb-0 text">Główne</h5></li>
           <li>
-            <a class="dropdown-item" >Wydarzenia</a>
+            <a class="dropdown-item" [routerLink]="'/events'">Wydarzenia</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>
             <a class="dropdown-item" [routerLink]="['/cart']">Koszyk(0)</a>
           </li>
-          <li>
+          <li *ngIf="authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/wishlist']">Obserwowane(0)</a>
           </li>
-          <li>
+          <li *ngIf="authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/liked']">Polubione(0)</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Opcje</h5></li>
-          <li>
+          <li *ngIf="!authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/login']">Zaloguj się</a>
           </li>
-          <li>
+          <li *ngIf="!authService.isLoggedIn()">
             <a class="dropdown-item" [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
+          </li>
+          <li *ngIf="authService.isLoggedIn()">
+            <a class="dropdown-item" (click)="signOut()" style="cursor: pointer">Wyloguj się</a>
           </li>
         </ul>
       </div>
@@ -224,25 +157,27 @@
     <ul
       class="align-center-column"
     >
-      <div class="align-center-row"><li>
-        <a class="" >Wydarzenia</a>
-      </li>
+      <div class="align-center-row">
         <li>
-          <a class="" >Koszyk(0)</a>
+          <a [routerLink]="'/events'">Wydarzenia</a>
         </li>
         <li>
-          <a class="" >Polubienia(0)</a>
+          <a [routerLink]="['/cart']">Koszyk(0)</a>
         </li>
-        <li>
-          <a class="" >Obserwowane(0)</a>
+        <li *ngIf="authService.isLoggedIn()">
+          <a [routerLink]="['/liked']" >Polubienia(0)</a>
         </li>
-      </div>
-      <div class="align-center-row"><li>
-        <li>
+        <li *ngIf="authService.isLoggedIn()" >
+          <a [routerLink]="['/wishlist']">Obserwowane(0)</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()" >
           <a [routerLink]="['/login']">Zaloguj się</a>
         </li>
-        <li>
+        <li *ngIf="!authService.isLoggedIn()">
           <a [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn()" (click)="signOut()">
+          <a style="cursor: pointer">Wyloguj się</a>
         </li>
       </div>
     </ul>

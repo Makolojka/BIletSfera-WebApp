@@ -1,26 +1,36 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {ActivatedRoute} from "@angular/router";
+import {Ticket} from "../event-card/Ticket";
 @Component({
   selector: 'home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit{
-
+export class HomePageComponent implements OnInit {
   public items$: any;
   public dataLoaded = false;
-  constructor(private service: DataService) {
-  }
+  public ticketsMap: { [eventId: string]: Ticket[] } = {}; // Map to store tickets for each event
+
+  constructor(private service: DataService, private route: ActivatedRoute) {}
+
   ngOnInit() {
     this.getAll();
   }
-  getAll(){
-    this.service.getAll().subscribe(response => {
+
+  getAll() {
+    this.service.getAll().subscribe((response) => {
       this.items$ = response;
       this.dataLoaded = true;
-      // console.log(this.items$);
-      // console.log(JSON.stringify(this.items$[0].id));
-      // console.log("Id:"+this.items$);
+      this.fetchTicketsForEachEvent(); // Fetch tickets for each event after getting all events
+    });
+  }
+
+  fetchTicketsForEachEvent() {
+    this.items$.forEach((event: any) => {
+      this.service.getTicketsForEvent(event.id).subscribe((res: any) => {
+        this.ticketsMap[event.id] = res;
+      });
     });
   }
 }

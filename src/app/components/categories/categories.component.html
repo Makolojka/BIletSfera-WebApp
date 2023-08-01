@@ -31,6 +31,7 @@
         <div class="input-container">
           <select class="form-select input-field-form" [(ngModel)]="categoriesFilterValue" (change)="onCategoryChange($event)" aria-label="cat_select" id="cat">
 <!--            <option selected disabled>Kategorie</option>-->
+            <option value="Wszystkie">Wszystkie</option>
             <option value="Muzyka">Muzyka</option>
             <option value="Kino">Kino</option>
             <option value="Teatr">Teatr</option>
@@ -46,6 +47,7 @@
         <div class="input-container">
           <select class="form-select input-field-form" [(ngModel)]="subCategoriesFilterValue" (change)="onSubCategoryChange($event)"  aria-label="sub_select" id="sub_cat">
 <!--            <option selected disabled>Podkategorie</option>-->
+            <option value="Wszystkie">Wszystkie</option>
             <option value="Festiwale">Festiwale</option>
             <option value="Pop">Pop</option>
             <option value="Rock">Rock</option>
@@ -58,40 +60,6 @@
           </select>
           <label for="sub_cat" class="select-label">Podkategorie</label>
         </div>
-
-<!--        <div class="input-container">-->
-<!--          <input type="text" class="input-field" id="location" placeholder="Warszawa">-->
-<!--          <label for="location" class="input-label">Lokalizacja</label>-->
-<!--        </div>-->
-
-<!--        <div class="input-container">-->
-<!--          <select class="form-select input-field-form" aria-label="cat_select">-->
-<!--            <option selected disabled>Kategorie</option>-->
-<!--            <option value="Festiwale">Muzyka</option>-->
-<!--            <option value="Pop">Kino</option>-->
-<!--            <option value="Rock">Teatr</option>-->
-<!--            <option value="Jazz_blues">Targi</option>-->
-<!--            <option value="Metal">Konwenty</option>-->
-<!--            <option value="Disco_polo">Sport</option>-->
-<!--            <option value="Techno/Elektro">Zwiedzanie</option>-->
-<!--            <option value="Muzyka Klasyczna">Inne</option>-->
-<!--          </select>-->
-<!--        </div>-->
-
-<!--        <div class="input-container">-->
-<!--          <select class="form-select input-field-form" aria-label="cat_select">-->
-<!--            <option selected disabled>Podkategorie</option>-->
-<!--            <option value="Festiwale">Festiwale</option>-->
-<!--            <option value="Pop">Pop</option>-->
-<!--            <option value="Rock">Rock</option>-->
-<!--            <option value="Jazz_blues">Jazz i Blues</option>-->
-<!--            <option value="Metal">Metal</option>-->
-<!--            <option value="Disco_polo">Disco Polo</option>-->
-<!--            <option value="Techno/Elektro">Techno/Elektro</option>-->
-<!--            <option value="Muzyka Klasyczna">Muzyka Klasyczna</option>-->
-<!--            <option value="Inne">Inne</option>-->
-<!--          </select>-->
-<!--        </div>-->
 
         <div class="input-container input-date" [(ngModel)]="startDate" (change)="onDateStart($event)" ngDefaultControl>
           <input type="date" class="input-field" id="startDate" name="startDate">
@@ -121,7 +89,8 @@
         <p>Wygląda na to, że żadno wydarzenie nie spełnia warunków wyszukiwania.</p>
       </div>
       <div *ngFor="let item of items$">
-        <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        <event-card [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text"
+                    [tickets]="ticketsMap[item.id]" [date]="item.date" [location]="item.location">
         </event-card>
       </div>
     </div>
@@ -131,7 +100,8 @@
         <p>Wygląda na to, że żadne wydarzenie nie spełnia warunków wyszukiwania.</p>
       </div>
       <div *ngFor="let item of items$">
-        <event-card-wide [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text" [tickets]="item.tickets" [date]="item.date" [location]="item.location">
+        <event-card-wide [id]="item.id" [title]="item.title" [image]="item.image" [text]="item.text"
+                         [tickets]="ticketsMap[item.id]" [date]="item.date" [location]="item.location">
         </event-card-wide>
       </div>
      </div>

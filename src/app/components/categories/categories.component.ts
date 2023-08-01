@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {Ticket} from "../event-card/Ticket";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CategoryFilterService} from "../../services/category-filter.service";
 
 @Component({
   selector: 'categories',
@@ -10,6 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CategoriesComponent implements OnInit {
   public items$: any;
+  public ticketsMap: { [eventId: string]: Ticket[] } = {}; // Map to store tickets for each event
   public originalItems$: any;
   isRegularView = false; // Set the initial view to wide cards
   sortOption: string = '';
@@ -46,21 +48,37 @@ export class CategoriesComponent implements OnInit {
   }
 
   constructor(private service: DataService, private router: Router, private route:
-    ActivatedRoute) {
+    ActivatedRoute, private categoryFilterService: CategoryFilterService) {
   }
 
   ngOnInit() {
     this.getAll();
+    this.categoriesFilterValue = this.categoryFilterService.selectedCategory;
+    console.log('Selected category from home:', this.categoryFilterService.selectedCategory);
+    this.applyFilters();
   }
 
   getAll() {
     this.service.getAll().subscribe(response => {
       this.items$ = response;
+      this.fetchTicketsForEachEvent(); // Fetch tickets for each event after getting all events
       this.originalItems$ = response;
       this.startDate = '06.12.1999 18:00';
       this.endDate = '06.12.2100 18:00';
+      if(!this.categoryFilterService.selectedCategory){
+        this.categoriesFilterValue = 'Wszystkie';
+      }
+      this.subCategoriesFilterValue = 'Wszystkie';
       this.sortOption = 'default';
       this.applyFilters();
+    });
+  }
+
+  fetchTicketsForEachEvent() {
+    this.items$.forEach((event: any) => {
+      this.service.getTicketsForEvent(event.id).subscribe((res: any) => {
+        this.ticketsMap[event.id] = res;
+      });
     });
   }
 
@@ -100,7 +118,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     // Filter by categories
-    if (this.categoriesFilterValue) {
+    if (this.categoriesFilterValue && this.categoriesFilterValue !== 'Wszystkie') {
       filteredItems = filteredItems.filter((item: any) => {
         if (item.category && Array.isArray(item.category)) {
           return item.category.includes(this.categoriesFilterValue);
@@ -112,7 +130,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     // Filter by subcategories
-    if (this.subCategoriesFilterValue) {
+    if (this.subCategoriesFilterValue && this.subCategoriesFilterValue !== 'Wszystkie') {
       filteredItems = filteredItems.filter((item: any) => {
         if (item.subCategory && Array.isArray(item.subCategory)) {
           return item.subCategory.includes(this.subCategoriesFilterValue);
@@ -149,11 +167,11 @@ export class CategoriesComponent implements OnInit {
         });
         break;
       case 'lowest':
-        filteredItems.sort((a: any, b: any) => this.getLowestTicketPrice(a.tickets) - this.getLowestTicketPrice(b.tickets));
+        filteredItems.sort((a: any, b: any) => this.getLowestTicketPrice(a.id) - this.getLowestTicketPrice(b.id));
         break;
       case 'highest':
         const highestOfLowestPrice = this.getHighestOfLowestTicketPrice();
-        filteredItems.sort((a: any, b: any) => highestOfLowestPrice - this.getLowestTicketPrice(a.tickets) - (highestOfLowestPrice - this.getLowestTicketPrice(b.tickets)));
+        filteredItems.sort((a: any, b: any) => highestOfLowestPrice - this.getLowestTicketPrice(a.id) - (highestOfLowestPrice - this.getLowestTicketPrice(b.id)));
         break;
       default:
         break;
@@ -163,8 +181,9 @@ export class CategoriesComponent implements OnInit {
     this.isResultEmpty = filteredItems.length === 0;
   }
 
-  //Returns the lowest price of all tickets of given event
-  getLowestTicketPrice(tickets: Ticket[]): number {
+  // Returns the lowest price of all tickets for the given event
+  getLowestTicketPrice(eventId: string): number {
+    const tickets = this.ticketsMap[eventId];
     if (!tickets || tickets.length === 0) {
       return 0;
     }
@@ -174,8 +193,9 @@ export class CategoriesComponent implements OnInit {
     }, tickets[0].price);
   }
 
-  //Returns the highest price of all tickets of given event
-  getHighestTicketPrice(tickets: Ticket[]): number {
+// Returns the highest price of all tickets for the given event
+  getHighestTicketPrice(eventId: string): number {
+    const tickets = this.ticketsMap[eventId];
     if (!tickets || tickets.length === 0) {
       return 0;
     }
@@ -185,20 +205,16 @@ export class CategoriesComponent implements OnInit {
     }, tickets[0].price);
   }
 
-  //Returns the highest price of the lowest price of given event
+  // Returns the highest price of the lowest price of all events
   getHighestOfLowestTicketPrice(): number {
     let highestOfLowestPrice = 0;
 
-    if (!this.items$ || this.items$.length === 0) {
-      return highestOfLowestPrice;
-    }
-
-    this.items$.forEach((item: any) => {
-      const lowestTicketPrice = this.getLowestTicketPrice(item.tickets);
+    for (const eventId in this.ticketsMap) {
+      const lowestTicketPrice = this.getLowestTicketPrice(eventId);
       if (lowestTicketPrice > highestOfLowestPrice) {
         highestOfLowestPrice = lowestTicketPrice;
       }
-    });
+    }
 
     return highestOfLowestPrice;
   }

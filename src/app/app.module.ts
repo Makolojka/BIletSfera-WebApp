@@ -8,7 +8,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatMenuModule} from "@angular/material/menu";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -38,6 +38,9 @@ import { EventCardWideComponent } from './components/event-card-wide/event-card-
 import {DataService} from "./services/data.service";
 import { TextRestrainPipe } from './pipes/text-restrain.pipe';
 import {NgOptimizedImage} from "@angular/common";
+import {AuthService} from "./services/auth.service";
+import {AuthInterceptor} from "./services/auth.interceptor";
+import {CategoryFilterService} from "./services/category-filter.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +85,14 @@ import {NgOptimizedImage} from "@angular/common";
 
   ],
   providers: [
-    DataService
+    DataService,
+    CategoryFilterService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

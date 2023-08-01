@@ -19,6 +19,7 @@ export class EventCardComponent {
 
   // Returns lowest price from all of available tickets for an event
   getLowestTicketPrice(): number {
+    // console.log("Tickets:"+this.tickets);
       if (!this.tickets || this.tickets.length === 0) {
         return 0; // Returns 0 if there are no tickets
       }

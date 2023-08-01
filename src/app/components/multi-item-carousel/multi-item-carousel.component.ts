@@ -79,13 +79,13 @@ export class MultiItemCarouselComponent implements OnInit{
       }
 
       // Debug values
-      console.log("slide width:" + slideWidth);
-      console.log("containerWidth:" + containerWidth);
-      console.log("visibleSlides:" + visibleSlides);
-      console.log("substractionWidth:" + substractionWidth);
-      console.log("maxSlideIndex:" + maxSlideIndex);
-      console.log("slideIndex:" + slideIndex);
-      console.log("translateX:" + translateX);
+      // console.log("slide width:" + slideWidth);
+      // console.log("containerWidth:" + containerWidth);
+      // console.log("visibleSlides:" + visibleSlides);
+      // console.log("substractionWidth:" + substractionWidth);
+      // console.log("maxSlideIndex:" + maxSlideIndex);
+      // console.log("slideIndex:" + slideIndex);
+      // console.log("translateX:" + translateX);
 
       this.carouselInner.style.transform = `translateX(${translateX}px)`;
       this.currentSlide = slideIndex;
