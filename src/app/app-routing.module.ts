@@ -45,8 +45,13 @@ const routes: Routes = [
     path: 'event/detail/:id',
     component: EventDetailComponent
   },
+  // TODO: Tymczasowe routy, do zmiany bo zmienione url
   {
     path: 'events/event/detail/:id',
+    component: EventDetailComponent
+  },
+  {
+    path: 'cart/event/detail/:id',
     component: EventDetailComponent
   },
 ];

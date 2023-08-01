@@ -11,6 +11,7 @@ import {Token} from "../interfaces/token";
 export class AuthService {
 
   private url = 'http://localhost:3001/api';
+  public tickets: any;
 
   constructor(private http: HttpClient) {
   }

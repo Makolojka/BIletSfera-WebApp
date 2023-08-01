@@ -72,97 +72,27 @@
           </div>
           <h2>Twoje bilety</h2>
           <ul>
-            <li>
+            <li *ngFor="let cartItem of cartData?.cart">
               <div class="menu-item">
                 <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
+                  <div class="title">{{ cartItem.event.title }}</div>
+                  <p class="date">Date: <span>{{ cartItem.event.date }}</span></p>
+                  <p class="location">Location: <span>{{ cartItem.event.location }}</span></p>
                 </div>
                 <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
+                  <button class="btn minus-btn" (click)="removeTicketFromCart(cartItem.event._id, cartItem.tickets[0]._id)"><i class="fas fa-minus"></i></button>
+                  <div class="counter">{{ cartItem.tickets[0].quantity }}</div>
+                  <button class="btn plus-btn" (click)="addTicketToCart(cartItem.event._id, cartItem.tickets[0]._id)"><i class="fas fa-plus"></i></button>
                 </div>
               </div>
             </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="menu-item">
-                <div class="left-section">
-                  <div class="title">Product 1</div>
-                  <p class="date">Date: <span>Some Date</span></p>
-                  <p class="location">Location: <span>Some Location</span></p>
-                </div>
-                <div class="right-section">
-                  <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                  <div class="counter">0</div>
-                  <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-                </div>
-              </div>
-            </li><li>
-            <div class="menu-item">
-              <div class="left-section">
-                <div class="title">Product 1</div>
-                <p class="date">Date: <span>Some Date</span></p>
-                <p class="location">Location: <span>Some Location</span></p>
-              </div>
-              <div class="right-section">
-                <button class="btn plus-btn"><i class="fas fa-plus"></i></button>
-                <div class="counter">0</div>
-                <button class="btn minus-btn"><i class="fas fa-minus"></i></button>
-              </div>
-            </div>
-          </li>
-            <!-- More menu items here -->
           </ul>
 
           <!--Bottom section-->
           <div class="bottom-section">
             <div class="cart-summary">
               <span class="label">Suma:</span>
-              <span class="price">150,00zł</span>
+              <span class="price">{{ getTotalSum() }} zł</span>
             </div>
             <button class="sidebar-btn" [routerLink]="['/cart']">Koszyk</button>
             <button class="sidebar-btn-var">Kup bilety</button>

@@ -64,7 +64,7 @@
               </div>
               <div class="buy-button">
                 <!-- Use your main-button component here -->
-                 <main-button routerLink="event/detail" [text]="'Kup bilet'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
+                 <main-button (click)="addTicket(userId, ticket._id)" [text]="'Dodaj do koszyka'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
               </div>
             </div>
           </div>

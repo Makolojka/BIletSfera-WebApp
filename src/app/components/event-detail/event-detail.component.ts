@@ -5,6 +5,7 @@ import {Ticket} from "../event-card/Ticket";
 import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {Artist} from "../../interfaces/artist";
+import {AuthService} from "../../services/auth.service";
 @Component({
   selector: 'event-detail',
   templateUrl: './event-detail.component.html',
@@ -20,16 +21,18 @@ export class EventDetailComponent implements OnInit{
   public organiser: string = '';
   public additionalText: string = '';
   public artists: Artist[] = [];
-  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService) {}
+  public userId: string = '';
+  public id: string = '';
+  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService) {}
 
   ngOnInit() {
-    let id: string = '';
+    this.userId = this.authService.getUserId();
     this.route.paramMap
       .subscribe((params: any) => {
-        id = params.get('id');
+        this.id = params.get('id');
       });
 
-    this.service.getById(id).subscribe((res: any) => {
+    this.service.getById(this.id).subscribe((res: any) => {
       this.image = res['image'];
       this.text = res['text'];
       this.title = res['title'];
@@ -41,12 +44,12 @@ export class EventDetailComponent implements OnInit{
       this.additionalText = res['additionalText'];
     });
 
-    this.service.getArtistsForEvent(id).subscribe((res: any) => {
+    this.service.getArtistsForEvent(this.id).subscribe((res: any) => {
       this.artists = res;
     });
 
     //TODO: przekazywać jako parametr z home
-    this.service.getTicketsForEvent(id).subscribe((res: any) => {
+    this.service.getTicketsForEvent(this.id).subscribe((res: any) => {
       this.tickets = res;
     });
 
@@ -63,28 +66,18 @@ export class EventDetailComponent implements OnInit{
     this.isScreenSmall = window.innerWidth < 768;
     console.log('Small window');
   }
-  // // @ts-ignore
-  // @ViewChild('stickyMenu') menuElement: ElementRef ;
-  //
-  // sticky: boolean = false;
-  // elementPosition: any;
-  //
-  // ngOnInit() {
-  // }
-  //
-  // ngAfterViewInit(){
-  //   this.elementPosition = this.menuElement.nativeElement.offsetTop;
-  // }
-  //
-  // @HostListener('window:scroll', ['$event'])
-  // handleScroll(){
-  //   const windowScroll = window.pageYOffset;
-  //   if(windowScroll >= this.elementPosition){
-  //     this.sticky = true;
-  //   } else {
-  //     this.sticky = false;
-  //   }
-  // }
+  addTicket(userId: string, ticketId: string) {
+    // console.log("userID: "+userId+"  eventId: "+this.id+"  ticketID: "+ticketId)
+    this.service.addTicketToCart(userId, this.id, ticketId).subscribe(
+      (response) => {
+      //   Toast message
+        console.log("Added to the cart")
+      },
+      (error) => {
+        throw error;
+      }
+    );
+  }
 
   showArtistDetails(aaa: string) {
     console.log('aaaa');
