@@ -23,6 +23,9 @@ export class EventDetailComponent implements OnInit{
   public artists: Artist[] = [];
   public userId: string = '';
   public id: string = '';
+
+  public followerCount: number = 0;
+  public likesCount: number = 0;
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -53,6 +56,10 @@ export class EventDetailComponent implements OnInit{
       this.tickets = res;
     });
 
+    this.incrementViews();
+    this.getLikes();
+    this.getFollowers();
+
     console.log("Artists:"+this.artists);
   }
 
@@ -79,28 +86,86 @@ export class EventDetailComponent implements OnInit{
     );
   }
 
+  // TODO: zabezpieczenie, co jak nie wykona się jedna z metod?
   likeEvent(){
-    this.service.addEventLikeOrFollower(this.userId, this.id, 'like').subscribe(
-      (response) => {
-        //   Toast message
-        console.log("Event gets a like");
-      },
-      (error) => {
-        throw error;
-      }
-    );
-    this.service.addUserLikeOrFollower(this.userId, this.id, 'likedEvents').subscribe(
-      (response) => {
-        //   Toast message
-        console.log("Event added to liked");
-      },
-      (error) => {
-        throw error;
-      }
-    );
+    console.log("this.userId: "+this.userId+"  this.id: "+this.id+" for likedEvents")
+    if(this.userId && this.id)
+    {
+      this.service.addUserLikeOrFollower(this.userId, this.id, 'likedEvents').subscribe(
+        (response) => {
+          //   Toast message
+          console.log("Event added to liked");
+        },
+        (error) => {
+          throw error;
+        }
+      );
+      this.service.addEventLikeOrFollower(this.id, this.userId, 'like').subscribe(
+        (response) => {
+          //   Toast message
+          console.log("Event added to liked");
+        },
+        (error) => {
+          throw error;
+        }
+      );
+    }
+    else{
+      console.log("Missing userId or eventId");
+    }
+  }
+
+  followEvent(){
+    if(this.userId && this.id)
+    {
+      this.service.addUserLikeOrFollower(this.userId, this.id, 'followedEvents').subscribe(
+        (response) => {
+          //   Toast message
+          console.log("Event added to followed");
+        },
+        (error) => {
+          throw error;
+        }
+      );
+      this.service.addEventLikeOrFollower(this.id, this.userId, 'follow').subscribe(
+        (response) => {
+          //   Toast message
+          console.log("Event added to liked");
+        },
+        (error) => {
+          throw error;
+        }
+      );
+    }
+    else{
+      console.log("Missing userId or eventId");
+    }
+  }
+
+  getFollowers(){
+    this.service.getEventLikedOrFollowedCount(this.id, 'follow').subscribe((res: any) => {
+      this.followerCount = res['count'];
+    });
+  }
+  getLikes(){
+    this.service.getEventLikedOrFollowedCount(this.id, 'like').subscribe((res: any) => {
+      this.likesCount = res['count'];
+    });
   }
 
   showArtistDetails(aaa: string) {
     console.log('aaaa');
+  }
+
+  incrementViews(){
+    this.service.incrementEventViews(this.id).subscribe(
+      (response) => {
+        //   Toast message
+        console.log("Views incremented")
+      },
+      (error) => {
+        throw error;
+      }
+    );
   }
 }

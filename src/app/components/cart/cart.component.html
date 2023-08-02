@@ -62,6 +62,11 @@
     <!-- Add more wishlist items here -->
     </tbody>
   </table>
+
+  <div class="empty-item" *ngIf="isCartDataEmpty">
+    <p>Koszyk jest pusty</p>
+  </div>
+
   <div class="cart-bottom-section">
     <div class="cart-coupon">
       <h5>Zastosuj kod promocyjny</h5>

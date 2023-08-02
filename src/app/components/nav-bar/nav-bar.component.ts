@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
+import {LikesAndFollows} from "../../interfaces/likes-and-follows";
 
 @Component({
   selector: 'nav-bar',
@@ -14,6 +15,8 @@ export class NavBarComponent implements OnInit{
   public userId: string = '';
   cartData: any;
   ticketCount: number = 0;
+  followedCount: number = 0;
+  likedCount: number = 0;
 
   constructor(public authService: AuthService, public router: Router, private service: DataService) {
   }
@@ -34,6 +37,7 @@ export class NavBarComponent implements OnInit{
     if(this.authService.isLoggedIn()){
       this.userId = this.authService.getUserId();
       this.getCartItems();
+      this.getLikedAndFollowedCount();
     }
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }
@@ -110,7 +114,20 @@ export class NavBarComponent implements OnInit{
       }
       this.ticketCount = ticketCount;
     }
-    console.log("calculateTicketCount this.ticketCount"+this.ticketCount)
+    // console.log("calculateTicketCount this.ticketCount"+this.ticketCount)
+  }
+
+  getLikedAndFollowedCount() {
+    this.service.getUserLikedOrFollowedEventsCount(this.userId).subscribe(
+      (response: LikesAndFollows) => {
+        // console.log("response: "+JSON.stringify(response));
+        this.likedCount = response.likedEventsCount;
+        this.followedCount = response.followedEventsCount;
+      },
+      (error) => {
+        // Handle error if needed
+      }
+    );
   }
 
 }

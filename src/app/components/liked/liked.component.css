@@ -99,6 +99,7 @@
 }
 .icon{
   font-size: 18px;
+  color: #963939;
 }
 
 .btn-wishlist p {
@@ -107,7 +108,7 @@
 
 .btn-wishlist:hover {
   color: white;
-  background-color: #963939;
+  /*background-color: #963939;*/
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border: 1px solid #963939;
   transition: all 0.5s ease-in-out;

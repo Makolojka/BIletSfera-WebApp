@@ -7,7 +7,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: var(--main-bg-color);
+  color: var(--third-color);
 }
 
 .cart-table {
@@ -17,7 +17,7 @@
 }
 
 .cart-table th {
-  background-color: var(--main-bg-color);
+  background-color: var(--third-color);
   color: var(--main-background);
   padding: 10px;
   text-align: center;
@@ -102,6 +102,14 @@
   height: 100%;
   object-fit: cover;
   transition: all 0.3s ease-in-out;
+}
+
+.empty-item{
+  /*margin: 10px 10px;*/
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 0px 10px;
+  color: #222;
 }
 
 @media screen and (max-width: 1100px) {
@@ -202,11 +210,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid var(--main-bg-color);
+  border: 1px solid var(--third-color);
   width: 400px;
   height: 40px;
   padding: 15px 25px;
-  background-color: var(--main-bg-color);
+  background-color: var(--third-color);
   color: var(--main-background);
   text-transform: uppercase;
   font-weight: bold;

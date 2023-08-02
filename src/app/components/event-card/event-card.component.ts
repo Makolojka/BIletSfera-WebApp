@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Ticket} from "./Ticket";
+import {Ticket} from "./Ticket"; //TODO: przenieść do interfejsów
 @Component({
   selector: 'event-card',
   templateUrl: './event-card.component.html',

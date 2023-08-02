@@ -52,7 +52,7 @@
         <a [routerLink]="['/wishlist']">
 <!--        <i class="fas fa-heart fa-lg icon"></i>-->
         <i class="fa-solid fa-bell fa-lg icon"></i>
-        <span class="badge rounded-pill badge-notification icon-bg">0</span>
+        <span class="badge rounded-pill badge-notification icon-bg">{{ followedCount }}</span>
       </a>
       </div>
 
@@ -133,10 +133,10 @@
             <a class="dropdown-item" [routerLink]="['/cart']">Koszyk({{ ticketCount }})</a>
           </li>
           <li *ngIf="authService.isLoggedIn()">
-            <a class="dropdown-item" [routerLink]="['/wishlist']">Obserwowane(0)</a>
+            <a class="dropdown-item" [routerLink]="['/wishlist']">Obserwowane({{ followedCount }})</a>
           </li>
           <li *ngIf="authService.isLoggedIn()">
-            <a class="dropdown-item" [routerLink]="['/liked']">Polubione(0)</a>
+            <a class="dropdown-item" [routerLink]="['/liked']">Polubione({{ likedCount }})</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Opcje</h5></li>
           <li *ngIf="!authService.isLoggedIn()">
