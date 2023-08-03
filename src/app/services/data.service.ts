@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from "./auth.service";
+import {LikesAndFollows} from "../interfaces/likes-and-follows";
+import {Observable} from "rxjs";
+import {Ticket} from "../components/event-card/Ticket";
 @Injectable({
   providedIn: 'root'
 })
@@ -48,5 +51,38 @@ export class DataService {
     let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
       'Content-Type': 'application/json'})
     return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {}, {headers: headers});
+  }
+
+  // TODO: dodać autoryzację
+  //User Like and follow endpoints /api/profile/:userId/:actionType
+  addUserLikeOrFollower(userId: string, eventId: string, actionType: string) {
+    // console.log("eventId: "+eventId)
+    // const body = { userId: userId, actionType: actionType, eventId: eventId };
+    return this.http.post(this.url + '/api/profile/like-follow/'+userId+'/'+eventId+'/'+actionType,{});
+  }
+
+  // Get users follows and likes
+  getUserLikedOrFollowedEvents(userId: string, actionType: string) {
+    return this.http.get(this.url + '/api/profile/likes-follows/' + userId + '/' + actionType);
+  }
+
+  //Event Like and follow endpoints /api/event/likes-follows/:userId/:actionType
+  addEventLikeOrFollower(eventId: string, userId: string, actionType: string) {
+    return this.http.post(this.url + '/api/event/likes-follows/' + eventId + '/' + userId + '/' + actionType, {});
+  }
+
+  // Get event follows and likes /api/event/:eventId/follow-likes/:actionType
+  getEventLikedOrFollowedCount(eventId: string, actionType: string) {
+    return this.http.get(this.url + '/api/event/likes-follows/' + eventId + '/' + actionType);
+  }
+
+  //Get followed and liked events count
+  getUserLikedOrFollowedEventsCount(userId: string) {
+    return this.http.get<LikesAndFollows>(this.url + '/api/profile/likes-follows/' + userId);
+  }
+
+  //Increment views for event
+  incrementEventViews(eventId: string) {
+    return this.http.post(this.url + '/api/event/views/'+eventId,{});
   }
 }

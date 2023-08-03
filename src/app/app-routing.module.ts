@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'cart/event/detail/:id',
     component: EventDetailComponent
   },
+  {
+    path: 'wishlist/event/detail/:id',
+    component: EventDetailComponent
+  },
 ];
 
 @NgModule({

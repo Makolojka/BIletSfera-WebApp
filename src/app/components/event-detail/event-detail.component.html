@@ -4,9 +4,15 @@
   <div class="banner">
   <div class="banner-row-space">
     <div><h1>{{ title }}</h1></div>
-    <div>
-      <i class="fa-regular fa-heart icon icon-big" data-tooltip="Polub"></i>
-      <i class="fa-regular fa-bell icon icon-big" data-tooltip="Obserwuj"></i>
+    <div class="align-center-row">
+      <div class="align-center-column">
+        <i class="fa-regular fa-heart icon icon-big" data-tooltip="Polub" (click)="likeEvent()"></i>
+        <div style="margin-top: 5px">{{ likesCount }}</div>
+      </div>
+      <div class="align-center-column">
+        <i class="fa-regular fa-bell icon icon-big" data-tooltip="Obserwuj" (click)="followEvent()"></i>
+        <div style="margin-top: 5px">{{ followerCount }}</div>
+      </div>
     </div>
   </div>
   <div class="banner-row" id="about">
