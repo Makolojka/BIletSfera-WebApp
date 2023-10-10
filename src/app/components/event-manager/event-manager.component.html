@@ -1,15 +1,70 @@
 <nav-bar></nav-bar>
 <div class="main">
   <div class="event-bar">
-    <div class="manager-btn">
-      <h2>Aktywne wydarzenia</h2>
+    <div class="manager-btn" [class.manager-btn-active]="activeEventsVisible" (click)="showActiveEvents()">
+      <h3 [style.color]="activeEventsVisible ? '#2d1a42' : '#7d7d7d'">Aktywne wydarzenia</h3>
     </div>
-    <div class="manager-btn">
-      <h2>Zakończone wydarzenia</h2>
+
+    <div class="manager-btn" [class.manager-btn-active]="completedEventsVisible" (click)="showCompletedEvents()">
+      <h3 [style.color]="completedEventsVisible ? '#2d1a42' : '#7d7d7d'">Zakończone wydarzenia</h3>
     </div>
-    <div class="manager-btn">
-      <h2>Raporty i statystyki</h2>
+
+    <div class="manager-btn" [class.manager-btn-active]="reportsVisible" (click)="showReports()">
+      <h3 [style.color]="reportsVisible ? '#2d1a42' : '#7d7d7d'">Raporty i statystyki</h3>
+    </div>
+
+    <div class="manager-btn" [class.manager-btn-active]="eventCreationVisible" (click)="showEventCreation()">
+      <h3 [style.color]="eventCreationVisible ? '#2d1a42' : '#7d7d7d'">Stwórz nowe wydarzenie</h3>
     </div>
   </div>
-</div>
 
+  <div *ngIf="activeEventsVisible" class="align-center-column-image">
+    <!-- Content for Active Events -->
+<!--    <div class="panel-div">-->
+<!--      <img src="././assets/img/calendar.png" alt="No events image" class="calendar-img">-->
+<!--      <div class="missing-text">-->
+<!--        <h4>Brak aktywnych wydarzeń</h4>-->
+<!--      </div>-->
+<!--      <div class="create-event-btn">-->
+<!--        <h4>Utwórz wydarzenie</h4>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+    <div class="panel-div">
+      <div class="event">
+        <div class="content-left">
+          <img [src]="image" alt="Card Image" class="event-img">
+        </div>
+        <div class="content-right">
+          <div class="align-left-row">
+            <p class="event-info">Nazwa wydarzenia:</p><p>TOP of the TOP Sopot Festival</p>
+          </div>
+          <div class="align-left-row">
+            <p class="event-info">URL:</p><p>http://localhost:4200/event/detail/64c7d625d0be393eb01912f6</p>
+          </div>
+          <div class="align-left-row">
+            <p class="event-info">Sprzedanych biletów:</p><p>201</p>
+          </div>
+          <div style="display: flex; justify-content: flex-start"><h3 class="edit-btn">Edytuj wydarzenie</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="completedEventsVisible">
+    <!-- Content for Completed Events -->
+    <p>Completed Events</p>
+  </div>
+
+  <div *ngIf="reportsVisible">
+    <!-- Content for Reports and Statistics -->
+    <p>Reports and Statistics</p>
+  </div>
+
+  <div *ngIf="eventCreationVisible">
+    <!-- Content for Event Creation -->
+    <p>Event Creation</p>
+  </div>
+</div>
