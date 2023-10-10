@@ -41,6 +41,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
+import {EventManagerComponent} from "./components/event-manager/event-manager.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import {CategoryFilterService} from "./services/category-filter.service";
     CategoriesComponent,
     EventCardWideComponent,
     TextRestrainPipe,
+    EventManagerComponent,
   ],
   imports: [
     BrowserModule,
