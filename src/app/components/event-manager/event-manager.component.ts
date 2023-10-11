@@ -7,7 +7,6 @@ import {Component, OnInit} from '@angular/core';
 })
 export class EventManagerComponent implements OnInit{
   activeEventsVisible = false;
-  completedEventsVisible = false;
   reportsVisible = false;
   eventCreationVisible = false;
 
@@ -16,18 +15,13 @@ export class EventManagerComponent implements OnInit{
   areEventsPresent: boolean = true;
 
   ngOnInit() {
-    this.activeEventsVisible = true;
+    // this.activeEventsVisible = true;
+    this.reportsVisible = true;
   }
   showActiveEvents() {
     this.resetVisibility();
     this.activeEventsVisible = true;
     this.activePanel = 'activeEvents';
-  }
-
-  showCompletedEvents() {
-    this.resetVisibility();
-    this.completedEventsVisible = true;
-    this.activePanel = 'completedEvents';
   }
 
   showReports() {
@@ -44,7 +38,6 @@ export class EventManagerComponent implements OnInit{
 
   private resetVisibility() {
     this.activeEventsVisible = false;
-    this.completedEventsVisible = false;
     this.reportsVisible = false;
     this.eventCreationVisible = false;
   }

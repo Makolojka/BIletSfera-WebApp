@@ -5,10 +5,6 @@
       <h3 [style.color]="activeEventsVisible ? '#2d1a42' : '#7d7d7d'">Aktywne wydarzenia</h3>
     </div>
 
-    <div class="manager-btn" [class.manager-btn-active]="completedEventsVisible" (click)="showCompletedEvents()">
-      <h3 [style.color]="completedEventsVisible ? '#2d1a42' : '#7d7d7d'">Zakończone wydarzenia</h3>
-    </div>
-
     <div class="manager-btn" [class.manager-btn-active]="reportsVisible" (click)="showReports()">
       <h3 [style.color]="reportsVisible ? '#2d1a42' : '#7d7d7d'">Raporty i statystyki</h3>
     </div>
@@ -31,41 +27,104 @@
     </div>
 
 
-    <div class="panel-div" *ngIf="areEventsPresent">
+    <div class="panel-div-row" *ngIf="areEventsPresent">
       <div class="event">
+        <div class="button-container">
+          <i class="fa-solid fa-edit"></i>
+        </div>
         <div class="image-container">
           <img [src]="image" alt="Card Image" class="event-img">
         </div>
         <div class="content-top">
-          <div class="align-left-row event-title-container">
-            <p class="event-title">TOP of the TOP Sopot Festival</p>
+          <div class="event-title-container">
+            <p style="font-size: 22px" class="event-title">Top TOP Festiwal SOPOT</p>
           </div>
         </div>
         <div class="content-bottom">
           <div class="align-left-row-icon">
-            <i class="fas fa-calendar icon"></i><p class="event-info">11.10.2023</p>
+            <i class="fa-solid fa-calendar icon"></i><p class="event-info">11.10.2023</p>
           </div>
           <div class="align-left-row-icon">
             <i class="fa-solid fa-location-crosshairs icon"></i><p class="event-info">Tarnów</p>
           </div>
         </div>
-        <div class="edit-btn-container">
-          <h3 class="edit-btn">Edytuj</h3>
+
+        <div class="align-center-row" style="margin: 8px 10px; justify-content: space-between; ">
+            <div class="icon-container">
+              <i class="fa-solid fa-ticket icon" style="color: var(--main-bg-color)"></i>
+              <p style="color: var(--main-bg-color)" class="event-info">2137</p>
+            </div>
+          <div class="icon-container">
+            <i class="fa-solid fa-eye icon" style="color: #00679f"></i>
+            <p style="color: #00679f" class="event-info">18273</p>
+          </div>
+          <div class="icon-container">
+            <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
+            <p class="event-info" style="color: var(--secondary-variant-color)">2543 zł</p>
+          </div>
+        </div>
+      </div>
+    <!--End of event-->
+      <div class="event">
+        <div class="button-container">
+          <i class="fa-solid fa-edit"></i>
+        </div>
+        <div class="image-container">
+          <img [src]="image" alt="Card Image" class="event-img">
+        </div>
+        <div class="content-top">
+          <div class="event-title-container">
+            <p style="font-size: 22px" class="event-title">Top TOP Festiwal SOPOT</p>
+          </div>
+        </div>
+        <div class="content-bottom">
+          <div class="align-left-row-icon">
+            <i class="fa-solid fa-calendar icon"></i><p class="event-info">11.10.2023</p>
+          </div>
+          <div class="align-left-row-icon">
+            <i class="fa-solid fa-location-crosshairs icon"></i><p class="event-info">Tarnów</p>
+          </div>
+        </div>
+
+        <div class="align-center-row" style="margin: 8px 10px; justify-content: space-between; ">
+          <div class="icon-container">
+            <i class="fa-solid fa-ticket icon" style="color: var(--main-bg-color)"></i>
+            <p style="color: var(--main-bg-color)" class="event-info">2137</p>
+          </div>
+          <div class="icon-container">
+            <i class="fa-solid fa-eye icon" style="color: #00679f"></i>
+            <p style="color: #00679f" class="event-info">18273</p>
+          </div>
+          <div class="icon-container">
+            <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
+            <p class="event-info" style="color: var(--secondary-variant-color)">2543 zł</p>
+          </div>
         </div>
       </div>
     </div>
-
+  <!-- End of main -->
   </div>
 
-  <div *ngIf="completedEventsVisible">
-    <!-- Content for Completed Events -->
-    <p>Completed Events</p>
+
+  <div class="panel-div-row" *ngIf="reportsVisible">
+    <div class="tile">
+      <h3>21549 zł</h3>
+      <span class="tile-value">Całkowite zarobki</span>
+    </div>
+    <div class="tile">
+      <h3>2501</h3>
+      <span class="tile-value">Sprzedanych biletów</span>
+    </div>
+    <div class="tile">
+      <h3>102936</h3>
+      <span class="tile-value">Całkowite wyświetlenia</span>
+    </div>
+    <div class="tile">
+      <h3>5</h3>
+      <span class="tile-value">Utworzonych wydarzeń</span>
+    </div>
   </div>
 
-  <div *ngIf="reportsVisible">
-    <!-- Content for Reports and Statistics -->
-    <p>Reports and Statistics</p>
-  </div>
 
   <div *ngIf="eventCreationVisible">
     <!-- Content for Event Creation -->
