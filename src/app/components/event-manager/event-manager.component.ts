@@ -13,6 +13,7 @@ export class EventManagerComponent implements OnInit{
 
   activePanel = ''; // Track the active panel
   public image: string = '././assets/img/sopot.jpg';
+  areEventsPresent: boolean = true;
 
   ngOnInit() {
     this.activeEventsVisible = true;
