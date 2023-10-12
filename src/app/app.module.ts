@@ -42,6 +42,7 @@ import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
 import {EventManagerComponent} from "./components/event-manager/event-manager.component";
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import {EventManagerComponent} from "./components/event-manager/event-manager.co
     MatInputModule,
     MatSelectModule,
     MatSliderModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgxChartsModule
 
   ],
   providers: [

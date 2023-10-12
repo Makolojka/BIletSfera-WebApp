@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ScaleType} from "@swimlane/ngx-charts";
 
 @Component({
   selector: 'app-event-manager',
@@ -13,6 +14,54 @@ export class EventManagerComponent implements OnInit{
   activePanel = ''; // Track the active panel
   public image: string = '././assets/img/sopot.jpg';
   areEventsPresent: boolean = true;
+
+  saleData =  [
+    {
+      "name": "Bilety",
+      "series": [
+        {
+          "name": "12.10.2023",
+          "value": 12
+        },
+        {
+          "name": "13.10.2023",
+          "value": 1200
+        },
+        {
+          "name": "14.10.2023",
+          "value": 2040
+        },
+        {
+          "name": "15.10.2023",
+          "value": 8276
+        }
+      ]
+    },
+  ];
+
+  // view: [number, number] = [875, 300];
+  legend: boolean = true;
+  legendTitle: string = 'Legenda';
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Data';
+  yAxisLabel: string = 'Liczba sprzedanych biletów';
+  timeline: boolean = true;
+
+  colorScheme = {
+    name: 'purple',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [
+      '#6B3FA0',
+      '#2d1a42',
+      '#e5b8ff'
+    ]
+  };
 
   ngOnInit() {
     // this.activeEventsVisible = true;
