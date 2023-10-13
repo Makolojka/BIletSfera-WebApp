@@ -16,6 +16,7 @@ body { margin: 0;
   --third-color-hover: #522f79;
   --fourth-color: #666666;
   --fifth-color: #e5b8ff;
+  --third-color-greyed: #aa99be;
 }
 
 .align-center-column{
@@ -33,6 +34,12 @@ body { margin: 0;
 .align-left-row{
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.align-left-column{
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
