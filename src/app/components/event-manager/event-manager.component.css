@@ -400,6 +400,7 @@
   /*margin: 20px 40px 20px 20px;*/
   /*padding: 10px;*/
   padding: 10px 40px 10px 10px;
+  min-width: 300px;
 }
 
 .creator-panel{
@@ -434,7 +435,23 @@
   margin: 5px;
   background-color: white;
   border: 3px solid #2d1a42;
+  transition: all 0.3s ease;
 }
+
+.circle:hover{
+  background-color: var(--third-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+/*.category-tile:hover{*/
+/*  border: 1px solid var(--main-bg-color);*/
+/*  color: var(--main-bg-color);*/
+/*  padding: 5px 20px;*/
+/*  min-width: 150px;*/
+/*  margin: 5px 10px;*/
+/*  transition: all 0.3s ease;*/
+/*  cursor: pointer;*/
+/*}*/
 
 .circle-filled{
   width: 25px;

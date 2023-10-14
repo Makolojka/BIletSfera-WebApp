@@ -399,7 +399,14 @@
       </div>
 
       <div class="location" *ngIf="locationVisible">
-        <h2>sdsada</h2>
+        <h2>Dane lokalizacji</h2>
+        <input type="text" class="input-normal" [(ngModel)]="eventCity"
+               name="eventCity" id="eventCity"
+               placeholder="Wprowadź nazwę miasta">
+
+        <input type="text" class="input-normal" [(ngModel)]="eventPlace"
+               name="eventPlace" id="eventPlace"
+               placeholder="Wprowadź nazwę lokalu/miejsca np. Kraków EXPO">
       </div>
 
     <!--Creator panel end-->

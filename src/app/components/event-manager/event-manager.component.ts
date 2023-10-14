@@ -8,11 +8,13 @@ import {Time} from "@angular/common";
   styleUrls: ['./event-manager.component.css']
 })
 export class EventManagerComponent implements OnInit{
+  // Main panels
   activeEventsVisible = false;
   reportsVisible = false;
   eventCreationVisible = false;
-
   activePanel = ''; // Track the active panel
+
+  // Temporary img
   public image: string = '././assets/img/sopot.jpg';
 
   // Event creator
@@ -24,7 +26,7 @@ export class EventManagerComponent implements OnInit{
   detailsVisible = false;
   artistsVisible = false;
 
-  // Form data
+  // 1. step - Basic info vars
   eventName: string = '';
   startDate: Date = new Date();
   startDateTime: string = '';
@@ -34,8 +36,13 @@ export class EventManagerComponent implements OnInit{
   selectedCategories: string[] = [];
   selectedSubCategories: string[] = [];
 
+  // 2. step - Location vars
+  eventCity: string = '';
+  eventPlace: string = '';
 
   areEventsPresent: boolean = true;
+
+  // Temporary chart data
   saleData =  [
     {
       "name": "Bilety",
@@ -60,7 +67,7 @@ export class EventManagerComponent implements OnInit{
     },
   ];
 
-  // view: [number, number] = [875, 300];
+  // Main chart options
   legend: boolean = true;
   legendTitle: string = 'Legenda';
   showLabels: boolean = true;
@@ -72,7 +79,6 @@ export class EventManagerComponent implements OnInit{
   xAxisLabel: string = 'Data';
   yAxisLabel: string = 'Liczba sprzedanych biletów';
   timeline: boolean = true;
-
   colorScheme = {
     name: 'purple',
     selectable: true,
@@ -83,6 +89,7 @@ export class EventManagerComponent implements OnInit{
       '#e5b8ff'
     ]
   };
+
 
   ngOnInit() {
     this.activeEventsVisible = true;
