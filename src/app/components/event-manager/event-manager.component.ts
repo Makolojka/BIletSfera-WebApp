@@ -25,6 +25,7 @@ export class EventManagerComponent implements OnInit{
   additionalInfoVisible = false;
   detailsVisible = false;
   artistsVisible = false;
+  areEventsPresent: boolean = true;
 
   // 1. step - Basic info vars
   eventName: string = '';
@@ -40,7 +41,11 @@ export class EventManagerComponent implements OnInit{
   eventCity: string = '';
   eventPlace: string = '';
 
-  areEventsPresent: boolean = true;
+  // 3. step - Promo image
+  promoImage: string = '';
+
+  // 4. step - Additional info
+  additionalInfo: string = '';
 
   // Temporary chart data
   saleData =  [
@@ -92,8 +97,8 @@ export class EventManagerComponent implements OnInit{
 
 
   ngOnInit() {
-    this.activeEventsVisible = true;
-    // this.eventCreationVisible = true;
+    // this.activeEventsVisible = true;
+    this.eventCreationVisible = true;
   }
 
   toggleCategory(type: string, value: string) {

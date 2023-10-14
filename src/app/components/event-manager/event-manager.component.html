@@ -259,6 +259,7 @@
     </div>
 
     <div class="creator-panel">
+    <!--Step 1-->
       <div class="basicInfo" *ngIf="basicInfoVisible">
         <h2>Nazwa wydarzenia</h2>
 <!--        <input type="text" class="input-normal" name="event_name" id="event_name" placeholder="Wprowadź nazwę wydarzenia">-->
@@ -398,6 +399,7 @@
         </div>
       </div>
 
+      <!--Step 2.-->
       <div class="location" *ngIf="locationVisible">
         <h2>Dane lokalizacji</h2>
         <input type="text" class="input-normal" [(ngModel)]="eventCity"
@@ -408,6 +410,78 @@
                name="eventPlace" id="eventPlace"
                placeholder="Wprowadź nazwę lokalu/miejsca np. Kraków EXPO">
       </div>
+
+      <!--Step 3.-->
+      <div class="promo-image" *ngIf="posterVisible">
+        <h2>Plakat promocyjny</h2>
+
+        <input type="text" class="input-normal" [(ngModel)]="promoImage"
+               name="promoImage" id="promoImage"
+               placeholder="Wprowadź url zawierającego plik z grafiką">
+
+        <h3>lub</h3>
+
+        <div class="promo-image-add-container">
+          <div class="align-center-column">
+            <i class="fa-solid fa-plus icon-large"></i><h4>Przeciągnij i upuść plik tutaj</h4>
+          </div>
+        </div>
+      </div>
+
+      <!--Step 4.-->
+      <div class="additional-info" *ngIf="additionalInfoVisible">
+        <h2>Dodatkowe informacje</h2>
+
+        <textarea
+          class="additional-info-ta"
+          [(ngModel)]="additionalInfo"
+          name="additionalInfo"
+          id="additionalInfo"
+          cols="30"
+          rows="10"
+          placeholder="Wprowadź dodatkowe informacje o wydarzeniu."
+        ></textarea>
+      </div>
+
+
+      <!--Step 5.-->
+      <div class="tickets" *ngIf="detailsVisible">
+        <h2>Bilety</h2>
+
+<!--        <div class="ticket-add">-->
+<!--          <div class="align-center-column">-->
+<!--            <i class="fa-solid fa-plus icon-large"></i>-->
+<!--            <h4>Dodaj nowy typ biletu</h4>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="ticket">
+          <div class="section section-left">
+            <div>
+              <h3 style="font-size: 20px; color: var(--third-color)">Top Top VIP</h3>
+              <span>21-24.08.2023</span>
+            </div>
+          </div>
+          <div class="section">
+            <span>100 Bilet(ów)</span>
+          </div>
+          <div class="section">
+            <span>150 zł</span>
+          </div>
+          <div class="section section-right">
+            <i class="fa-solid fa-pen icon-ticket icon-ticket-edit"></i>
+            <i class="fa-solid fa-trash icon-ticket icon-ticket-delete"></i>
+          </div>
+        </div>
+
+        <div class="align-center-column">
+          <div class="ticket-add-button">
+            <i class="fa-solid fa-plus icon-large"></i>
+            <h4>Dodaj nowy typ biletu</h4>
+          </div>
+        </div>
+
+      </div>
+
 
     <!--Creator panel end-->
     </div>

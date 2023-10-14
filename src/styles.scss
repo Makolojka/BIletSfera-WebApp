@@ -37,6 +37,12 @@ body { margin: 0;
   justify-content: flex-start;
   align-items: center;
 }
+.align-right-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 .align-left-column{
   display: flex;
   flex-direction: column;
