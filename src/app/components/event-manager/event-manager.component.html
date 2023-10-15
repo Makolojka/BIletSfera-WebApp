@@ -26,7 +26,8 @@
       </div>
     </div>
 
-
+    <!--TODO: podzielić panele na osobne komponenty-->
+    <!--ACTIVE EVENTS-->
     <div class="panel-div-row" *ngIf="areEventsPresent">
       <div class="event">
         <div class="button-container">
@@ -105,7 +106,7 @@
   <!-- End of main -->
   </div>
 
-
+  <!--RAPORTS-->
   <div class="panel-div" *ngIf="reportsVisible">
     <div class="title-container">
       <h2>Statystyki</h2>
@@ -190,7 +191,7 @@
 
   </div>
 
-
+  <!--EVENT CREATOR-->
   <div *ngIf="eventCreationVisible" class="panel-div-reports">
 
     <div class="side-bar">
@@ -222,6 +223,7 @@
           <div class="circle" [ngClass]="{'circle-filled': stepNumber >= 4 && stepNumber <= 6}" (click)="toggleCreatorPanel('additionalInfo')"></div>
           <div class="text">Dodatkowe informacje</div>
         </div>
+
       </div>
 
       <div class="step">
@@ -397,6 +399,9 @@
             <label for="endDateTime" class="input-label">o godzinie (opcjonalne)</label>
           </div>
         </div>
+        <div class="next-btn" (click)="toggleCreatorPanel('location')">
+          <span>Dalej</span>
+        </div>
       </div>
 
       <!--Step 2.-->
@@ -409,6 +414,16 @@
         <input type="text" class="input-normal" [(ngModel)]="eventPlace"
                name="eventPlace" id="eventPlace"
                placeholder="Wprowadź nazwę lokalu/miejsca np. Kraków EXPO">
+
+        <div class="panel-btn-group">
+          <div class="next-btn border-right-0" (click)="toggleCreatorPanel('basicInfo')">
+            <span>Wstecz</span>
+          </div>
+          <div class="next-btn border-left-0" (click)="toggleCreatorPanel('poster')">
+            <span>Dalej</span>
+          </div>
+        </div>
+
       </div>
 
       <!--Step 3.-->
@@ -417,13 +432,22 @@
 
         <input type="text" class="input-normal" [(ngModel)]="promoImage"
                name="promoImage" id="promoImage"
-               placeholder="Wprowadź url zawierającego plik z grafiką">
+               placeholder="Wprowadź url zawierający plik z grafiką">
 
         <h3>lub</h3>
 
         <div class="promo-image-add-container">
           <div class="align-center-column">
             <i class="fa-solid fa-plus icon-large"></i><h4>Przeciągnij i upuść plik tutaj</h4>
+          </div>
+        </div>
+
+        <div class="panel-btn-group">
+          <div class="next-btn border-right-0" (click)="toggleCreatorPanel('location')">
+            <span>Wstecz</span>
+          </div>
+          <div class="next-btn border-left-0" (click)="toggleCreatorPanel('additionalInfo')">
+            <span>Dalej</span>
           </div>
         </div>
       </div>
@@ -441,19 +465,22 @@
           rows="10"
           placeholder="Wprowadź dodatkowe informacje o wydarzeniu."
         ></textarea>
+
+        <div class="panel-btn-group">
+          <div class="next-btn border-right-0" (click)="toggleCreatorPanel('poster')">
+            <span>Wstecz</span>
+          </div>
+          <div class="next-btn border-left-0" (click)="toggleCreatorPanel('details')">
+            <span>Dalej</span>
+          </div>
+        </div>
+
       </div>
 
 
       <!--Step 5.-->
       <div class="tickets" *ngIf="detailsVisible">
         <h2>Bilety</h2>
-
-<!--        <div class="ticket-add">-->
-<!--          <div class="align-center-column">-->
-<!--            <i class="fa-solid fa-plus icon-large"></i>-->
-<!--            <h4>Dodaj nowy typ biletu</h4>-->
-<!--          </div>-->
-<!--        </div>-->
         <div class="ticket">
           <div class="section section-left">
             <div>
@@ -480,9 +507,66 @@
           </div>
         </div>
 
+        <div class="panel-btn-group">
+          <div class="next-btn border-right-0" (click)="toggleCreatorPanel('additionalInfo')">
+            <span>Wstecz</span>
+          </div>
+          <div class="next-btn border-left-0" (click)="toggleCreatorPanel('artists')">
+            <span>Dalej</span>
+          </div>
+        </div>
+
       </div>
 
 
+      <!--Step 6.-->
+      <div class="tickets" *ngIf="artistsVisible">
+        <h2>Dodaj artystów z bazy dostępnych artystów</h2>
+
+        <div class="artists">
+<!--          <h2 id="artists">Artyści bioracy udział w wydarzeniu</h2>-->
+          <div class="slider-container">
+            <div class="slider">
+            <!--Artist circle-->
+              <div class="artist-wrapper">
+                <div class="artist-circle">
+                  <img src="./assets/img/sopot.jpg" alt="img-artist"/>
+                </div>
+                <h3>Tede</h3>
+                <button class="read-more-button">
+                  <i class="fa-solid fa-trash icon"></i>
+                </button>
+              </div>
+              <!--Add artist circle-->
+              <div class="artist-wrapper">
+                <div class="artist-circle-add">
+                  <i class="fa-solid fa-plus icon-large"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <h2>Utwórz nowego artystę (opcjonalne)</h2>
+        <div class="align-left-row">
+          <div class="artist-wrapper">
+            <div class="artist-circle-add">
+              <i class="fa-solid fa-plus icon-large"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-btn-group">
+          <div class="next-btn border-right-0" (click)="toggleCreatorPanel('details')">
+            <span>Wstecz</span>
+          </div>
+          <div class="next-btn border-left-0">
+            <span>Utwórz wydarzenie</span>
+          </div>
+        </div>
+
+      </div>
     <!--Creator panel end-->
     </div>
 

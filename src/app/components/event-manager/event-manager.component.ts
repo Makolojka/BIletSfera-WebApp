@@ -97,8 +97,8 @@ export class EventManagerComponent implements OnInit{
 
 
   ngOnInit() {
-    // this.activeEventsVisible = true;
-    this.eventCreationVisible = true;
+    this.activeEventsVisible = true;
+    // this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
   }
 
   toggleCategory(type: string, value: string) {

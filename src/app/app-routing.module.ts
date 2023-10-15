@@ -46,7 +46,7 @@ const routes: Routes = [
     path: 'event/detail/:id',
     component: EventDetailComponent
   },
-  // TODO: Tymczasowe routy, do zmiany bo zmienione url
+  // TODO: Tymczasowe routy, do zmiany :id? na np. nazwę wydarzenia, jak zrobić?
   {
     path: 'events/event/detail/:id',
     component: EventDetailComponent
