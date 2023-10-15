@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {Artist} from "../../interfaces/artist";
 import {AuthService} from "../../services/auth.service";
+
 @Component({
   selector: 'event-detail',
   templateUrl: './event-detail.component.html',
@@ -26,6 +27,10 @@ export class EventDetailComponent implements OnInit{
 
   public followerCount: number = 0;
   public likesCount: number = 0;
+
+  public isLiked: boolean = false;
+  public isFollowed: boolean = false;
+
   constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -60,6 +65,11 @@ export class EventDetailComponent implements OnInit{
     this.getLikes();
     this.getFollowers();
 
+    if (this.userId){
+      this.checkIfLiked();
+      this.checkIfFollowed();
+    }
+
     console.log("Artists:"+this.artists);
   }
 
@@ -88,13 +98,22 @@ export class EventDetailComponent implements OnInit{
 
   // TODO: zabezpieczenie, co jak nie wykona się jedna z metod?
   likeEvent(){
-    console.log("this.userId: "+this.userId+"  this.id: "+this.id+" for likedEvents")
+    // console.log("this.userId: "+this.userId+"  this.id: "+this.id+" for likedEvents")
     if(this.userId && this.id)
     {
       this.service.addUserLikeOrFollower(this.userId, this.id, 'likedEvents').subscribe(
         (response) => {
           //   Toast message
           console.log("Event added to liked");
+          console.log("Event added to liked isLiked:", this.isLiked);
+
+          if(this.isLiked){
+            this.likesCount--;
+          }
+          else {
+            this.likesCount++;
+          }
+          this.checkIfLiked();
         },
         (error) => {
           throw error;
@@ -122,6 +141,15 @@ export class EventDetailComponent implements OnInit{
         (response) => {
           //   Toast message
           console.log("Event added to followed");
+          console.log("Event added to liked isFollowed:", this.isFollowed);
+
+          if(this.isFollowed){
+            this.followerCount--;
+          }
+          else {
+            this.followerCount++;
+          }
+          this.checkIfFollowed();
         },
         (error) => {
           throw error;
@@ -168,4 +196,34 @@ export class EventDetailComponent implements OnInit{
       }
     );
   }
+
+  checkIfLiked(){
+    this.service.checkIfEventIsLiked(this.userId, this.id, 'likedEvents').subscribe(
+      (response) => {
+        const isLiked = response.isLiked;
+        if (isLiked !== undefined) {
+          console.log("isLiked: ", isLiked);
+          this.isLiked = isLiked;
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  checkIfFollowed(){
+    this.service.checkIfEventIsLiked(this.userId, this.id, 'followedEvents').subscribe(
+      (response) => {
+        const isLiked = response.isLiked;
+        if (isLiked !== undefined) {
+          console.log("isFollowed: ", isLiked);
+          this.isFollowed = isLiked;
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 }
