@@ -8,6 +8,7 @@ import {LikedComponent} from "./components/liked/liked.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {AuthGuard} from "./services/auth.guard";
+import {EventManagerComponent} from "./components/event-manager/event-manager.component";
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
     path: 'event/detail/:id',
     component: EventDetailComponent
   },
-  // TODO: Tymczasowe routy, do zmiany bo zmienione url
+  // TODO: Tymczasowe routy, do zmiany :id? na np. nazwę wydarzenia, jak zrobić?
   {
     path: 'events/event/detail/:id',
     component: EventDetailComponent
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'wishlist/event/detail/:id',
     component: EventDetailComponent
+  },
+  {
+    path: 'event-manager',
+    component: EventManagerComponent
   },
 ];
 

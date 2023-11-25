@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {LikesAndFollows} from "../interfaces/likes-and-follows";
 import {Observable} from "rxjs";
 import {Ticket} from "../components/event-card/Ticket";
+import {LikedResponse} from "../interfaces/is-liked-followed";
 @Injectable({
   providedIn: 'root'
 })
@@ -84,5 +85,10 @@ export class DataService {
   //Increment views for event
   incrementEventViews(eventId: string) {
     return this.http.post(this.url + '/api/event/views/'+eventId,{});
+  }
+
+  // Returns true if event is liked or followed by the specific user or false if it is not
+  checkIfEventIsLiked(userId: string, eventId: string, actionType: string) {
+    return this.http.post<LikedResponse>(this.url + '/api/profile/check-if-event-liked/'+userId+'/'+eventId+'/'+actionType,{});
   }
 }

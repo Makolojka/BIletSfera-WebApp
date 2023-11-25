@@ -493,4 +493,8 @@ h2 {
     font-size: 14px;
     padding: 0px;
   }
+  .ticket:hover .left-section {
+    border-right: none;
+    transition: none;
+  }
 }

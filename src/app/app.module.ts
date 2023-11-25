@@ -41,6 +41,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
+import {EventManagerComponent} from "./components/event-manager/event-manager.component";
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import {CategoryFilterService} from "./services/category-filter.service";
     CategoriesComponent,
     EventCardWideComponent,
     TextRestrainPipe,
+    EventManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ import {CategoryFilterService} from "./services/category-filter.service";
     MatInputModule,
     MatSelectModule,
     MatSliderModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgxChartsModule
 
   ],
   providers: [
