@@ -20,7 +20,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
 import { MainButtonComponent } from './components/main-button/main-button.component';
 import { LikeButtonComponent } from './components/like-button/like-button.component';
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
-import { LoginComponent } from './components/login/login.component';
+import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
 import { MultiItemCarouselComponent } from './components/multi-item-carousel/multi-item-carousel.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
@@ -43,6 +43,9 @@ import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
 import {EventManagerComponent} from "./components/event-manager/event-manager.component";
 import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { SnackbarComponent } from './components/snackbars/snackbar-error/snackbar.component';
+import {ServerErrorInterceptor} from "./interceptors/server-error.interceptor";
+import { SnackbarSuccessComponent } from './components/snackbars/snackbar-success/snackbar-success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
     MainButtonComponent,
     LikeButtonComponent,
     EventCategoriesComponent,
-    LoginComponent,
+    UserAuthComponent,
     EventDetailComponent,
     MultiItemCarouselComponent,
     WishListComponent,
@@ -66,6 +69,8 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
     EventCardWideComponent,
     TextRestrainPipe,
     EventManagerComponent,
+    SnackbarComponent,
+    SnackbarSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,8 +101,14 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorInterceptor,
+      multi: true
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

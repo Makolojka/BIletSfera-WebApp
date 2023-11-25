@@ -6,6 +6,8 @@ import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {Artist} from "../../interfaces/artist";
 import {AuthService} from "../../services/auth.service";
+import {SnackbarSuccessComponent} from "../snackbars/snackbar-success/snackbar-success.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'event-detail',
@@ -31,7 +33,8 @@ export class EventDetailComponent implements OnInit{
   public isLiked: boolean = false;
   public isFollowed: boolean = false;
 
-  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService) {}
+  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService,
+  private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
@@ -88,12 +91,21 @@ export class EventDetailComponent implements OnInit{
     this.service.addTicketToCart(userId, this.id, ticketId).subscribe(
       (response) => {
       //   Toast message
+        this.openSnackBarSuccess("Dodano do koszyka.");
+        window.location.reload();
         console.log("Added to the cart")
       },
       (error) => {
         throw error;
       }
     );
+  }
+  openSnackBarSuccess(msg: string) {
+    this._snackBar.openFromComponent(SnackbarSuccessComponent, {
+      duration: 5000,
+      data: { msg: msg },
+      panelClass: ['snackbar-success-style']
+    });
   }
 
   // TODO: zabezpieczenie, co jak nie wykona się jedna z metod?
