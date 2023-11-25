@@ -19,6 +19,7 @@ body { margin: 0;
   --third-color-greyed: #aa99be;
   --red-color: #963939;
   --red-color-hover: #cb5e5e;
+  --green-color: #429639;
 }
 
 .align-center-column{
@@ -50,6 +51,21 @@ body { margin: 0;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.mat-mdc-snack-bar-container {
+  &.snackbar-error-style {
+    --mdc-snackbar-container-color: var(--red-color);
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
+.mat-mdc-snack-bar-container {
+  &.snackbar-success-style {
+    --mdc-snackbar-container-color: var(--green-color);
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
 }
 
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
