@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomePageComponent} from "./components/home-page/home-page.component";
-import {LoginComponent} from "./components/login/login.component";
+import {UserAuthComponent} from "./components/user-auth/user-auth.component";
 import {EventDetailComponent} from "./components/event-detail/event-detail.component";
 import {WishListComponent} from "./components/wish-list/wish-list.component";
 import {LikedComponent} from "./components/liked/liked.component";
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: UserAuthComponent
   },
   {
     path: 'event/detail',
