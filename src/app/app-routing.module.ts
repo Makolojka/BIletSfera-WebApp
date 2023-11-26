@@ -9,6 +9,7 @@ import {CartComponent} from "./components/cart/cart.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {AuthGuard} from "./services/auth.guard";
 import {EventManagerComponent} from "./components/event-manager/event-manager.component";
+import {OrganizerOverviewPageComponent} from "./components/organizer-overview-page/organizer-overview-page.component";
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'event-manager',
     component: EventManagerComponent
+  },
+  {
+    path: 'organizer/overview',
+    component: OrganizerOverviewPageComponent
   },
 ];
 

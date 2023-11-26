@@ -1,0 +1,57 @@
+<div class="main">
+  <nav-bar></nav-bar>
+  <div class="background-image">
+    <div class="image-container">
+      <img src="../../../assets/img/party.jpg" alt="Organizer Image" class="background-img">
+    </div>
+    <div class="content">
+      <h1>Jesteś organizatorem?</h1>
+      <p>Załóż konto organizatora już dziś. Twórz, edytuj, zarządzaj wydarzeniami i analizuj dane sprzedaży dostępne w panelu organizatora.</p>
+      <div class="align-left-row">
+        <button class="btn spacing" [routerLink]="['/login']">Utwórz konto</button>
+        <button class="btn" [routerLink]="['/login']">Zaloguj się</button>
+      </div>
+    </div>
+  </div>
+  <div class="organizer-features">
+    <div class="section-title">
+      <span class="line"></span>
+      <h1>Możliwości konta organizatora.</h1>
+    </div>
+    <div class="section-features">
+      <div class="features">
+        <div class="feature" (click)="toggleFeatureDescription('Twórz')">
+          <div class="icon-circle">
+            <i class="fa-solid fa-calendar-plus icon"></i>
+          </div>
+          <span>Twórz</span>
+        </div>
+        <div class="feature" (click)="toggleFeatureDescription('Zarządzaj')">
+          <div class="icon-circle">
+            <i class="fa-solid fa-list-check icon"></i>
+          </div>
+          <span>Zarządzaj</span>
+        </div>
+        <div class="feature" (click)="toggleFeatureDescription('Sprzedawaj')">
+          <div class="icon-circle">
+            <i class="fa-brands fa-sellcast icon"></i>
+          </div>
+          <span>Sprzedawaj</span>
+        </div>
+        <div class="feature" (click)="toggleFeatureDescription('Analizuj')">
+          <div class="icon-circle">
+            <i class="fa-solid fa-chart-line icon"></i>
+          </div>
+          <span>Analizuj</span>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let feature of features">
+      <div *ngIf="selectedFeature === feature.title" class="text-container" [@fadeIn]>
+        <h2>{{ feature.title }}</h2>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+  <custom-footer class="cf-mg-0"></custom-footer>
+</div>

@@ -46,6 +46,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { SnackbarComponent } from './components/snackbars/snackbar-error/snackbar.component';
 import {ServerErrorInterceptor} from "./interceptors/server-error.interceptor";
 import { SnackbarSuccessComponent } from './components/snackbars/snackbar-success/snackbar-success.component';
+import { OrganizerOverviewPageComponent } from './components/organizer-overview-page/organizer-overview-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { SnackbarSuccessComponent } from './components/snackbars/snackbar-succes
     EventManagerComponent,
     SnackbarComponent,
     SnackbarSuccessComponent,
+    OrganizerOverviewPageComponent,
   ],
   imports: [
     BrowserModule,
