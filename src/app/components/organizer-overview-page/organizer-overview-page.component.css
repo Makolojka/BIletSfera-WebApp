@@ -171,3 +171,136 @@ custom-footer {
   flex-wrap: wrap;
   width: 100%;
 }
+
+.brightness-70{
+  filter: brightness(0.6);
+}
+
+/*Forms*/
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+  padding: 0;
+  margin-left: 15px;
+  width: 100px;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  margin-right: 10px;
+}
+
+form {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+form h1{
+  margin-bottom: 0;
+}
+
+input {
+  background-color: transparent;
+  /*border: none;*/
+  padding: 15px 20px;
+  margin: 8px 0;
+  width: 100%;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  /*border: 1px solid #ccc;*/
+  border: none;
+  border-bottom: 1px solid #ccc;
+  /*border-top-right-radius: 10px;*/
+  /*border-bottom-left-radius: 10px;*/
+}
+input:focus
+{
+  outline: none;
+  border-bottom: 1px solid var(--third-color);
+  transition: all 0.2s ease;
+}
+button {
+  border-radius: 0px;
+  border: 1px solid var(--main-bg-color);
+  background-color: var(--main-bg-color);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover{
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+  transition: all 0.3s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+.modal-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+form a {
+  color: #333;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.close{
+  background-color: transparent;
+  border: none;
+  transition: all ease-in-out 0.3s;
+}
+
+.close:hover{
+  scale: 1.2;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.btn-register{
+  width: 250px;
+}
+
+/*Error message*/
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.modal-dialog{
+  max-width: 600px;
+  max-height: 1600px;
+}
+
+.modal-content{
+  background-color: white;
+}
+
