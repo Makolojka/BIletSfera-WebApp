@@ -34,6 +34,8 @@ export class OrganizerOverviewPageComponent implements OnInit{
     name: '',
     email: '',
     password: '',
+    role: 'organizer',
+    isOrganizer: 'true'
   };
 
   @ViewChild('rePasswordInput') rePasswordInput: any;
@@ -97,7 +99,7 @@ export class OrganizerOverviewPageComponent implements OnInit{
 //   SignIn
   signIn() {
     if (this.validateForm()) {
-      return this.authService.authenticate(this.signInCredentials).subscribe(
+      return this.authService.authenticateOrganiser(this.signInCredentials).subscribe(
         (result) => {
           if (!result) {
             this.openSnackBarError("Coś poszło nie tak");
@@ -107,7 +109,7 @@ export class OrganizerOverviewPageComponent implements OnInit{
               login: '',
               password: ''
             };
-            this.router.navigate(['/']);
+            this.router.navigate(['/event-manager']);
             this.openSnackBarSuccess("Pomyślnie zalogowano na konto.");
           }
         },
@@ -154,7 +156,7 @@ export class OrganizerOverviewPageComponent implements OnInit{
 
   create() {
     this.authService.createOrUpdate(this.signUpCredentials).subscribe((result) => {
-        this.router.navigate(['/']);
+        window.location.reload();
         this.openSnackBarSuccess("Pomyślnie utworzono konto.");
         return result;
       },
@@ -194,5 +196,9 @@ export class OrganizerOverviewPageComponent implements OnInit{
       data: { msg: msg },
       panelClass: ['snackbar-success-style']
     });
+  }
+
+  goToOrganizerPanel() {
+    this.router.navigate(['/event-manager']);
   }
 }

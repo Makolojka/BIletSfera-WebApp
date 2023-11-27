@@ -15,10 +15,29 @@
         </div>
       </div>
     </div>
+
+
+
     <div class="organizer-features">
+
+      <div class="organizer-content" *ngIf="authService.isOrganizer() && authService.isLoggedIn()">
+        <div class="section-title">
+          <span class="line"></span>
+          <h1>Wygląda na to, że już jesteś z nami!</h1>
+        </div>
+
+        <div class="icon-div">
+          <i class="fa-solid fa-ticket icon-panel"></i>
+          <div class="action-button">
+            <button (click)="goToOrganizerPanel()">Panel organizatora</button>
+          </div>
+        </div>
+
+      </div>
+
       <div class="section-title">
         <span class="line"></span>
-        <h1 (click)="raiseBrightness()">Możliwości konta organizatora.</h1>
+        <h1>Możliwości konta organizatora.</h1>
       </div>
       <div class="section-features">
         <div class="features">

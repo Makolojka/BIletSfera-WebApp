@@ -133,6 +133,9 @@
           <li>
             <a class="dropdown-item" [routerLink]="'/events'">Wydarzenia</a>
           </li>
+          <li *ngIf="authService.isOrganizer()">
+            <a class="dropdown-item" [routerLink]="'/event-manager'">Panel organizatora</a>
+          </li>
           <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>
             <a class="dropdown-item" [routerLink]="['/cart']">Koszyk({{ ticketCount }})</a>

@@ -304,3 +304,48 @@ form a {
   background-color: white;
 }
 
+/*Organizer panel section*/
+.organizer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.icon-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--main-bg-color);
+  border-radius: 225px;
+  width: 250px;
+  height: 250px;
+  margin: 0 0 20px 0;
+}
+
+.organizer-content .icon-panel{
+  font-size: 60px;
+  margin: 20px 0;
+}
+
+.organizer-content .text {
+  flex: 1;
+  margin-left: 20px;
+  color: white;
+}
+
+.action-button button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff9800;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button button:hover {
+  background-color: #ffab40;
+}
