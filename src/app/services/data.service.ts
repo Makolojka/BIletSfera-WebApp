@@ -91,4 +91,15 @@ export class DataService {
   checkIfEventIsLiked(userId: string, eventId: string, actionType: string) {
     return this.http.post<LikedResponse>(this.url + '/api/profile/check-if-event-liked/'+userId+'/'+eventId+'/'+actionType,{});
   }
+
+  // Get organizers ownedEvents
+  getOwnedEvents(id: string) {
+    return this.http.get(this.url + '/api/organizer/' + id);
+  }
+
+  // Adds event to organisers ownedEvents field
+  addEventToOwnedEvents(userId: string, eventId: string) {
+    return this.http.post(this.url + '/api/organizer/' + userId + '/add-event/' + eventId, {});
+  }
+
 }

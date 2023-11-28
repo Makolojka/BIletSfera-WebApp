@@ -35,7 +35,8 @@ export class OrganizerOverviewPageComponent implements OnInit{
     email: '',
     password: '',
     role: 'organizer',
-    isOrganizer: 'true'
+    isOrganizer: 'true',
+    ownedEvents: []
   };
 
   @ViewChild('rePasswordInput') rePasswordInput: any;

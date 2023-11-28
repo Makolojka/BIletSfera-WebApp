@@ -318,11 +318,36 @@ form a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   border: 1px solid var(--main-bg-color);
-  border-radius: 225px;
-  width: 250px;
-  height: 250px;
+  background-color: var(--third-color);
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
   margin: 0 0 20px 0;
+  transition: all ease-in-out 0.5s;
+}
+
+.icon-div:hover{
+  background-color: rgb(60, 35, 89);
+  transition: all ease-in-out 0.5s;
+}
+
+.action-button h2{
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: 0 20px;
+  transition: all ease-in-out 0.5s;
+}
+
+.icon-div:hover .action-button h2{
+  scale: 1.1;
 }
 
 .organizer-content .icon-panel{
@@ -336,16 +361,8 @@ form a {
   color: white;
 }
 
-.action-button button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #ff9800;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+
 
 .action-button button:hover {
-  background-color: #ffab40;
+  /*background-color: #ffab40;*/
 }

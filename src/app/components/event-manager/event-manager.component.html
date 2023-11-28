@@ -29,80 +29,45 @@
     <!--TODO: podzielić panele na osobne komponenty-->
     <!--ACTIVE EVENTS-->
     <div class="panel-div-row" *ngIf="areEventsPresent">
-      <div class="event">
+
+      <div *ngFor="let event of eventDetails" class="event">
         <div class="button-container">
           <i class="fa-solid fa-edit"></i>
         </div>
         <div class="image-container">
-          <img [src]="image" alt="Card Image" class="event-img">
+          <img [src]="event.image" alt="Card Image" class="event-img">
         </div>
         <div class="content-top">
           <div class="event-title-container">
-            <p style="font-size: 22px" class="event-title">Top TOP Festiwal SOPOT</p>
+            <p style="font-size: 22px" class="event-title">{{ event.title }}</p>
           </div>
         </div>
         <div class="content-bottom">
           <div class="align-left-row-icon">
-            <i class="fa-solid fa-calendar icon"></i><p class="event-info">11.10.2023</p>
+            <i class="fa-solid fa-calendar icon"></i><p class="event-info">{{ event.date }}</p>
           </div>
           <div class="align-left-row-icon">
-            <i class="fa-solid fa-location-crosshairs icon"></i><p class="event-info">Tarnów</p>
+            <i class="fa-solid fa-location-crosshairs icon"></i><p class="event-info">{{ event.location }}</p>
           </div>
         </div>
 
-        <div class="align-center-row" style="margin: 8px 10px; justify-content: space-between; ">
-            <div class="icon-container">
-              <i class="fa-solid fa-ticket icon" style="color: var(--main-bg-color)"></i>
-              <p style="color: var(--main-bg-color)" class="event-info">2137</p>
-            </div>
-          <div class="icon-container">
-            <i class="fa-solid fa-eye icon" style="color: #00679f"></i>
-            <p style="color: #00679f" class="event-info">18273</p>
-          </div>
-          <div class="icon-container">
-            <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
-            <p class="event-info" style="color: var(--secondary-variant-color)">2543 zł</p>
-          </div>
-        </div>
-      </div>
-    <!--End of event-->
-      <div class="event">
-        <div class="button-container">
-          <i class="fa-solid fa-edit"></i>
-        </div>
-        <div class="image-container">
-          <img [src]="image" alt="Card Image" class="event-img">
-        </div>
-        <div class="content-top">
-          <div class="event-title-container">
-            <p style="font-size: 22px" class="event-title">Top TOP Festiwal SOPOT</p>
-          </div>
-        </div>
-        <div class="content-bottom">
-          <div class="align-left-row-icon">
-            <i class="fa-solid fa-calendar icon"></i><p class="event-info">11.10.2023</p>
-          </div>
-          <div class="align-left-row-icon">
-            <i class="fa-solid fa-location-crosshairs icon"></i><p class="event-info">Tarnów</p>
-          </div>
-        </div>
-
-        <div class="align-center-row" style="margin: 8px 10px; justify-content: space-between; ">
+        <div class="align-center-row" style="margin: 8px 10px; justify-content: space-between;">
           <div class="icon-container">
             <i class="fa-solid fa-ticket icon" style="color: var(--main-bg-color)"></i>
-            <p style="color: var(--main-bg-color)" class="event-info">2137</p>
+            <p style="color: var(--main-bg-color)" class="event-info">{{ ticketSold }}</p>
           </div>
           <div class="icon-container">
             <i class="fa-solid fa-eye icon" style="color: #00679f"></i>
-            <p style="color: #00679f" class="event-info">18273</p>
+            <p style="color: #00679f" class="event-info">{{ event.views }}</p>
           </div>
           <div class="icon-container">
             <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
-            <p class="event-info" style="color: var(--secondary-variant-color)">2543 zł</p>
+            <p class="event-info" style="color: var(--secondary-variant-color)">{{ moneyEarned }}</p>
           </div>
         </div>
       </div>
     </div>
+
   <!-- End of main -->
   </div>
 
@@ -165,7 +130,7 @@
     <div class="events-container">
       <div class="event-wide">
         <div class="img">
-          <img [src]="image" alt="Event image">
+          <img [src]="imageMissing" alt="Event image">
         </div>
         <div class="event-desc-container">
           <div class="event-wide-title">Top top FESTIVAL Sopot</div>
@@ -177,7 +142,7 @@
       </div>
       <div class="event-wide">
         <div class="img">
-          <img [src]="image" alt="Event image">
+          <img [src]="imageMissing" alt="Event image">
         </div>
         <div class="event-desc-container">
           <div class="event-wide-title">Top top FESTIVAL Sopot</div>

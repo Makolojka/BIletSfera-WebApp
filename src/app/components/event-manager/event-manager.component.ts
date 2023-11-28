@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ScaleType} from "@swimlane/ngx-charts";
-import {Time} from "@angular/common";
+import {Time, ViewportScroller} from "@angular/common";
+import {Ticket} from "../event-card/Ticket";
+import {Artist} from "../../interfaces/artist";
+import {DataService} from "../../services/data.service";
+import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-event-manager',
@@ -15,7 +22,7 @@ export class EventManagerComponent implements OnInit{
   activePanel = ''; // Track the active panel
 
   // Temporary img
-  public image: string = '././assets/img/sopot.jpg';
+  public imageMissing: string = '././assets/img/sopot.jpg';
 
   // Event creator
   stepNumber: number = 1;
@@ -95,11 +102,58 @@ export class EventManagerComponent implements OnInit{
     ]
   };
 
+  // Dynamic logic - main objects
+  public userId: string = '';
+  ownedEvents: any[] = [];
+  eventDetails: any[] = [];
+
+  // Dynamic logic - Active events
+  public image: string = '';
+  public title: string = '';
+  public date: string = '';
+  public location: string = '';
+  public views: number = 0;
+  public ticketSold: number = 0;
+  public moneyEarned: number = 0;
+
+  constructor(private service: DataService, private authService: AuthService) {}
 
   ngOnInit() {
     this.activeEventsVisible = true;
     // this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
+    this.userId = this.authService.getUserId();
+    this.service.getOwnedEvents(this.userId).subscribe(
+      (res: any) => {
+        this.ownedEvents = res.ownedEvents;
+        // console.log('Owned Events:', this.ownedEvents);
+        this.fetchEventDetails();
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
   }
+
+  fetchEventDetails() {
+    this.ownedEvents.forEach((eventId: string) => {
+      this.service.getById(eventId).subscribe((res: any) => {
+        this.eventDetails.push(res);
+      });
+    });
+  }
+
+  // TODO: Tylko do testu - usunąć później
+  // addEventTOP(){
+  //   this.service.addEventToOwnedEvents(this.userId, '64c7d625d0be393eb01912f6').subscribe(
+  //     (response) => {
+  //       console.log("Event added to ownedEvents");
+  //     },
+  //     (error) => {
+  //       throw error;
+  //     }
+  //   );
+  //
+  // }
 
   toggleCategory(type: string, value: string) {
     if(type==='category'){
