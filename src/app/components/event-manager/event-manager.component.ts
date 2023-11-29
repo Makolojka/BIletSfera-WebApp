@@ -34,7 +34,7 @@ export class EventManagerComponent implements OnInit{
   additionalInfoVisible = false;
   detailsVisible = false;
   artistsVisible = false;
-  areEventsPresent: boolean = true;
+  areEventsPresent: boolean = false;
 
   // 1. step - Basic info vars
   eventName: string = '';
@@ -136,14 +136,17 @@ export class EventManagerComponent implements OnInit{
               private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    // this.activeEventsVisible = true;
-    this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
+    this.activeEventsVisible = true;
+    // this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
     this.userId = this.authService.getUserId();
     this.service.getOwnedEvents(this.userId).subscribe(
       (res: any) => {
         this.ownedEvents = res.ownedEvents;
         // console.log('Owned Events:', this.ownedEvents);
         this.fetchEventDetails();
+        if(this.ownedEvents.length !== 0){
+          this.areEventsPresent = true;
+        }
       },
       (error: any) => {
         console.error('Error:', error);

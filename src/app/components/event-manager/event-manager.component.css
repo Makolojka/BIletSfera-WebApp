@@ -59,6 +59,7 @@
   align-items: center;
   width: 100%;
   padding: 0 200px;
+  margin: 60px 0;
 }
 
 .panel-div-row{
@@ -94,6 +95,7 @@
 .create-event-btn:hover{
   background-color: var(--third-color-hover);
   color: white;
+  cursor: pointer;
   transform: scale(1.1);
   transition: all 0.3s ease;
 }
