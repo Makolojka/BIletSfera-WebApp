@@ -30,6 +30,11 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + eventId + '/artists');
   }
 
+  createNewArtist(newArtist: { image: string; career: string; name: string; shortDescription: string }) {
+    return this.http.post(this.url + '/api/artist', newArtist);
+  }
+
+
   //Tickets endpoints
   getTicketsForEvent(eventId: string) {
     return this.http.get(this.url + '/api/events/' + eventId + '/tickets');

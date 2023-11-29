@@ -8,6 +8,8 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {forkJoin} from "rxjs";
+import {SnackbarComponent} from "../snackbars/snackbar-error/snackbar.component";
+import {SnackbarSuccessComponent} from "../snackbars/snackbar-success/snackbar-success.component";
 
 @Component({
   selector: 'app-event-manager',
@@ -106,6 +108,19 @@ export class EventManagerComponent implements OnInit{
   public userId: string = '';
   ownedEvents: any[] = [];
   eventDetails: any[] = [];
+  artists: any[] = [];
+
+  // Artists add step 6
+  artistsParticipating: any[] = [];
+  newArtist = {
+    name: '',
+    image: '',
+    shortDescription: '',
+    career: ''
+  };
+  isFormSubmitted: boolean = false;
+  incorrectArtistInfo = false;
+
 
   // Dynamic logic - Active events
   public image: string = '';
@@ -117,11 +132,12 @@ export class EventManagerComponent implements OnInit{
   public moneyEarned: number = 0;
 
   constructor(private service: DataService, private authService: AuthService, private elementRef: ElementRef,
-              private renderer: Renderer2,) {}
+              private renderer: Renderer2,
+              private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.activeEventsVisible = true;
-    // this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
+    // this.activeEventsVisible = true;
+    this.eventCreationVisible = true; // TODO: Zmienić na this.activeEventsVisible = true; w późniejszym etapie
     this.userId = this.authService.getUserId();
     this.service.getOwnedEvents(this.userId).subscribe(
       (res: any) => {
@@ -289,6 +305,9 @@ export class EventManagerComponent implements OnInit{
     {
       modalDiv.style.display = 'block';
     }
+    if(modalId === 'artistsBase'){
+      this.getAllArtists();
+    }
     this.lowerBrightness();
   }
   closeModal(modalId: string) {
@@ -301,15 +320,87 @@ export class EventManagerComponent implements OnInit{
   }
 
   lowerBrightness() {
-    const element = this.elementRef.nativeElement.querySelector('.section-1');
+    const element = this.elementRef.nativeElement.querySelector('.main');
     if (element) {
       this.renderer.addClass(element, 'brightness-70');
     }
   }
   raiseBrightness() {
-    const element = this.elementRef.nativeElement.querySelector('.section-1');
+    const element = this.elementRef.nativeElement.querySelector('.main');
     if (element) {
       this.renderer.removeClass(element, 'brightness-70');
     }
   }
+
+  //  Get all artists
+  getAllArtists() {
+    this.service.getAllArtists().subscribe(
+      (res: any) => {
+        this.artists = res;
+      },
+      (error: any) => {
+        console.error('Error fetching artists:', error);
+      }
+    );
+  }
+
+  // Add or remove an artist from artistParticipating array
+  toggleArtist(artist: any) {
+    const index = this.artistsParticipating.findIndex((a) => a.id === artist.id);
+    if (index === -1) {
+      this.artistsParticipating.push(artist); // Add the artist if not already present
+    } else {
+      this.artistsParticipating.splice(index, 1); // Remove the artist if already present
+    }
+  }
+
+  // Create new artist
+  createNewArtist() {
+    if (this.validateForm()) {
+      return this.service.createNewArtist(this.newArtist).subscribe(
+        (result) => {
+            this.newArtist = {
+              name: '',
+              image: '',
+              shortDescription: '',
+              career: ''
+            };
+            this.closeModal("createNewArtist");
+            this.openSnackBarSuccess("Pomyślnie utworzono nowego artystę.");
+        },
+        (error) => {
+          if(error){
+            this.openSnackBarError("Coś poszło nie tak: " + error);
+          }
+        }
+      );
+    }
+    return;
+  }
+
+  validateForm(): boolean {
+    if (!this.newArtist.name || !this.newArtist.image || !this.newArtist.shortDescription) {
+      this.isFormSubmitted = true;
+      return false;
+    }
+    return true;
+  }
+
+  // Snackbar messages
+  openSnackBarError(errorMsg: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      data: { errorMsg: errorMsg },
+      panelClass: ['snackbar-error-style']
+    });
+  }
+  openSnackBarSuccess(msg: string) {
+    this._snackBar.openFromComponent(SnackbarSuccessComponent, {
+      duration: 5000,
+      data: { msg: msg },
+      panelClass: ['snackbar-success-style']
+    });
+  }
+
+  protected readonly open = open;
 }

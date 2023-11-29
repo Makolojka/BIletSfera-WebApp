@@ -493,18 +493,18 @@
           <div class="slider-container">
             <div class="slider">
             <!--Artist circle-->
-              <div class="artist-wrapper">
+              <div class="artist-wrapper" *ngFor="let artist of artistsParticipating">
                 <div class="artist-circle">
-                  <img src="./assets/img/sopot.jpg" alt="img-artist"/>
+                  <img [src]="artist.image" alt="img-artist"/>
                 </div>
-                <h3>Tede</h3>
-                <button class="read-more-button">
+                <h3>{{ artist.name }}</h3>
+                <button class="read-more-button" (click)="toggleArtist(artist)">
                   <i class="fa-solid fa-trash icon"></i>
                 </button>
               </div>
               <!--Add artist circle-->
               <div class="artist-wrapper">
-                <div class="artist-circle-add">
+                <div class="artist-circle-add" (click)="openModal('artistsBase')">
                   <i class="fa-solid fa-plus icon-large"></i>
                 </div>
               </div>
@@ -516,7 +516,7 @@
         <h2>Utwórz nowego artystę (opcjonalne)</h2>
         <div class="align-left-row">
           <div class="artist-wrapper">
-            <div class="artist-circle-add">
+            <div class="artist-circle-add" (click)="openModal('createNewArtist')" >
               <i class="fa-solid fa-plus icon-large"></i>
             </div>
           </div>
@@ -535,30 +535,105 @@
     <!--Creator panel end-->
     </div>
 
-  <!--  Modals  -->
-    <!--  Login modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="loginModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <!--          <h5 class="modal-title">Zaloguj się</h5>-->
-            <a class="logo" [routerLink]="['/']"><img src="assets/log.png"></a>
-            <a class="close" (click)="closeModal('loginModal')" data-dismiss="modal" aria-label="Close">
-              <i class="fa-solid fa-close icon"></i>
-            </a>
-          </div>
-          <div class="modal-body">
-            <div class="form-container sign-in-container">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn">Dodaj artystę</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
   <!--Panel div reports end-->
   </div>
-
 </div>
+
+<!--  Modals  -->
+<!--  Add existing artist modal -->
+<div class="modal" tabindex="-1" role="dialog" id="artistsBase">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Wybierz artystów biorących udział w twoim wydarzeniu.</h2>
+        <a class="close" (click)="closeModal('artistsBase')" data-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-close icon"></i>
+        </a>
+      </div>
+      <div class="modal-search-bar">
+        <input type="text" class="search-input" placeholder="Wyszukaj artystę, np. Tede">
+        <div class="search-div">
+          <i class="fa-solid fa-search"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="form-container sign-in-container">
+          <!--Artist circle-->
+          <div class="artist-container">
+            <div class="align-left-row" *ngFor="let artist of artists">
+              <div class="artist-wrapper">
+                <div class="artist-circle">
+                  <img [src]="artist.image" alt="Artist Image">
+                </div>
+                <h3>{{ artist.name }}</h3>
+                <button class="add-artist-button" (click)="toggleArtist(artist)">
+                  <i class="fa-solid fa-plus icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--Artist circle end-->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="logo" [routerLink]="['/']" style="margin: 10px 0"><img src="assets/log.png" style="transform: scale(1.5); margin: 0"></a>
+<!--        <button type="button" class="btn">Dodaj artystę</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Create new artist-->
+<!--  Login modal -->
+<div class="modal" tabindex="-1" role="dialog" id="createNewArtist">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Utwórz nowego artystę.</h1>
+        <a class="close" (click)="closeModal('createNewArtist')" data-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-close icon"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="form-container sign-in-container">
+          <form action="post" autocomplete="off" method="POST">
+            <input type="text" placeholder="Pseudonim artystyczny (np. Tede)" name="name" [(ngModel)]="newArtist.name" required>
+            <div *ngIf="isFormSubmitted && !newArtist.name" class="error">Pole nie może być puste.</div>
+
+            <input type="text" placeholder="Url " name="image" [(ngModel)]="newArtist.image" required>
+            <div *ngIf="isFormSubmitted && !newArtist.image" class="error">Pole nie może być puste.</div>
+
+<!--            <input type="text" placeholder="Krótki opis artysty (np. )" name="shortDescription" [(ngModel)]="newArtist.shortDescription" required>-->
+            <textarea
+              class="textarea-modal"
+              placeholder="Krótki opis artysty (np. )"
+              name="shortDescription"
+              [(ngModel)]="newArtist.shortDescription"
+              cols="1"
+              rows="1"
+              maxlength="255"
+              required
+            ></textarea>
+            <div *ngIf="isFormSubmitted && !newArtist.shortDescription" class="error">Pole nie może być puste.</div>
+
+            <textarea
+              class="textarea-modal"
+              placeholder="Opis kariery artysty (opcjonalne)"
+              name="career"
+              [(ngModel)]="newArtist.career"
+              cols="1"
+              rows="1"
+              required
+            ></textarea>
+<!--            <input type="text" placeholder="Opis kariery artysty (opcjonalne)" name="career" [(ngModel)]="newArtist.career">-->
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" (click)="createNewArtist()" >Utwórz artystę</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modals end-->

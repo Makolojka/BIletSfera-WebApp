@@ -1037,8 +1037,21 @@
 }
 
 .read-more-button:hover {
-  transition: all 0.3s ease;
   background-color: var(--red-color-hover);
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute; /* Position the button absolutely within the circle */
+  top: 40%; /* Adjust the top position to vertically center the button */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 }
 
 .artist-wrapper:hover .read-more-button {
@@ -1085,6 +1098,60 @@
 .artist-circle-add:hover i{
   color: var(--third-color);
   scale: 1.3;
+  transition: all 0.3s ease;
+}
+
+/*Artist add*/
+.add-artist-button {
+  background-color: transparent;
+  color: var(--third-color-greyed);
+  border: none;
+  padding: 5px 40px;
+  border-radius: 125px;
+  font-weight: 500;
+  font-size: 50px;
+  text-transform: uppercase;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.add-artist-button:hover{
+  background-color: transparent;
+  border: none;
+  color: var(--green-color-hover);
+  transition: all 0.3s ease;
+}
+
+.artist-wrapper:hover .add-artist-button {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.add-artist-button:hover .icon{
+  scale: 1.4;
+  transition: all 0.3s ease;
+}
+
+.add-artist-button:active{
+  background-color: transparent;
+  color: var(--third-color-greyed);
+  border: none;
+  padding: 5px 40px;
+  border-radius: 125px;
+  font-weight: 500;
+  font-size: 50px;
+  text-transform: uppercase;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: all 0.3s ease;
 }
 
@@ -1144,4 +1211,221 @@
     font-size: 16px;
     margin: 4px 0;
   }
+}
+
+/*Modals*/
+.brightness-70{
+  /*filter: brightness(0.6);*/
+}
+
+.modal-dialog{
+  max-width: 1200px;
+}
+
+.modal-body .artist-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/*Forms*/
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+  padding: 0;
+  margin-left: 15px;
+  width: 100px;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  margin-right: 10px;
+}
+
+form {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+form h1{
+  margin-bottom: 0;
+}
+
+input {
+  background-color: transparent;
+  /*border: none;*/
+  padding: 15px 20px;
+  margin: 8px 0;
+  width: 100%;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  /*border: 1px solid #ccc;*/
+  border: none;
+  border-bottom: 1px solid #ccc;
+  /*border-top-right-radius: 10px;*/
+  /*border-bottom-left-radius: 10px;*/
+}
+input:focus
+{
+  outline: none;
+  border-bottom: 1px solid var(--third-color);
+  transition: all 0.2s ease;
+}
+
+button {
+  border-radius: 0px;
+  border: 1px solid var(--main-bg-color);
+  background-color: var(--main-bg-color);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover{
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+  transition: all 0.3s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+.modal-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-dialog a {
+  color: #333;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.close{
+  background-color: transparent;
+  border: none;
+  transition: all ease-in-out 0.3s;
+}
+
+.close:hover{
+  scale: 1.2;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.btn-register{
+  width: 250px;
+}
+
+/* Base styles */
+.modal-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  height: 40px;
+}
+
+.search-input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.search-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 41px;
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+.search-div i {
+  font-size: 18px;
+}
+
+/* Hover effect for the search button */
+.search-div:hover {
+  background-color: var(--third-color);
+}
+
+.modal-footer button {
+  border-radius: 0px;
+  border: 1px solid var(--main-bg-color);
+  background-color: var(--main-bg-color);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-footer button:hover{
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-footer button:active {
+  transform: scale(0.95);
+}
+
+.modal-footer button:focus {
+  outline: none;
+}
+
+.textarea-modal{
+  margin: 20px 0 20px 0;
+  width: 100%;
+  min-height: 200px;
+  padding: 8px 20px;
+  border: 0.1em solid var(--third-color-greyed);
+  color: var(--third-color);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+/*Error message*/
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
 }
