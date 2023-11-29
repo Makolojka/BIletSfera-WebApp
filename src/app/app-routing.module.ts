@@ -9,6 +9,8 @@ import {CartComponent} from "./components/cart/cart.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {AuthGuard} from "./services/auth.guard";
 import {EventManagerComponent} from "./components/event-manager/event-manager.component";
+import {OrganizerOverviewPageComponent} from "./components/organizer-overview-page/organizer-overview-page.component";
+import {OrganizerAuthGuard} from "./services/organiser-panel.guard";
 
 const routes: Routes = [
   {
@@ -46,7 +48,6 @@ const routes: Routes = [
     path: 'event/detail/:id',
     component: EventDetailComponent
   },
-  // TODO: Tymczasowe routy, do zmiany :id? na np. nazwę wydarzenia, jak zrobić?
   {
     path: 'events/event/detail/:id',
     component: EventDetailComponent
@@ -61,7 +62,12 @@ const routes: Routes = [
   },
   {
     path: 'event-manager',
-    component: EventManagerComponent
+    component: EventManagerComponent,
+    canActivate: [OrganizerAuthGuard]
+  },
+  {
+    path: 'organizer/overview',
+    component: OrganizerOverviewPageComponent
   },
 ];
 

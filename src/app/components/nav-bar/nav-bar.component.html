@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow">
+<nav class="navbar fixed-top navbar-expand-lg bg-light shadow">
   <!-- Container wrapper -->
   <div class="container-fluid navbar-container">
     <!-- Toggle button -->
@@ -30,7 +30,7 @@
       <div class="container-fluid">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <div class="nav-item">
-            <a class="nav-link" href="#">Jesteś organizatorem?</a>
+            <a class="nav-link" [routerLink]="['/organizer/overview']">Jesteś organizatorem?</a>
           </div>
         </ul>
 <!--        <form class="d-flex input-group w-50">-->
@@ -132,6 +132,9 @@
           <li><h5 class="dropdown-header mb-0 text">Główne</h5></li>
           <li>
             <a class="dropdown-item" [routerLink]="'/events'">Wydarzenia</a>
+          </li>
+          <li *ngIf="authService.isOrganizer()">
+            <a class="dropdown-item" [routerLink]="'/event-manager'">Panel organizatora</a>
           </li>
           <li><h5 class="dropdown-header mb-0 text">Moje</h5></li>
           <li>

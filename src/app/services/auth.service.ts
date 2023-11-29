@@ -32,6 +32,22 @@ export class AuthService {
     );
   }
 
+  authenticateOrganiser(credentials: any) {
+
+    return this.http.post(this.url + '/organizer/auth', {
+      login: credentials.login,
+      password: credentials.password
+    }).pipe(
+      map((result: Token | any) => {
+        if (result && result.token) {
+          localStorage.setItem('token', result.token);
+          return true;
+        }
+        return false;
+      })
+    );
+  }
+
   createOrUpdate(credentials: any) {
     console.log(credentials)
     return this.http.post(this.url + '/user/create', credentials);
@@ -77,6 +93,11 @@ export class AuthService {
     const decodedToken = jwtHelper.decodeToken(token);
 
     return decodedToken.userId;
+  }
+
+  isOrganizer(): boolean {
+    const currentUser = this.currentUser;
+    return currentUser && currentUser.isOrganizer;
   }
 
 }
