@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {ScaleType} from "@swimlane/ngx-charts";
 import {Time, ViewportScroller} from "@angular/common";
 import {Ticket} from "../event-card/Ticket";
@@ -116,7 +116,8 @@ export class EventManagerComponent implements OnInit{
   public ticketSold: number = 0;
   public moneyEarned: number = 0;
 
-  constructor(private service: DataService, private authService: AuthService) {}
+  constructor(private service: DataService, private authService: AuthService, private elementRef: ElementRef,
+              private renderer: Renderer2,) {}
 
   ngOnInit() {
     this.activeEventsVisible = true;
@@ -141,6 +142,7 @@ export class EventManagerComponent implements OnInit{
       });
     });
   }
+
 
   // TODO: Tylko do testu - usunąć później
   // addEventTOP(){
@@ -278,6 +280,36 @@ export class EventManagerComponent implements OnInit{
         this.artistsVisible = true;
         this.stepNumber = 6;
         break;
+    }
+  }
+
+  openModal(modalId: string) {
+    const modalDiv= document.getElementById(modalId);
+    if(modalDiv != null)
+    {
+      modalDiv.style.display = 'block';
+    }
+    this.lowerBrightness();
+  }
+  closeModal(modalId: string) {
+    const modalDiv= document.getElementById(modalId);
+    if(modalDiv!= null)
+    {
+      modalDiv.style.display = 'none';
+    }
+    this.raiseBrightness();
+  }
+
+  lowerBrightness() {
+    const element = this.elementRef.nativeElement.querySelector('.section-1');
+    if (element) {
+      this.renderer.addClass(element, 'brightness-70');
+    }
+  }
+  raiseBrightness() {
+    const element = this.elementRef.nativeElement.querySelector('.section-1');
+    if (element) {
+      this.renderer.removeClass(element, 'brightness-70');
     }
   }
 }

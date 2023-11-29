@@ -535,6 +535,29 @@
     <!--Creator panel end-->
     </div>
 
+  <!--  Modals  -->
+    <!--  Login modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="loginModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!--          <h5 class="modal-title">Zaloguj się</h5>-->
+            <a class="logo" [routerLink]="['/']"><img src="assets/log.png"></a>
+            <a class="close" (click)="closeModal('loginModal')" data-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-close icon"></i>
+            </a>
+          </div>
+          <div class="modal-body">
+            <div class="form-container sign-in-container">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn">Dodaj artystę</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!--Panel div reports end-->
   </div>
 
