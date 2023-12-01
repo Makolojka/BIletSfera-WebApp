@@ -47,9 +47,7 @@ import { SnackbarComponent } from './components/snackbars/snackbar-error/snackba
 import {ServerErrorInterceptor} from "./interceptors/server-error.interceptor";
 import { SnackbarSuccessComponent } from './components/snackbars/snackbar-success/snackbar-success.component';
 import { OrganizerOverviewPageComponent } from './components/organizer-overview-page/organizer-overview-page.component';
-import {ActiveEventsPanelComponent} from "./components/event-manager/active-events-panel/active-events-panel.component";
-import { ReportsPanelComponent } from './components/event-manager/reports-panel/reports-panel.component';
-import { EventCreatorPanelComponent } from './components/event-manager/event-creator-panel/event-creator-panel.component';
+import { ActiveEventsPanelComponent } from './components/event-manager-panels/active-events-panel/active-events-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,8 +75,6 @@ import { EventCreatorPanelComponent } from './components/event-manager/event-cre
     SnackbarSuccessComponent,
     OrganizerOverviewPageComponent,
     ActiveEventsPanelComponent,
-    ReportsPanelComponent,
-    EventCreatorPanelComponent,
   ],
   imports: [
     BrowserModule,
