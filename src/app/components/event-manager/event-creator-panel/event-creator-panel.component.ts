@@ -24,7 +24,6 @@ export class EventCreatorPanelComponent implements OnInit{
   additionalInfoVisible = false;
   detailsVisible = false;
   artistsVisible = false;
-  areEventsPresent: boolean = false;
 
   // 1. step - Basic info vars
   eventName: string = '';
@@ -58,6 +57,7 @@ export class EventCreatorPanelComponent implements OnInit{
   // 6. step - Artist add
   artists: any[] = [];
   artistsParticipating: any[] = [];
+  areTicketsPresent: boolean = false;
 
   newArtist = {
     name: '',
@@ -73,6 +73,7 @@ export class EventCreatorPanelComponent implements OnInit{
 
   ngOnInit(){
     this.basicInfoVisible = true;
+    this.checkIfTicketsPresent();
   }
 
   toggleCategory(type: string, value: string) {
@@ -97,8 +98,8 @@ export class EventCreatorPanelComponent implements OnInit{
       }
     }
 
-    console.log(this.selectedCategories)
-    console.log(this.selectedSubCategories)
+    // console.log(this.selectedCategories)
+    // console.log(this.selectedSubCategories)
   }
 
   isCategorySelected(category: string) {
@@ -264,13 +265,70 @@ export class EventCreatorPanelComponent implements OnInit{
 
   // Create new ticket
   createNewTicket() {
-    const newTicket: Ticket = {
-      type: this.newTicket.type,
-      price: this.newTicket.price,
-      dayOfWeek: this.newTicket.dayOfWeek,
-      date: this.newTicket.date,
-    };
-    this.tickets.push(newTicket);
+    try{
+      if (this.validateTicketForm()) {
+        const newTicket: Ticket = {
+          type: this.newTicket.type,
+          price: this.newTicket.price,
+          dayOfWeek: this.newTicket.dayOfWeek,
+          date: this.newTicket.date,
+        };
+        this.tickets.push(newTicket);
+        this.openSnackBarSuccess("Pomyślnie utworzono nowy bilet.");
+        this.checkIfTicketsPresent();
+        this.closeModal('createNewTicket');
+        this.newTicket = {
+          type: '',
+          price: 0,
+          dayOfWeek: '',
+          date: '',
+        };
+      }
+    }
+    catch (error){
+      if(error){
+        this.openSnackBarError("Problem z utworzeniem biletu: " + error);
+      }
+    }
+  }
+
+  checkIfTicketsPresent(){
+    this.areTicketsPresent = this.tickets.length !== 0;
+  }
+
+  validateTicketForm(): boolean {
+    if (!this.newTicket.type || !this.newTicket.price || !this.newTicket.dayOfWeek || !this.newTicket.date) {
+      this.isFormSubmitted = true;
+      this.openSnackBarError("Problem z utworzeniem biletu.");
+      return false;
+    }
+    return true;
+  }
+
+  // Edit a ticket
+  editedTicket: Ticket = { type: '', price: 0, dayOfWeek: '', date: '' };
+
+  editTicket(type: string) {
+    const selectedTicket = this.tickets.find(ticket => ticket.type === type);
+    if (selectedTicket) {
+      this.editedTicket = { ...selectedTicket };
+      this.openModal('updateTicketModal');
+    }
+  }
+  updateTicket(updatedTicket: Ticket) {
+    const index = this.tickets.findIndex(ticket => ticket.type === updatedTicket.type);
+    if (index !== -1) {
+      this.tickets[index] = { ...this.tickets[index], ...updatedTicket };
+      this.closeModal('updateTicketModal');
+    }
+  }
+
+
+  // Delete a ticket
+  deleteTicket(index: number) {
+    this.tickets.splice(index, 1);
+    this.checkIfTicketsPresent();
+    // console.log("delete this.checkIfTicketsPresent();",this.areTicketsPresent)
   }
 
   // Snackbar messages
