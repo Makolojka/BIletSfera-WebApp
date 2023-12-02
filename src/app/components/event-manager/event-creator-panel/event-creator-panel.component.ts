@@ -5,6 +5,7 @@ import {SnackbarComponent} from "../../snackbars/snackbar-error/snackbar.compone
 import {SnackbarSuccessComponent} from "../../snackbars/snackbar-success/snackbar-success.component";
 import {AuthService} from "../../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Ticket} from "../../../interfaces/ticket";
 
 @Component({
   selector: 'app-event-creator-panel',
@@ -45,10 +46,19 @@ export class EventCreatorPanelComponent implements OnInit{
   // 4. step - Additional info
   additionalInfo: string = '';
 
-  artists: any[] = [];
+  // 5. step - Ticket add
+  tickets: Ticket[] = [];
+  newTicket = {
+    type: '',
+    price: 0,
+    dayOfWeek: '',
+    date: '',
+  };
 
-  // Artists add step 6
+  // 6. step - Artist add
+  artists: any[] = [];
   artistsParticipating: any[] = [];
+
   newArtist = {
     name: '',
     image: '',
@@ -252,6 +262,17 @@ export class EventCreatorPanelComponent implements OnInit{
     return true;
   }
 
+  // Create new ticket
+  createNewTicket() {
+    const newTicket: Ticket = {
+      type: this.newTicket.type,
+      price: this.newTicket.price,
+      dayOfWeek: this.newTicket.dayOfWeek,
+      date: this.newTicket.date,
+    };
+    this.tickets.push(newTicket);
+  }
+
   // Snackbar messages
   openSnackBarError(errorMsg: string) {
     this._snackBar.openFromComponent(SnackbarComponent, {
@@ -268,4 +289,5 @@ export class EventCreatorPanelComponent implements OnInit{
     });
   }
 
+  protected readonly open = open;
 }

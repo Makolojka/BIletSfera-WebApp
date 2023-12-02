@@ -281,23 +281,47 @@
       </div>
 
     </div>
-
+<!--    export interface Ticket {-->
+<!--    _id: string;-->
+<!--    type: string;-->
+<!--    price: number;-->
+<!--    dayOfWeek: string;-->
+<!--    date: string;-->
+<!--    }-->
 
     <!--Step 5.-->
     <div class="tickets" *ngIf="detailsVisible">
       <h2>Bilety</h2>
-      <div class="ticket">
+<!--      <div class="ticket">-->
+<!--        <div class="section section-left">-->
+<!--          <div>-->
+<!--            <h3 style="font-size: 20px; color: var(&#45;&#45;third-color)">Top Top VIP</h3>-->
+<!--            <span>21-24.08.2023</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="section">-->
+<!--          <span>100 Bilet(ów)</span>-->
+<!--        </div>-->
+<!--        <div class="section">-->
+<!--          <span>150 zł</span>-->
+<!--        </div>-->
+<!--        <div class="section section-right">-->
+<!--          <i class="fa-solid fa-pen icon-ticket icon-ticket-edit"></i>-->
+<!--          <i class="fa-solid fa-trash icon-ticket icon-ticket-delete"></i>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div *ngFor="let ticket of tickets" class="ticket">
         <div class="section section-left">
           <div>
-            <h3 style="font-size: 20px; color: var(--third-color)">Top Top VIP</h3>
-            <span>21-24.08.2023</span>
+            <h3 style="font-size: 20px; color: var(--third-color)">{{ ticket.type }}</h3>
+            <span>{{ ticket.date }}</span>
           </div>
         </div>
         <div class="section">
-          <span>100 Bilet(ów)</span>
+          <span>{{ 0 }} Bilet(ów)</span>
         </div>
         <div class="section">
-          <span>150 zł</span>
+          <span>{{ ticket.price }} zł</span>
         </div>
         <div class="section section-right">
           <i class="fa-solid fa-pen icon-ticket icon-ticket-edit"></i>
@@ -305,8 +329,9 @@
         </div>
       </div>
 
+
       <div class="align-center-column">
-        <div class="ticket-add-button">
+        <div class="ticket-add-button" (click)="openModal('createNewTicket')">
           <i class="fa-solid fa-plus icon-large"></i>
           <h4>Dodaj nowy typ biletu</h4>
         </div>
@@ -422,7 +447,6 @@
 </div>
 
 <!--Create new artist-->
-<!--  Login modal -->
 <div class="modal" tabindex="-1" role="dialog" id="createNewArtist">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -468,10 +492,57 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn" (click)="createNewArtist()" >Utwórz artystę</button>
+        <button type="button" class="btn" (click)="createNewArtist()">Utwórz artystę</button>
       </div>
     </div>
   </div>
 </div>
+
+<!--Create new ticket modal-->
+<div class="modal" tabindex="-1" role="dialog" id="createNewTicket">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header left-aligned">
+        <h1>Utwórz nowy bilet</h1>
+        <a class="close" (click)="closeModal('createNewTicket')" data-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-close icon"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="form-container">
+          <form>
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Nazwa biletu / Typ biletu</h2>
+            </div>
+            <input type="text" placeholder="np. Bilet VIP" name="type" [(ngModel)]="newTicket.type" required>
+            <div *ngIf="isFormSubmitted && !newTicket.type" class="error">Pole nie może być puste.</div>
+
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Cena biletu (w zł)</h2>
+            </div>
+            <input type="number" placeholder="np. 250zł" name="price" [(ngModel)]="newTicket.price" required>
+            <div *ngIf="isFormSubmitted && !newTicket.price" class="error">Pole nie może być puste.</div>
+
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Dzień tygodnia (początek wydarzenia)</h2>
+            </div>
+            <input type="text" placeholder="np. sobota" name="dayOfWeek" [(ngModel)]="newTicket.dayOfWeek" required>
+            <div *ngIf="isFormSubmitted && !newTicket.dayOfWeek" class="error">Pole nie może być puste.</div>
+
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Zakres ważności biletu</h2>
+            </div>
+            <input type="text" placeholder="np. 21-24.08.2023" name="date" [(ngModel)]="newTicket.date" required>
+            <div *ngIf="isFormSubmitted && !newTicket.date" class="error">Pole nie może być puste.</div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" (click)="createNewTicket()">Dodaj nowy bilet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!--Modals end-->
