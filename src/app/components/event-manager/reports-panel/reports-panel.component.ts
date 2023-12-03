@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ScaleType} from "@swimlane/ngx-charts";
 import {DataService} from "../../../services/data.service";
 import {PanelManagerService} from "../../../services/panel-manager.service";
@@ -8,10 +8,15 @@ import {PanelManagerService} from "../../../services/panel-manager.service";
   templateUrl: './reports-panel.component.html',
   styleUrls: ['./reports-panel.component.css']
 })
-export class ReportsPanelComponent {
+export class ReportsPanelComponent implements OnInit{
 
   @Input() userId: string = '';
   public imageMissing: string = '././assets/img/sopot.jpg';
+
+  // Events details
+  ownedEvents: any[] = [];
+  eventDetails: any[] = [];
+  areEventsPresent: boolean = false;
 
   // Temporary chart data
   saleData =  [
@@ -62,5 +67,28 @@ export class ReportsPanelComponent {
   };
 
   constructor(private service: DataService, public panelManagerService: PanelManagerService) {}
+  ngOnInit() {
+    this.service.getOwnedEvents(this.userId).subscribe(
+      (res: any) => {
+        this.ownedEvents = res.ownedEvents;
+        console.log('Owned Events:', this.ownedEvents);
+        this.fetchEventDetails();
+        if(this.ownedEvents.length !== 0){
+          this.areEventsPresent = true;
+        }
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  fetchEventDetails() {
+    this.ownedEvents.forEach((eventId: string) => {
+      this.service.getById(eventId).subscribe((res: any) => {
+        this.eventDetails.push(res);
+      });
+    });
+  }
 
 }

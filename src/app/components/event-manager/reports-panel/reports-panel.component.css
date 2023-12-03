@@ -110,8 +110,8 @@
 
 .event-desc-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   margin: 0;
   /*border-left: 1px solid #ddd;*/
@@ -128,7 +128,6 @@
 }
 .event-wide-title{
   font-size: 18px;
-  margin: 5px 0 5px 30px;
-
+  margin: 5px 0 5px 20px;
 }
 

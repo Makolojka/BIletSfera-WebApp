@@ -17,7 +17,7 @@
       <span class="tile-value">Całkowite wyświetlenia</span>
     </div>
     <div class="tile">
-      <h3>5</h3>
+      <h3>{{ownedEvents.length}}</h3>
       <span class="tile-value">Utworzonych wydarzeń</span>
     </div>
   </div>
@@ -54,29 +54,25 @@
   </div>
 
   <div class="events-container">
-    <div class="event-wide">
-      <div class="img">
-        <img [src]="imageMissing" alt="Event image">
-      </div>
-      <div class="event-desc-container">
-        <div class="event-wide-title">Top top FESTIVAL Sopot</div>
-        <div class="align-left-row-icon">
-          <i class="fa-solid fa-location-crosshairs icon"></i>
-          <p class="event-info">Tarnów, Hala TOSIR</p>
+    <div *ngIf="areEventsPresent">
+      <div *ngFor="let event of eventDetails" class="event-wide">
+        <div class="img">
+          <img [src]="event.image || imageMissing" alt="Event image">
+        </div>
+        <div class="event-desc-container">
+          <div class="event-wide-title">{{ event.title }}</div>
+          <div class="align-left-row" style="margin-left: 20px">
+            <i class="fa-solid fa-location-crosshairs icon"></i>
+            <p class="event-info">{{ event.location }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="event-wide">
-      <div class="img">
-        <img [src]="imageMissing" alt="Event image">
-      </div>
-      <div class="event-desc-container">
-        <div class="event-wide-title">Top top FESTIVAL Sopot</div>
-        <div class="align-left-row-icon">
-          <i class="fa-solid fa-location-crosshairs icon"></i>
-          <p class="event-info">Tarnów, Hala TOSIR</p>
-        </div>
+    <div *ngIf="!areEventsPresent" class="panel-div">
+      <div class="missing-text">
+        <h4>Brak wydarzeń</h4>
       </div>
     </div>
   </div>
+
 </div>

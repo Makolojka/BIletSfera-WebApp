@@ -85,11 +85,8 @@
 }
 
 .event-info {
-  margin: 0;
   color: #222;
   font-size: 18px;
-  /*font-weight: 500;*/
-  /*margin-right: 10px;*/
 }
 
 .align-left-row-icon{
@@ -97,7 +94,10 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 5px 5px;
+}
+
+.location-container{
+  margin: 5px 0 5px 30px;
 }
 
 .event p {
