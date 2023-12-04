@@ -1,6 +1,6 @@
 <div class="panel-div" *ngIf="panelManagerService.reportsVisible">
   <div class="title-container">
-    <h2>Statystyki</h2>
+    <h2>Statystyki ogólne</h2>
   </div>
 
   <div class="tile-wrapper">
@@ -54,15 +54,39 @@
 
   <div class="events-container">
     <div *ngIf="areEventsPresent">
-      <div *ngFor="let event of eventDetails" class="event-wide" (click)="showEventDetails(event.id)">
-        <div class="img">
-          <img [src]="event.image || imageMissing" alt="Event image">
+      <div *ngFor="let event of eventDetails" class="event-container">
+        <div class="event-wide" (click)="showEventDetails(event.id)">
+          <div class="img">
+            <img [src]="event.image || imageMissing" alt="Event image">
+          </div>
+          <div class="event-desc-container">
+            <div class="event-wide-title">{{ event.title }}</div>
+            <div class="align-left-row" style="margin-left: 20px">
+              <i class="fa-solid fa-location-crosshairs icon"></i>
+              <p class="event-info">{{ event.location }}</p>
+            </div>
+          </div>
         </div>
-        <div class="event-desc-container">
-          <div class="event-wide-title">{{ event.title }}</div>
-          <div class="align-left-row" style="margin-left: 20px">
-            <i class="fa-solid fa-location-crosshairs icon"></i>
-            <p class="event-info">{{ event.location }}</p>
+        <div class="tile-wrapper-clicked" *ngIf="event.id === lastEventId">
+          <div class="tile">
+            <h3>{{ totalEarningsForEvent }}</h3>
+            <span class="tile-value">Zarobki tego wydarzenia</span>
+          </div>
+          <div class="tile">
+            <h3>{{ totalSoldForEvent }}</h3>
+            <span class="tile-value">Sprzedanych biletów</span>
+          </div>
+          <div class="tile">
+            <h3>{{ event.views }}</h3>
+            <span class="tile-value">Wyświetlenia</span>
+          </div>
+          <div class="tile">
+            <h3>{{ event.tickets.length }}</h3>
+            <span class="tile-value">Utworzonych biletów</span>
+          </div>
+          <div class="tile-wide">
+            <h3>{{ event.createdAt }}</h3>
+            <span class="tile-value">Wydarzenie aktywne od</span>
           </div>
         </div>
       </div>
@@ -73,25 +97,8 @@
       </div>
     </div>
   </div>
-  <!-- Display event-specific details -->
-  <div class="tile-wrapper-clicked" *ngIf="eventSelectedToggle">
-    <!-- Display fetched data specific to the selected event -->
-    <div class="tile">
-      <h3>{{ totalEarningsForEvent }}</h3>
-      <span class="tile-value">Całkowite zarobki</span>
-    </div>
-    <div class="tile">
-      <h3>{{ totalSoldForEvent }}</h3>
-      <span class="tile-value">Sprzedanych biletów</span>
-    </div>
-    <div class="tile">
-      <h3>{{ totalViewsForEvent }}</h3>
-      <span class="tile-value">Całkowite wyświetlenia</span>
-    </div>
-    <div class="tile">
-      <h3>{{ ownedEvents.length }}</h3>
-      <span class="tile-value">Utworzonych biletów</span>
-    </div>
-  </div>
+  <!-- End of events-container -->
 
 </div>
+
+<!-- End of events-container -->
