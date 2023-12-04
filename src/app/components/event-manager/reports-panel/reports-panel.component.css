@@ -53,6 +53,18 @@
   padding: 10px 20px;
   width: calc(25% - 40px);
   min-width: 200px;
+  transition: all ease-in 0.3s;
+}
+
+.tile:hover{
+  box-shadow: 0px 1px 3px -1px rgba(66, 68, 90, 1);
+  border: 1px solid var(--third-color);
+  transition: all ease-in 0.3s;
+}
+
+.tile:hover .tile-value{
+  color: var(--third-color);
+  transition: all ease-in 0.3s;
 }
 
 .tile-wide{
@@ -67,20 +79,35 @@
   padding: 10px 20px;
   width: 100%;
   min-width: 200px;
+  transition: all ease-in 0.3s;
+}
+
+.tile-wide:hover{
+  box-shadow: 0px 1px 3px -1px rgba(66, 68, 90, 1);
+  border: 1px solid var(--third-color);
+  transition: all ease-in 0.3s;
+}
+
+.tile-wide:hover .tile-value{
+  color: var(--third-color);
+  transition: all ease-in 0.3s;
 }
 
 .tile-value {
   color: #b2b2b2;
+  transition: all ease-in 0.3s;
 }
 
 .tile h3 {
   margin: 0;
   font-size: 20px;
+  transition: all ease-in 0.3s;
 }
 
 .tile-wide h3{
   margin: 0;
   font-size: 20px;
+  transition: all ease-in 0.3s;
 }
 
 .chart-container{
