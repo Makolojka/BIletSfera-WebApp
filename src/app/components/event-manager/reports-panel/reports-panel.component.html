@@ -5,15 +5,15 @@
 
   <div class="tile-wrapper">
     <div class="tile">
-      <h3>21549 zł</h3>
+      <h3>{{totalEarnings}}</h3>
       <span class="tile-value">Całkowite zarobki</span>
     </div>
     <div class="tile">
-      <h3>2501</h3>
+      <h3>{{totalSold}}</h3>
       <span class="tile-value">Sprzedanych biletów</span>
     </div>
     <div class="tile">
-      <h3>102936</h3>
+      <h3>{{totalViews}}</h3>
       <span class="tile-value">Całkowite wyświetlenia</span>
     </div>
     <div class="tile">
@@ -32,7 +32,6 @@
 
   <div class="chart-container">
     <ngx-charts-line-chart
-
       [legend]="legend"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
@@ -55,7 +54,7 @@
 
   <div class="events-container">
     <div *ngIf="areEventsPresent">
-      <div *ngFor="let event of eventDetails" class="event-wide">
+      <div *ngFor="let event of eventDetails" class="event-wide" (click)="showEventDetails(event.id)">
         <div class="img">
           <img [src]="event.image || imageMissing" alt="Event image">
         </div>
@@ -72,6 +71,26 @@
       <div class="missing-text">
         <h4>Brak wydarzeń</h4>
       </div>
+    </div>
+  </div>
+  <!-- Display event-specific details -->
+  <div class="tile-wrapper-clicked" *ngIf="eventSelectedToggle">
+    <!-- Display fetched data specific to the selected event -->
+    <div class="tile">
+      <h3>{{ totalEarningsForEvent }}</h3>
+      <span class="tile-value">Całkowite zarobki</span>
+    </div>
+    <div class="tile">
+      <h3>{{ totalSoldForEvent }}</h3>
+      <span class="tile-value">Sprzedanych biletów</span>
+    </div>
+    <div class="tile">
+      <h3>{{ totalViewsForEvent }}</h3>
+      <span class="tile-value">Całkowite wyświetlenia</span>
+    </div>
+    <div class="tile">
+      <h3>{{ ownedEvents.length }}</h3>
+      <span class="tile-value">Utworzonych biletów</span>
     </div>
   </div>
 

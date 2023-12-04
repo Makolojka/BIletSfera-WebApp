@@ -92,6 +92,18 @@
   padding: 10px 20px;
   box-shadow: 0px 1px 2px -1px rgba(66, 68, 90, 1);
   border: 1px solid #ddd;
+  transition: all ease-in 0.3s;
+}
+
+.event-wide:hover{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2px;
+  padding: 10px 20px;
+  box-shadow: 0px 1px 3px -1px rgba(66, 68, 90, 1);
+  border: 1px solid var(--main-bg-color);
+  transition: all ease-in 0.3s;
 }
 
 .img {
@@ -130,4 +142,16 @@
   font-size: 18px;
   margin: 5px 0 5px 20px;
 }
+
+
+.tile-wrapper-clicked{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px 0 20px 0;
+}
+
 
