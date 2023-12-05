@@ -57,6 +57,12 @@ export class EventCreatorPanelComponent implements OnInit{
     this.selectedAlignment = alignment;
   }
 
+  getSeatNumber(room: { rows: number, columns: number }, row: number, column: number): string {
+    const rowNum = this.cinemaSchema.findIndex(r => r === room) + 1;
+    return rowNum + '.' + (column + 1);
+  }
+
+
   // 2. step - Location vars
   eventCity: string = '';
   eventPlace: string = '';

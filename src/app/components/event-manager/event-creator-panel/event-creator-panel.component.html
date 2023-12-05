@@ -133,7 +133,7 @@
           <input type="number" placeholder="Ilość miejsc" [(ngModel)]="roomColumns">
 
 
-          <h3 class="schema-h3">Wybierz styl rzędu</h3>
+          <h3 class="schema-h3">Wybierz układ:</h3>
           <div class="categories">
             <div class="category-tile"
                  [class.alignment-tile]="!isAlignmentSelected('left')"
@@ -164,13 +164,21 @@
           <div class="cinema-schema-main" *ngIf="cinemaSchema.length !==0">
             <div class="cinema-screen-container">
               <div class="cinema-screen">
-                <h3>Ekran</h3>
+                <h3 style="padding: 20px 0 0 0">Ekran</h3>
                 <h4>Sala 1</h4>
               </div>
             </div>
+<!--            <div *ngFor="let room of cinemaSchema" class="cinema-schema" [ngClass]="selectedAlignment">-->
+<!--              <div *ngFor="let row of getNumberArray(room.rows)" class="room-row">-->
+<!--                <div *ngFor="let column of getNumberArray(room.columns)" class="sit"></div>-->
+<!--              </div>-->
+<!--            </div>-->
             <div *ngFor="let room of cinemaSchema" class="cinema-schema" [ngClass]="selectedAlignment">
               <div *ngFor="let row of getNumberArray(room.rows)" class="room-row">
-                <div *ngFor="let column of getNumberArray(room.columns)" class="sit"></div>
+                <div *ngFor="let column of getNumberArray(room.columns)" class="sit">
+                  <!-- Display seat numbers -->
+                  <span>{{ getSeatNumber(room, row, column) }}</span>
+                </div>
               </div>
             </div>
           </div>
