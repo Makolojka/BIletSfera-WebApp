@@ -124,13 +124,13 @@
         </div>
       </div>
 
-      <div *ngIf="isCategorySelected('Kino')" class="cinema-schema-container">
-        <h2>Utwórz schemat twojego kina</h2>
+  <!--Cinema schema builder-->
+      <div *ngIf="isCategorySelected('Kino')" class="cinema-builder">
+        <h2>Kreator schematu kina</h2>
         <div class="schema-manager">
-          <!-- Input for organizer to input rows and columns -->
-  <!--        <input type="number" placeholder="Rows" [(ngModel)]="roomRows">-->
           <h3 class="schema-h3">Podaj ilość miejsc w jednym rzędzie:</h3>
-          <input type="number" placeholder="Ilość miejsc" [(ngModel)]="roomColumns">
+          <!--<input type="number" placeholder="Rows" [(ngModel)]="roomRows">-->
+          <input type="number" placeholder="Ilość miejsc" [(ngModel)]="roomColumns" (ngModelChange)="onChange($event)">
 
 
           <h3 class="schema-h3">Wybierz układ:</h3>
@@ -156,34 +156,55 @@
               <span style="text-align: right">Wyrównaj do prawej</span>
             </div>
           </div>
-          <!-- Button to add the room schema -->
+
+          <h3 class="schema-h3">Dostępne akcje:</h3>
           <div class="add-row-button-container">
             <button (click)="addRoomSchema(roomRows, roomColumns)">Dodaj rząd</button>
+            <button class="btn-delete" (click)="removeLastRow()">Usuń rząd</button>
           </div>
 
-          <div class="cinema-schema-main" *ngIf="cinemaSchema.length !==0">
-            <div class="cinema-screen-container">
-              <div class="cinema-screen">
-                <h3 style="padding: 20px 0 0 0">Ekran</h3>
-                <h4>Sala 1</h4>
+          <div class="cinema-schema-container">
+            <div class="cinema-schema-main" *ngIf="cinemaSchema.length !==0">
+              <div class="cinema-screen-container">
+                <div class="cinema-screen">
+                  <h3 style="padding: 20px 0 0 0">Ekran</h3>
+                  <h4>Sala 1</h4>
+                </div>
               </div>
-            </div>
-<!--            <div *ngFor="let room of cinemaSchema" class="cinema-schema" [ngClass]="selectedAlignment">-->
-<!--              <div *ngFor="let row of getNumberArray(room.rows)" class="room-row">-->
-<!--                <div *ngFor="let column of getNumberArray(room.columns)" class="sit"></div>-->
-<!--              </div>-->
-<!--            </div>-->
-            <div *ngFor="let room of cinemaSchema" class="cinema-schema" [ngClass]="selectedAlignment">
-              <div *ngFor="let row of getNumberArray(room.rows)" class="room-row">
-                <div *ngFor="let column of getNumberArray(room.columns)" class="sit">
-                  <!-- Display seat numbers -->
-                  <span>{{ getSeatNumber(room, row, column) }}</span>
+              <div *ngFor="let room of cinemaSchema; let roomIndex = index" class="cinema-schema" [ngClass]="selectedAlignment">
+                <div *ngFor="let row of getNumberArray(room.rows); let rowIndex = index" class="room-row">
+                  <div *ngFor="let column of getNumberArray(room.columns); let columnIndex = index" class="sit"
+                       (click)="applyColorToSeat(roomIndex, rowIndex, columnIndex, selectedTicket?.type ?? 'default')"
+                       [ngStyle]="{ 'background-color': getSeatColor(roomIndex, rowIndex, columnIndex) }">
+                    <span>{{ getSeatNumber(room, row, column) }}</span>
+                  </div>
+                  <div class="row-actions">
+                    <button class="btn-apply" (click)="applyColorToRow(roomIndex, rowIndex, selectedTicket?.type ?? 'default')">
+                      <span>Zastosuj kolor</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class="legend-container" *ngIf="cinemaSchema.length !==0">
+              <h3>Legenda</h3>
+              <div class="align-center-row">
+                <div class="" *ngIf="tickets.length == 0">
+                  <h4>Brak biletów. Utwórz bilety w kroku "Dodaj bilety".</h4>
+                </div>
+                <div class="zone-button" *ngFor="let ticket of tickets; let i = index" [ngStyle]="getBackgroundColor(i)" (click)="selectTicket(ticket)">
+                  <h4>{{ ticket.type }}</h4>
+                  <h5>{{ ticket.price }} zł</h5>
+                </div>
+              </div>
+            </div>
+
           </div>
+          <!--End of cinema schema container-->
         </div>
       </div>
+      <!--End of cinema schema builder-->
 
       <h2>Wybierz podkategorie</h2>
       <div class="categories">
@@ -575,6 +596,13 @@
             </div>
             <input type="text" placeholder="np. 21-24.08.2023" name="date" [(ngModel)]="newTicket.date" required>
             <div *ngIf="isFormSubmitted && !newTicket.date" class="error">Pole nie może być puste.</div>
+
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Kolor biletu</h2>
+            </div>
+            <input type="text" placeholder="np. #222222" name="color" [(ngModel)]="newTicket.color" required>
+            <div *ngIf="isFormSubmitted && !newTicket.color" class="error">Pole nie może być puste.</div>
+
           </form>
         </div>
       </div>
@@ -622,6 +650,13 @@
             </div>
             <input type="text" placeholder="np. 21-24.08.2023" name="date" [(ngModel)]="editedTicket.date" required>
             <div *ngIf="isFormSubmitted && !editedTicket.date" class="error">Pole nie może być puste.</div>
+
+            <div class="h2-modal-container">
+              <h2 class="h2-modal" style="margin: 20px 0 0 0">Kolor biletu</h2>
+            </div>
+            <input type="text" placeholder="np. #222222" name="color" [(ngModel)]="editedTicket.color" required>
+            <div *ngIf="isFormSubmitted && !editedTicket.color" class="error">Pole nie może być puste.</div>
+
           </form>
         </div>
       </div>

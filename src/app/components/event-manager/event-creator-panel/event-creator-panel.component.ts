@@ -36,16 +36,34 @@ export class EventCreatorPanelComponent implements OnInit{
   selectedSubCategories: string[] = [];
 
   // Cinema schema builder
-  cinemaSchema: { rows: number; columns: number }[] = [];
+  cinemaSchema: {
+    rows: number;
+    columns: number;
+    seats: { type: string | null }[][];
+  }[] = [];
   roomRows: number = 1;
-  roomColumns: number = 0;
+  roomColumns: number = 1;
   selectedAlignment: string = 'center';
+
+  selectedTicket: Ticket | null = null;
+
   addRoomSchema(rows: number, columns: number): void {
-    console.log("addRoom method, this.cinemaSchema: ",this.cinemaSchema)
-    this.cinemaSchema.push({ rows, columns });
+    const newRoom = {
+      rows,
+      columns,
+      seats: Array.from({ length: rows }, () => Array.from({ length: columns }, () => ({ type: null }))),
+    };
+    this.cinemaSchema.push(newRoom);
+    console.log("cinemaSchema after adding new row: ",this.cinemaSchema)
   }
+  removeLastRow(): void {
+    if (this.cinemaSchema.length > 0) {
+      this.cinemaSchema.pop();
+    }
+  }
+
   getNumberArray(count: number): number[] {
-    console.log("getNumberArray method, array: ",Array(count).fill(0).map((x, i) => i))
+    // console.log("getNumberArray method, array: ",Array(count).fill(0).map((x, i) => i))
     return Array(count).fill(0).map((x, i) => i);
   }
 
@@ -60,6 +78,52 @@ export class EventCreatorPanelComponent implements OnInit{
   getSeatNumber(room: { rows: number, columns: number }, row: number, column: number): string {
     const rowNum = this.cinemaSchema.findIndex(r => r === room) + 1;
     return rowNum + '.' + (column + 1);
+  }
+
+  getSeatColor(roomIndex: number, rowIndex: number, columnIndex: number): string {
+    const seat = this.cinemaSchema[roomIndex].seats[rowIndex][columnIndex];
+    const matchingTicket = this.tickets.find(ticket => ticket.type === seat.type);
+
+    return matchingTicket ? matchingTicket.color : 'transparent';
+  }
+
+
+
+  selectTicket(ticket: Ticket){
+    this.selectedTicket = ticket;
+  }
+
+  getBackgroundColor(index: number): any {
+    const colors = ['#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#e74c3c', '#1abc9c', '#34495e', '#e67e22', '#27ae60', '#95a5a6'];
+
+    if (index < this.tickets.length) {
+      return { 'background-color': this.tickets[index].color };
+    } else {
+      return { 'background-color': colors[index % colors.length] };
+    }
+  }
+
+  applyColorToSeat(roomIndex: number, rowIndex: number, columnIndex: number, ticketType: string): void {
+    this.cinemaSchema[roomIndex].seats[rowIndex][columnIndex].type = ticketType;
+    console.log("cinemaSchema after applyToSeat: ", this.cinemaSchema)
+  }
+
+  applyColorToRow(roomIndex: number, rowIndex: number, ticketType: string): void {
+    this.cinemaSchema[roomIndex].seats[rowIndex].forEach(seat => {
+      seat.type = ticketType;
+    });
+    console.log("cinemaSchema after applyToSeat: ", this.cinemaSchema)
+  }
+
+
+  onChange(value: number) {
+    if (value < 1) {
+      this.roomColumns = 1;
+    } else if (value > 20) {
+      this.roomColumns = 20;
+    } else {
+      this.roomColumns = value;
+    }
   }
 
 
@@ -80,6 +144,7 @@ export class EventCreatorPanelComponent implements OnInit{
     price: 0,
     dayOfWeek: '',
     date: '',
+    color: ''
   };
 
   // 6. step - Artist add
@@ -300,6 +365,7 @@ export class EventCreatorPanelComponent implements OnInit{
           price: this.newTicket.price,
           dayOfWeek: this.newTicket.dayOfWeek,
           date: this.newTicket.date,
+          color: this.newTicket.color,
         };
         this.tickets.push(newTicket);
         this.openSnackBarSuccess("Pomyślnie utworzono nowy bilet.");
@@ -310,6 +376,7 @@ export class EventCreatorPanelComponent implements OnInit{
           price: 0,
           dayOfWeek: '',
           date: '',
+          color: '',
         };
       }
     }
@@ -334,7 +401,7 @@ export class EventCreatorPanelComponent implements OnInit{
   }
 
   // Edit a ticket
-  editedTicket: Ticket = { type: '', price: 0, dayOfWeek: '', date: '' };
+  editedTicket: Ticket = { type: '', price: 0, dayOfWeek: '', date: '', color: '' };
 
   editTicket(type: string) {
     const selectedTicket = this.tickets.find(ticket => ticket.type === type);

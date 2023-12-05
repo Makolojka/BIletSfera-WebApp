@@ -3,4 +3,5 @@ export interface Ticket {
   price: number;
   dayOfWeek: string;
   date: string;
+  color: string;
 }
