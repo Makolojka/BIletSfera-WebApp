@@ -124,6 +124,59 @@
         </div>
       </div>
 
+      <div *ngIf="isCategorySelected('Kino')" class="cinema-schema-container">
+        <h2>Utwórz schemat twojego kina</h2>
+        <div class="schema-manager">
+          <!-- Input for organizer to input rows and columns -->
+  <!--        <input type="number" placeholder="Rows" [(ngModel)]="roomRows">-->
+          <h3 class="schema-h3">Podaj ilość miejsc w jednym rzędzie:</h3>
+          <input type="number" placeholder="Ilość miejsc" [(ngModel)]="roomColumns">
+
+
+          <h3 class="schema-h3">Wybierz styl rzędu</h3>
+          <div class="categories">
+            <div class="category-tile"
+                 [class.alignment-tile]="!isAlignmentSelected('left')"
+                 [class.alignment-tile-activated]="isAlignmentSelected('left')"
+                 (click)="toggleAlignment('left')">
+              <span style="text-align: left">Wyrównaj do lewej</span>
+            </div>
+
+            <div class="category-tile"
+                 [class.alignment-tile]="!isAlignmentSelected('center')"
+                 [class.alignment-tile-activated]="isAlignmentSelected('center')"
+                 (click)="toggleAlignment('center')">
+              <span style="text-align: center">Wyśrodkuj</span>
+            </div>
+
+            <div class="category-tile"
+                 [class.alignment-tile]="!isAlignmentSelected('right')"
+                 [class.alignment-tile-activated]="isAlignmentSelected('right')"
+                 (click)="toggleAlignment('right')">
+              <span style="text-align: right">Wyrównaj do prawej</span>
+            </div>
+          </div>
+          <!-- Button to add the room schema -->
+          <div class="add-row-button-container">
+            <button (click)="addRoomSchema(roomRows, roomColumns)">Dodaj rząd</button>
+          </div>
+
+          <div class="cinema-schema-main" *ngIf="cinemaSchema.length !==0">
+            <div class="cinema-screen-container">
+              <div class="cinema-screen">
+                <h3>Ekran</h3>
+                <h4>Sala 1</h4>
+              </div>
+            </div>
+            <div *ngFor="let room of cinemaSchema" class="cinema-schema" [ngClass]="selectedAlignment">
+              <div *ngFor="let row of getNumberArray(room.rows)" class="room-row">
+                <div *ngFor="let column of getNumberArray(room.columns)" class="sit"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <h2>Wybierz podkategorie</h2>
       <div class="categories">
         <div class="category-tile"

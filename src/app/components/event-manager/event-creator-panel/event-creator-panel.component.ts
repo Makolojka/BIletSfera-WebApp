@@ -35,6 +35,28 @@ export class EventCreatorPanelComponent implements OnInit{
   selectedCategories: string[] = [];
   selectedSubCategories: string[] = [];
 
+  // Cinema schema builder
+  cinemaSchema: { rows: number; columns: number }[] = [];
+  roomRows: number = 1;
+  roomColumns: number = 0;
+  selectedAlignment: string = 'center';
+  addRoomSchema(rows: number, columns: number): void {
+    console.log("addRoom method, this.cinemaSchema: ",this.cinemaSchema)
+    this.cinemaSchema.push({ rows, columns });
+  }
+  getNumberArray(count: number): number[] {
+    console.log("getNumberArray method, array: ",Array(count).fill(0).map((x, i) => i))
+    return Array(count).fill(0).map((x, i) => i);
+  }
+
+  isAlignmentSelected(alignment: string): boolean {
+    return this.selectedAlignment === alignment;
+  }
+
+  toggleAlignment(alignment: string) {
+    this.selectedAlignment = alignment;
+  }
+
   // 2. step - Location vars
   eventCity: string = '';
   eventPlace: string = '';
