@@ -14,7 +14,11 @@ import {Ticket} from "../../../interfaces/ticket";
 })
 export class EventCreatorPanelComponent implements OnInit{
 
+  // Event form data:
   @Input() userId: string = '';
+  organiserName: string = '';
+
+  isEventFormSubmitted = false;
 
   // Event creator
   stepNumber: number = 1;
@@ -27,9 +31,10 @@ export class EventCreatorPanelComponent implements OnInit{
 
   // 1. step - Basic info vars
   eventName: string = '';
-  startDate: Date = new Date();
+  eventText: string = '';
+  startDate: Date = new Date('');
   startDateTime: string = '';
-  endDate: Date = new Date();
+  endDate: Date = new Date('');
   endDateTime: string = '';
 
   selectedCategories: string[] = [];
@@ -144,7 +149,9 @@ export class EventCreatorPanelComponent implements OnInit{
     price: 0,
     dayOfWeek: '',
     date: '',
-    color: ''
+    color: '',
+    maxNumberOfTickets: 0,
+    availableTickets: 0,
   };
 
   // 6. step - Artist add
@@ -167,6 +174,7 @@ export class EventCreatorPanelComponent implements OnInit{
   ngOnInit(){
     this.basicInfoVisible = true;
     this.checkIfTicketsPresent();
+    this.getOrganizerName();
   }
 
   toggleCategory(type: string, value: string) {
@@ -366,6 +374,8 @@ export class EventCreatorPanelComponent implements OnInit{
           dayOfWeek: this.newTicket.dayOfWeek,
           date: this.newTicket.date,
           color: this.newTicket.color,
+          maxNumberOfTickets: this.newTicket.maxNumberOfTickets,
+          availableTickets: this.newTicket.maxNumberOfTickets,
         };
         this.tickets.push(newTicket);
         this.openSnackBarSuccess("Pomyślnie utworzono nowy bilet.");
@@ -377,6 +387,8 @@ export class EventCreatorPanelComponent implements OnInit{
           dayOfWeek: '',
           date: '',
           color: '',
+          maxNumberOfTickets: 0,
+          availableTickets: 0,
         };
       }
     }
@@ -392,7 +404,7 @@ export class EventCreatorPanelComponent implements OnInit{
   }
 
   validateTicketForm(): boolean {
-    if (!this.newTicket.type || !this.newTicket.price || !this.newTicket.dayOfWeek || !this.newTicket.date) {
+    if (!this.newTicket.type || !this.newTicket.price || !this.newTicket.dayOfWeek || !this.newTicket.date || !this.newTicket.maxNumberOfTickets) {
       this.isFormSubmitted = true;
       this.openSnackBarError("Problem z utworzeniem biletu.");
       return false;
@@ -401,7 +413,7 @@ export class EventCreatorPanelComponent implements OnInit{
   }
 
   // Edit a ticket
-  editedTicket: Ticket = { type: '', price: 0, dayOfWeek: '', date: '', color: '' };
+  editedTicket: Ticket = { type: '', price: 0, dayOfWeek: '', date: '', color: '', maxNumberOfTickets: 0, availableTickets: 0};
 
   editTicket(type: string) {
     const selectedTicket = this.tickets.find(ticket => ticket.type === type);
@@ -443,4 +455,78 @@ export class EventCreatorPanelComponent implements OnInit{
   }
 
   protected readonly open = open;
+
+  // Create event method and parsers
+  location: string = '';
+  getEventLocation(){
+    if(this.eventName !== ''){
+      this.location = this.eventCity + ', ' + this.eventName;
+    }
+    else{
+      this.location = this.eventCity;
+    }
+  }
+
+  getOrganizerName(){
+    const currentUser = this.authService.currentUser;
+    if (currentUser) {
+      this.organiserName = currentUser.name;
+    }
+  }
+
+  isEventFormValidated(newEventDetails: any): boolean {
+    const isAnyFieldEmpty =
+      newEventDetails.title === '' ||
+      newEventDetails.image === '' ||
+      newEventDetails.text === '' ||
+      newEventDetails.additionalText === '' ||
+      newEventDetails.organiser === '' ||
+      newEventDetails.location === '';
+
+    const isAnyArrayEmpty =
+      newEventDetails.category.length === 0 ||
+      newEventDetails.subCategory.length === 0 ||
+      newEventDetails.tickets.length === 0
+
+    const isStartDateEmpty = !newEventDetails.date;
+
+    if (isAnyFieldEmpty || isAnyArrayEmpty || isStartDateEmpty) {
+      this.isEventFormSubmitted = true;
+      console.log("validateEventForm false");
+      return false;
+    }
+    console.log("validateEventForm true");
+    return true;
+  }
+
+
+  createNewEvent() {
+    this.getEventLocation();
+    let newEventDetails = {
+      title: this.eventName,
+      image: this.promoImage,
+      text: this.eventText,
+      additionalText: this.additionalInfo,
+      organiser: this.organiserName,
+      date: this.startDate,
+      location: this.location,
+      category: this.selectedCategories,
+      subCategory: this.selectedSubCategories,
+      tickets: this.tickets,
+      artists: this.artistsParticipating,
+      likes: [],
+      followers: [],
+      views: 0,
+    };
+    if(this.isEventFormValidated(newEventDetails)){
+      console.log("this.newEventDetails: ", newEventDetails);
+      this.openSnackBarSuccess("Pomyślnie utworzono wydarzenie.");
+    }
+    else{
+      console.log("JAKIEŚ POLE JEST PUSTE! this.newEventDetails: ", newEventDetails);
+      this.openSnackBarError("Niektóre wymagane pola są puste.");
+    }
+  }
+
+  protected readonly Object = Object;
 }

@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {LikesAndFollows} from "../interfaces/likes-and-follows";
 import {Observable} from "rxjs";
 import {Ticket} from "../components/event-card/Ticket";
+import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,16 @@ export class DataService {
   //Tickets endpoints
   getTicketsForEvent(eventId: string) {
     return this.http.get(this.url + '/api/events/' + eventId + '/tickets');
+  }
+
+  // Creates new ticket
+  createNewTicket(newTicket: Ticket) {
+    return this.http.post(this.url + '/api/events/ticket/id', newTicket);
+  }
+
+  // Creates new event
+  createNewEvent(newEvent: Event) {
+    return this.http.post(this.url + '/api/event', newEvent);
   }
 
   //Cart endpoints

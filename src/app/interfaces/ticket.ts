@@ -4,4 +4,6 @@ export interface Ticket {
   dayOfWeek: string;
   date: string;
   color: string;
+  maxNumberOfTickets: number;
+  availableTickets: number;
 }
