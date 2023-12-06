@@ -499,7 +499,6 @@ export class EventCreatorPanelComponent implements OnInit{
     return true;
   }
 
-
   createNewEvent() {
     this.getEventLocation();
     let newEventDetails = {
@@ -508,7 +507,7 @@ export class EventCreatorPanelComponent implements OnInit{
       text: this.eventText,
       additionalText: this.additionalInfo,
       organiser: this.organiserName,
-      date: this.startDate,
+      date: this.startDate.toString(),
       location: this.location,
       category: this.selectedCategories,
       subCategory: this.selectedSubCategories,
@@ -518,15 +517,35 @@ export class EventCreatorPanelComponent implements OnInit{
       followers: [],
       views: 0,
     };
-    if(this.isEventFormValidated(newEventDetails)){
-      console.log("this.newEventDetails: ", newEventDetails);
-      this.openSnackBarSuccess("Pomyślnie utworzono wydarzenie.");
+    console.log("newEventDetails: ", newEventDetails)
+    if (!this.isEventFormValidated(newEventDetails)) {
+      console.error('Some required fields are empty:', newEventDetails);
+      this.openSnackBarError('Some required fields are empty.');
+      return;
     }
-    else{
-      console.log("JAKIEŚ POLE JEST PUSTE! this.newEventDetails: ", newEventDetails);
-      this.openSnackBarError("Niektóre wymagane pola są puste.");
-    }
+
+    // Starting the transaction
+    this.service.createNewEvent(newEventDetails)
+      .subscribe(
+        (response: any) => {
+          console.log('Transaction started:', response);
+          this.openSnackBarSuccess('Transaction started.');
+        },
+        (error: any) => {
+          console.error('Error starting transaction:', error);
+          this.openSnackBarError('Error starting transaction.');
+        }
+      );
   }
+  //   if(this.isEventFormValidated(newEventDetails)){
+  //     console.log("this.newEventDetails: ", newEventDetails);
+  //     this.openSnackBarSuccess("Pomyślnie utworzono wydarzenie.");
+  //   }
+  //   else{
+  //     console.log("JAKIEŚ POLE JEST PUSTE! this.newEventDetails: ", newEventDetails);
+  //     this.openSnackBarError("Niektóre wymagane pola są puste.");
+  //   }
+  // }
 
   protected readonly Object = Object;
 }

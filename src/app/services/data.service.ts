@@ -48,7 +48,7 @@ export class DataService {
 
   // Creates new event
   createNewEvent(newEvent: Event) {
-    return this.http.post(this.url + '/api/event', newEvent);
+    return this.http.post(this.url + '/events/transaction', newEvent);
   }
 
   //Cart endpoints
