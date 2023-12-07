@@ -530,7 +530,7 @@ export class EventCreatorPanelComponent implements OnInit{
       .subscribe(
         (response: any) => {
           this.openSnackBarSuccess('Pomyślnie utworzono wydarzenie.');
-          this.panelManagerService.eventCreationVisible = true;
+          window.location.reload();
         },
         (error: any) => {
           console.error('Błąd podczas tworzenia wydarzenia:', error);
