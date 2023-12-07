@@ -501,6 +501,7 @@ export class EventCreatorPanelComponent implements OnInit{
 
   createNewEvent() {
     this.getEventLocation();
+    const artistIds = this.artistsParticipating.map((artist) => artist.id)
     let newEventDetails = {
       title: this.eventName,
       image: this.promoImage,
@@ -512,7 +513,7 @@ export class EventCreatorPanelComponent implements OnInit{
       category: this.selectedCategories,
       subCategory: this.selectedSubCategories,
       tickets: this.tickets,
-      artists: this.artistsParticipating,
+      artists: artistIds,
       likes: [],
       followers: [],
       views: 0,
@@ -528,24 +529,15 @@ export class EventCreatorPanelComponent implements OnInit{
     this.service.createNewEvent(newEventDetails)
       .subscribe(
         (response: any) => {
-          console.log('Transaction started:', response);
-          this.openSnackBarSuccess('Transaction started.');
+          this.openSnackBarSuccess('Pomyślnie utworzono wydarzenie.');
+          this.panelManagerService.eventCreationVisible = true;
         },
         (error: any) => {
-          console.error('Error starting transaction:', error);
-          this.openSnackBarError('Error starting transaction.');
+          console.error('Błąd podczas tworzenia wydarzenia:', error);
+          this.openSnackBarError('Błąd podczas tworzenia wydarzenia. Spróbuj ponownie.');
         }
       );
   }
-  //   if(this.isEventFormValidated(newEventDetails)){
-  //     console.log("this.newEventDetails: ", newEventDetails);
-  //     this.openSnackBarSuccess("Pomyślnie utworzono wydarzenie.");
-  //   }
-  //   else{
-  //     console.log("JAKIEŚ POLE JEST PUSTE! this.newEventDetails: ", newEventDetails);
-  //     this.openSnackBarError("Niektóre wymagane pola są puste.");
-  //   }
-  // }
 
   protected readonly Object = Object;
 }
