@@ -1,4 +1,5 @@
 import {Component, OnInit, AfterViewInit, Input} from '@angular/core';
+import {Ticket} from "../event-card/Ticket";
 
 @Component({
   selector: 'multi-item-carousel',
@@ -7,6 +8,7 @@ import {Component, OnInit, AfterViewInit, Input} from '@angular/core';
 })
 export class MultiItemCarouselComponent implements OnInit{
   @Input() items: any;
+  @Input() ticketsMap: { [eventId: string]: Ticket[] } = {};
 
   private carousel: HTMLElement | null = null;
   private carouselInner: HTMLElement | null = null;

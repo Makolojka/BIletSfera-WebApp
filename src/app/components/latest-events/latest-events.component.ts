@@ -9,4 +9,5 @@ import {Ticket} from "../event-card/Ticket";
 export class LatestEventsComponent{
   // TODO: wysyłać osobne zapytanie i pobierać tylko pierwsze 10 najpopularniejszych eventów, usunąć przekazywanie przez home page
   @Input() items$: any;
+  @Input() ticketsMap: { [eventId: string]: Ticket[] } = {};
 }
