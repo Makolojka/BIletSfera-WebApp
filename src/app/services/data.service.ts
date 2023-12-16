@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {Ticket} from "../components/event-card/Ticket";
 import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
+import Transaction from "../interfaces/transaction";
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +35,6 @@ export class DataService {
   createNewArtist(newArtist: { image: string; career: string; name: string; shortDescription: string }) {
     return this.http.post(this.url + '/api/artist', newArtist);
   }
-
 
   //Tickets endpoints
   getTicketsForEvent(eventId: string) {
@@ -68,6 +68,11 @@ export class DataService {
     let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
       'Content-Type': 'application/json'})
     return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {}, {headers: headers});
+  }
+
+  //Buy tickets / make transaction
+  processTransaction(transactionData: Transaction) {
+    return this.http.post(this.url + '/api/transactions/transaction', transactionData);
   }
 
   // TODO: dodać autoryzację

@@ -15,6 +15,9 @@ export class CartComponent implements OnInit{
   cartData: any;
   isCartDataEmpty: boolean = true;
 
+  // Transaction data
+  transactionData: any = {};
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.screenSize = window.innerWidth;
@@ -97,6 +100,44 @@ export class CartComponent implements OnInit{
     }
     return totalSum;
   }
+
+  prepareTransactionData(): any {
+    const ticketsArray = [];
+    if (this.cartData && this.cartData.cart) {
+      for (const cartItem of this.cartData.cart) {
+        for (const ticket of cartItem.tickets) {
+          ticketsArray.push({
+            ticketId: ticket._id,
+            eventId: cartItem.event._id,
+            count: ticket.quantity,
+            singleTicketCost: ticket.price
+          });
+        }
+      }
+    }
+
+    const totalCost = this.getTotalSum();
+    this.transactionData = {
+      userId: this.userId,
+      tickets: ticketsArray,
+      totalCost: totalCost
+    };
+
+    console.log("Transaction data: ", this.transactionData);
+  }
+
+  buyTickets() {
+    this.prepareTransactionData();
+    this.service.processTransaction(this.transactionData).subscribe(
+      (response) => {
+        console.log("Kupione!");
+      },
+      (error) => {
+        console.log("BŁĄD!: ", error);
+      }
+    );
+  }
+
 
   protected readonly tick = tick;
 }
