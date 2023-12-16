@@ -18,8 +18,10 @@ body { margin: 0;
   --fifth-color: #e5b8ff;
   --third-color-greyed: #aa99be;
   --red-color: #963939;
+  --red-color-hover-dark: #652929;
   --red-color-hover: #cb5e5e;
   --green-color: #429639;
+  --green-color-hover: #4bc43e;
 }
 
 .align-center-column{
@@ -33,6 +35,13 @@ body { margin: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.align-center-row-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .align-left-row{
   display: flex;

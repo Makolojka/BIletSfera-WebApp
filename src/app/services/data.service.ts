@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {LikesAndFollows} from "../interfaces/likes-and-follows";
 import {Observable} from "rxjs";
 import {Ticket} from "../components/event-card/Ticket";
+import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
 @Injectable({
   providedIn: 'root'
@@ -30,9 +31,24 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + eventId + '/artists');
   }
 
+  createNewArtist(newArtist: { image: string; career: string; name: string; shortDescription: string }) {
+    return this.http.post(this.url + '/api/artist', newArtist);
+  }
+
+
   //Tickets endpoints
   getTicketsForEvent(eventId: string) {
     return this.http.get(this.url + '/api/events/' + eventId + '/tickets');
+  }
+
+  // Creates new ticket
+  createNewTicket(newTicket: Ticket) {
+    return this.http.post(this.url + '/api/events/ticket/id', newTicket);
+  }
+
+  // Creates new event
+  createNewEvent(newEvent: Event) {
+    return this.http.post(this.url + '/events/transaction', newEvent);
   }
 
   //Cart endpoints
@@ -100,6 +116,36 @@ export class DataService {
   // Adds event to organisers ownedEvents field
   addEventToOwnedEvents(userId: string, eventId: string) {
     return this.http.post(this.url + '/api/organizer/' + userId + '/add-event/' + eventId, {});
+  }
+
+  // Get sold tickets for a specific event
+  getTicketsSoldByEvent(eventId: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/stats/tickets-sold-by-event/'+eventId);
+  }
+
+  // Get sold tickets for a specific organizer
+  getTicketsSoldByOrganiser(organiserName: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/stats/tickets-sold-by-organiser/'+organiserName);
+  }
+
+  // Get total earnings for a specific organizer
+  getTotalEarningsByOrganiser(organiserName: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/stats/total-earnings-by-organiser/'+organiserName);
+  }
+
+  // Get total earnings for a specific event
+  getTotalEarningsByEvent(eventId: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/stats/total-earnings-by-event/'+eventId);
+  }
+
+  // Get total views for a specific organiser
+  getTotalViewsForOrganiser(organiserName: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/stats/total-views-by-organiser/'+organiserName);
+  }
+
+  // Get sale data for chart
+  getSaleDataForOrganiser(organiserName: string): Observable<any> {
+    return this.http.get(this.url+'/api/organiser/sale-data/'+organiserName);
   }
 
 }
