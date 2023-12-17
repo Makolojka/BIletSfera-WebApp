@@ -24,6 +24,10 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + id);
   }
 
+  getTicketDetailsById(id: string) {
+    return this.http.get(this.url + '/api/events/tickets/' + id);
+  }
+
   // Artists endpoints
   getAllArtists() {
     return this.http.get(this.url + '/api/artists');
@@ -73,6 +77,11 @@ export class DataService {
   //Buy tickets / make transaction
   processTransaction(transactionData: Transaction) {
     return this.http.post(this.url + '/api/transactions/transaction', transactionData);
+  }
+
+  // Get all user transactions
+  getAllTransactions(userId: string){
+    return this.http.get(this.url + '/api/transactions/all/' + userId);
   }
 
   // TODO: dodać autoryzację

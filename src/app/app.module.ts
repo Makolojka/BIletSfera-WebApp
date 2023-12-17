@@ -51,6 +51,7 @@ import {ActiveEventsPanelComponent} from "./components/event-manager/active-even
 import {ReportsPanelComponent} from "./components/event-manager/reports-panel/reports-panel.component";
 import {EventCreatorPanelComponent} from "./components/event-manager/event-creator-panel/event-creator-panel.component";
 import { OrderComponent } from './components/cart/order/order.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,8 @@ import { OrderComponent } from './components/cart/order/order.component';
     ActiveEventsPanelComponent,
     ReportsPanelComponent,
     EventCreatorPanelComponent,
-    OrderComponent
+    OrderComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,
