@@ -1,8 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {AuthService} from "../../services/auth.service";
 import {tick} from "@angular/core/testing";
+import {OrderDataService} from "../../services/order-data.service";
 
 @Component({
   selector: 'cart',
@@ -11,19 +12,19 @@ import {tick} from "@angular/core/testing";
 })
 export class CartComponent implements OnInit{
   screenSize: number;
-  public userId: string = '';
+  userId: string = '';
   cartData: any;
   isCartDataEmpty: boolean = true;
 
-  // Transaction data
-  transactionData: any = {};
+  // // Transaction data
+  // transactionData: any = {};
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.screenSize = window.innerWidth;
   }
 
-  constructor(private route: ActivatedRoute, private service: DataService, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private service: DataService, private authService: AuthService, private orderDataService: OrderDataService) {
     this.screenSize = window.innerWidth;
   }
 
@@ -101,42 +102,55 @@ export class CartComponent implements OnInit{
     return totalSum;
   }
 
-  prepareTransactionData(): any {
-    const ticketsArray = [];
-    if (this.cartData && this.cartData.cart) {
-      for (const cartItem of this.cartData.cart) {
-        for (const ticket of cartItem.tickets) {
-          ticketsArray.push({
-            ticketId: ticket._id,
-            eventId: cartItem.event._id,
-            count: ticket.quantity,
-            singleTicketCost: ticket.price
-          });
-        }
-      }
+  makeOrder() {
+    if(this.isCartDataEmpty)
+    {
+      console.log("Koszyk jest pusty!");
+      return;
     }
-
-    const totalCost = this.getTotalSum();
-    this.transactionData = {
-      userId: this.userId,
-      tickets: ticketsArray,
-      totalCost: totalCost
-    };
-
-    console.log("Transaction data: ", this.transactionData);
+    else{
+      this.orderDataService.userId = this.userId;
+      this.orderDataService.cartData = this.cartData;
+      this.router.navigate(['/cart/order']);
+    }
   }
 
-  buyTickets() {
-    this.prepareTransactionData();
-    this.service.processTransaction(this.transactionData).subscribe(
-      (response) => {
-        console.log("Kupione!");
-      },
-      (error) => {
-        console.log("BŁĄD!: ", error);
-      }
-    );
-  }
+  // prepareTransactionData(): any {
+  //   const ticketsArray = [];
+  //   if (this.cartData && this.cartData.cart) {
+  //     for (const cartItem of this.cartData.cart) {
+  //       for (const ticket of cartItem.tickets) {
+  //         ticketsArray.push({
+  //           ticketId: ticket._id,
+  //           eventId: cartItem.event._id,
+  //           count: ticket.quantity,
+  //           singleTicketCost: ticket.price
+  //         });
+  //       }
+  //     }
+  //   }
+  //
+  //   const totalCost = this.getTotalSum();
+  //   this.transactionData = {
+  //     userId: this.userId,
+  //     tickets: ticketsArray,
+  //     totalCost: totalCost
+  //   };
+  //
+  //   console.log("Transaction data: ", this.transactionData);
+  // }
+  //
+  // buyTickets() {
+  //   this.prepareTransactionData();
+  //   this.service.processTransaction(this.transactionData).subscribe(
+  //     (response) => {
+  //       console.log("Kupione!");
+  //     },
+  //     (error) => {
+  //       console.log("BŁĄD!: ", error);
+  //     }
+  //   );
+  // }
 
 
   protected readonly tick = tick;

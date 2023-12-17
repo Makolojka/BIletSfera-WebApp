@@ -11,6 +11,7 @@ import {AuthGuard} from "./services/auth.guard";
 import {EventManagerComponent} from "./components/event-manager/event-manager.component";
 import {OrganizerOverviewPageComponent} from "./components/organizer-overview-page/organizer-overview-page.component";
 import {OrganizerAuthGuard} from "./services/organiser-panel.guard";
+import {OrderComponent} from "./components/cart/order/order.component";
 
 const routes: Routes = [
   {
@@ -68,6 +69,11 @@ const routes: Routes = [
   {
     path: 'organizer/overview',
     component: OrganizerOverviewPageComponent
+  },
+  {
+    path: 'cart/order',
+    component: OrderComponent,
+    canActivate: [AuthGuard]
   },
 ];
 
