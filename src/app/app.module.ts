@@ -52,6 +52,7 @@ import {ReportsPanelComponent} from "./components/event-manager/reports-panel/re
 import {EventCreatorPanelComponent} from "./components/event-manager/event-creator-panel/event-creator-panel.component";
 import { OrderComponent } from './components/cart/order/order.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { RoomBuilderComponent } from './components/event-manager/event-creator-panel/room-builder/room-builder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +83,8 @@ import { TransactionListComponent } from './components/transaction-list/transact
     ReportsPanelComponent,
     EventCreatorPanelComponent,
     OrderComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    RoomBuilderComponent
   ],
   imports: [
     BrowserModule,
