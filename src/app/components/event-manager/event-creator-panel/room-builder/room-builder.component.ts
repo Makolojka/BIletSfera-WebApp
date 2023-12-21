@@ -1,16 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Ticket } from '../../../../interfaces/ticket';
-
-interface Seat {
-  id: string;
-  type: string;
-  color: string;
-  isAvailable: boolean;
-}
-
-interface Row {
-  seats: Seat[]
-}
+import {Row} from "../../../../interfaces/row";
+import {Seat} from "../../../../interfaces/seat";
 
 @Component({
   selector: 'room-builder',
@@ -22,9 +13,10 @@ export class RoomBuilderComponent {
   selectedTicket: Ticket | null = null;
 
   roomColumns: number = 0;
-  selectedRowStyle: string = '';
-  roomSchema: Row[] = [];
-  //TODO: przerobić na unikalne
+  selectedRowStyle: string = 'center';
+  @Input() roomSchema: Row[] = [];
+  @Input() roomSchemaStyle: string = this.selectedRowStyle;
+
   seatsIdIncrementation: number = 0;
   rowIdIncrementation: number = 0;
 
@@ -47,6 +39,7 @@ export class RoomBuilderComponent {
     this.seatsIdIncrementation = 0;
 
     this.roomSchema.push(row);
+    console.log("this room schema after toggle seat: ", this.roomSchema)
   }
 
   removeRow(): void {
@@ -63,8 +56,22 @@ export class RoomBuilderComponent {
     console.log("this room schema after toggle seat: ", this.roomSchema)
   }
 
+  applyTicketToRow(rowIndex: number): void {
+    if (this.selectedTicket) {
+      const row = this.roomSchema[rowIndex];
+      row.seats.forEach(seat => {
+        // @ts-ignore
+        seat.color = this.selectedTicket.color;
+        // @ts-ignore
+        seat.type = this.selectedTicket.type;
+      });
+    }
+  }
+
   toggleAlignment(alignment: string): void {
     this.selectedRowStyle = alignment;
+    this.roomSchemaStyle = alignment;
+    console.log("this.roomSchemaStyle: ", this.roomSchemaStyle)
   }
 
   isAlignmentSelected(alignment: string): boolean {

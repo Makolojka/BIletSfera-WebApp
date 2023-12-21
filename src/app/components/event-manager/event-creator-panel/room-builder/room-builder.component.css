@@ -278,3 +278,21 @@ button:active {
 button:focus {
   outline: none;
 }
+
+
+.apply-ticket-button{
+  margin-left: 15px;
+}
+
+.align-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.room-schema{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

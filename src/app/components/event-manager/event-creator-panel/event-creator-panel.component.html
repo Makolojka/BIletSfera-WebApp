@@ -139,7 +139,7 @@
     <!--Cinema schema builder-->
         <div *ngIf="isCategorySelected('Kino')" class="cinema-builder">
           <h2>Kreator schematu kina</h2>
-          <room-builder [tickets]="this.tickets"></room-builder>
+          <room-builder [tickets]="this.tickets" [roomSchema]="roomSchema" [roomSchemaStyle]="this.roomSchemaStyle"></room-builder>
 <!--          <div class="schema-manager">-->
 <!--            <h3 class="schema-h3">Podaj ilość miejsc w jednym rzędzie:</h3>-->
 <!--            &lt;!&ndash;<input type="number" placeholder="Rows" [(ngModel)]="roomRows">&ndash;&gt;-->
@@ -409,7 +409,7 @@
             </div>
           </div>
           <div class="section">
-            <span>{{ 0 }} Bilet(ów)</span>
+            <span>{{ ticket.maxNumberOfTickets }} Bilet(ów)</span>
           <!-- TODO: <span>{{ ticket.quantity }} Bilet(ów)</span>-->
           </div>
           <div class="section">

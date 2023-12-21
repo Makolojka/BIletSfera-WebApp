@@ -8,9 +8,9 @@
   <h3 class="schema-h3">Wybierz układ:</h3>
   <div class="categories">
     <div class="category-tile"
-         [class.alignment-tile]="!isAlignmentSelected('left')"
-         [class.alignment-tile-activated]="isAlignmentSelected('left')"
-         (click)="toggleAlignment('left')">
+         [class.alignment-tile]="!isAlignmentSelected('flex-start')"
+         [class.alignment-tile-activated]="isAlignmentSelected('flex-start')"
+         (click)="toggleAlignment('flex-start')">
       <span style="text-align: left">Wyrównaj do lewej</span>
     </div>
 
@@ -22,9 +22,9 @@
     </div>
 
     <div class="category-tile"
-         [class.alignment-tile]="!isAlignmentSelected('right')"
-         [class.alignment-tile-activated]="isAlignmentSelected('right')"
-         (click)="toggleAlignment('right')">
+         [class.alignment-tile]="!isAlignmentSelected('flex-end')"
+         [class.alignment-tile-activated]="isAlignmentSelected('flex-end')"
+         (click)="toggleAlignment('flex-end')">
       <span style="text-align: right">Wyrównaj do prawej</span>
     </div>
   </div>
@@ -43,16 +43,17 @@
           <h4>Sala 1</h4>
         </div>
       </div>
-      <div class="room-schema">
-
+      <div class="room-schema" [ngStyle]="{ 'align-items': roomSchemaStyle}">
         <div *ngFor="let row of roomSchema; let i = index" class="room-row">
-          <div *ngFor="let seat of row.seats; let j = index" class="seat"
-               [ngStyle]="{ 'background-color': seat.color }"
-               (click)="toggleSeatAvailability(i, j)">
-            {{ i + 1 }}.{{ j + 1 }}.
+          <div class="align-row">
+            <div *ngFor="let seat of row.seats; let j = index" class="seat"
+                 [ngStyle]="{ 'background-color': seat.color}"
+                 (click)="toggleSeatAvailability(i, j)">
+              {{ i + 1 }}.{{ j + 1 }}.
+            </div>
+            <button (click)="applyTicketToRow(i)" class="apply-ticket-button">Zmień typ</button>
           </div>
         </div>
-
       </div>
     </div>
 

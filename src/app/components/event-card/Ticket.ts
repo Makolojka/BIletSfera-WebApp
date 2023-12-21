@@ -6,4 +6,5 @@ export interface Ticket {
   date: string;
   maxNumberOfTickets: number;
   availableTickets: number;
+  seatNumber?: string | null;
 }
