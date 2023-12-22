@@ -8,6 +8,8 @@ import {Artist} from "../../interfaces/artist";
 import {AuthService} from "../../services/auth.service";
 import {SnackbarSuccessComponent} from "../snackbars/snackbar-success/snackbar-success.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {RoomSchema} from "../../interfaces/room-schema";
+import {Row} from "../../interfaces/row";
 
 @Component({
   selector: 'event-detail',
@@ -24,6 +26,8 @@ export class EventDetailComponent implements OnInit{
   public organiser: string = '';
   public additionalText: string = '';
   public artists: Artist[] = [];
+  public roomSchemaDetails: RoomSchema[] = [];
+  public roomSchema: Row[] = [];
   public userId: string = '';
   public id: string = '';
 
@@ -48,11 +52,13 @@ export class EventDetailComponent implements OnInit{
       this.text = res['text'];
       this.title = res['title'];
       this.date = res['date'];
-      // this.tickets = res['tickets'];
-      // console.log(this.tickets);
+      this.roomSchemaDetails = res['roomSchema'];
+      this.roomSchema = res['roomSchema'].roomSchema;
+
       this.location = res['location'];
       this.organiser = res['organiser'];
       this.additionalText = res['additionalText'];
+      // console.log("RoomSchema w subscribe:"+JSON.stringify(this.roomSchema));
     });
 
     this.service.getArtistsForEvent(this.id).subscribe((res: any) => {
@@ -72,8 +78,11 @@ export class EventDetailComponent implements OnInit{
       this.checkIfLiked();
       this.checkIfFollowed();
     }
+    console.log("RoomSchema :"+this.roomSchemaDetails);
+  }
 
-    console.log("Artists:"+this.artists);
+  roomSchemaShow(){
+    console.log("RoomSchema :"+JSON.stringify(this.roomSchemaDetails));
   }
 
   scrollTo(id: string) {

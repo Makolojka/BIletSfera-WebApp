@@ -77,12 +77,38 @@
         </div>
       </div>
       <!--End of tickets-->
+
+      <div class="additional-info">
+        <h2 id="room-schema-section">Wybierz miejsca</h2>
+          <div class="cinema-schema-container">
+            <div class="cinema-schema-main" *ngIf="roomSchemaDetails.length !==0">
+              <div class="cinema-screen-container">
+                <div class="cinema-screen">
+                  <h3 style="padding: 20px 0 0 0">Ekran</h3>
+                  <h4>Sala 1</h4>
+                </div>
+              </div>
+
+              <div class="room-schema">
+                <div *ngFor="let row of roomSchema; let i = index" class="room-row">
+                  <div class="align-row">
+                    <div *ngFor="let seat of row.seats; let j = index" class="seat"
+                         [ngStyle]="{ 'background-color': seat.color}">
+                      {{ i + 1 }}.{{ j + 1 }}.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
       <div class="additional-info">
         <h2 id="additional">Dodatkowe informacje</h2>
         <p class="text">{{ additionalText }}</p>
       </div>
 
-      <div class="artists">
+      <div class="artists" *ngIf="artists.length != 0">
         <h2 id="artists">Artyści</h2>
         <div class="slider-container">
           <div class="slider">
@@ -93,7 +119,6 @@
               </div>
               <h3>{{ artist.name }}</h3>
               <button class="read-more-button" (click)="showArtistDetails('aaa')">Więcej</button>
-              <!-- You can add more details about the artist here if needed -->
             </div>
           </div>
         </div>
