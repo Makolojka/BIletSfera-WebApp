@@ -267,13 +267,22 @@ export class EventDetailComponent implements OnInit{
     return this.chosenSeats.some(chosenSeat => chosenSeat.id === seat.id);
   }
 
-  selectedSeat(seat: Seat) {
-    const seatIndex = this.chosenSeats.findIndex(chosenSeat => chosenSeat.id === seat.id);
+  isSeatAvailable(seat: any): boolean {
+    return seat.isAvailable === true;
+  }
 
-    if (seatIndex === -1) {
-      this.chosenSeats.push(seat);
-    } else {
-      this.chosenSeats.splice(seatIndex, 1);
+  selectedSeat(seat: Seat) {
+    if(seat.isAvailable === true) {
+      const seatIndex = this.chosenSeats.findIndex(chosenSeat => chosenSeat.id === seat.id);
+
+      if (seatIndex === -1) {
+        this.chosenSeats.push(seat);
+      } else {
+        this.chosenSeats.splice(seatIndex, 1);
+      }
+    }
+    else {
+      return;
     }
   }
 
@@ -341,7 +350,7 @@ export class EventDetailComponent implements OnInit{
 
   addTicketsToCart(userId: string, ticketData: any[]) {
     ticketData.forEach(ticket => {
-      this.service.addTicketToCart(userId, this.id, ticket.ticketId, ticket.quantity).subscribe(
+      this.service.addTicketsToCart(userId, this.id, ticket.ticketId, ticket.quantity, this.chosenSeats).subscribe(
         (response) => {
           this.openSnackBarSuccess("Dodano do koszyka.");
           window.location.reload();

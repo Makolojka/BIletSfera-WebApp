@@ -98,7 +98,7 @@
                 <div *ngFor="let row of roomSchema; let i = index" class="room-row">
                   <div class="align-row">
                     <div *ngFor="let seat of row.seats; let j = index;" class="seat"
-                         [ngStyle]="{ 'background-color': isSeatChosen(seat) ? '#222' : seat.color }"
+                         [ngStyle]="{'background-color': isSeatChosen(seat) ? '#222' : isSeatAvailable(seat) ? seat.color : '#ddd'}"
                          (click)="selectedSeat(seat)">
                       {{ i + 1 }}.{{ j + 1 }}.
                     </div>

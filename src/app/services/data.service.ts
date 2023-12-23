@@ -7,6 +7,7 @@ import {Ticket} from "../components/event-card/Ticket";
 import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
 import Transaction from "../interfaces/transaction";
+import {Seat} from "../interfaces/seat";
 @Injectable({
   providedIn: 'root'
 })
@@ -72,6 +73,12 @@ export class DataService {
     let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
       'Content-Type': 'application/json'})
     return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {quantity}, {headers: headers});
+  }
+
+  addTicketsToCart(userId: string, eventId: string, ticketId: string, quantity: number, chosenSeats: Seat[]) {
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
+      'Content-Type': 'application/json'})
+    return this.http.post(this.url + '/api/user/' + userId + '/cart/add-tickets/' + eventId + '/' + ticketId, {quantity, chosenSeats}, {headers: headers});
   }
 
   //Buy tickets / make transaction
