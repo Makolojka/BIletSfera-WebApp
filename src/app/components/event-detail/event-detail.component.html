@@ -68,9 +68,11 @@
               <div class="price">
                 <h2>Od {{ ticket.price }} zł</h2>
               </div>
-              <div class="buy-button">
-                <!-- Use your main-button component here -->
+              <div class="buy-button" *ngIf="!roomSchema || roomSchema.length === 0">
                  <main-button (click)="addTicket(userId, ticket._id)" [text]="'Dodaj do koszyka'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
+              </div>
+              <div class="buy-button" *ngIf="roomSchema && roomSchema.length > 0">
+                <main-button (click)="addTicket(userId, ticket._id)" [text]="'Wybierz bilety'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
               </div>
             </div>
           </div>
@@ -78,10 +80,11 @@
       </div>
       <!--End of tickets-->
 
-      <div class="additional-info">
+      <!-- Seats picker -->
+      <div class="room-picker-section additional-info" *ngIf="roomSchema && roomSchema.length > 0">
         <h2 id="room-schema-section">Wybierz miejsca</h2>
           <div class="cinema-schema-container">
-            <div class="cinema-schema-main" *ngIf="roomSchemaDetails.length !==0">
+            <div class="cinema-schema-main">
               <div class="cinema-screen-container">
                 <div class="cinema-screen">
                   <h3 style="padding: 20px 0 0 0">Ekran</h3>
@@ -89,6 +92,7 @@
                 </div>
               </div>
 
+              <!-- Seat picker -->
               <div class="room-schema">
                 <div *ngFor="let row of roomSchema; let i = index" class="room-row">
                   <div class="align-row">
@@ -99,6 +103,39 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Legend for seat types and prices -->
+              <div class="legend-container" *ngIf="roomSchema.length !== 0">
+                <h3>Legenda</h3>
+
+                <div class="align-center-row">
+                  <div *ngIf="tickets.length === 0">
+                    <h4>Brak biletów. Utwórz bilety w kroku "Dodaj bilety".</h4>
+                  </div>
+
+                  <!-- Display ticket information in the legend -->
+                  <div class="legend-tickets" *ngFor="let ticket of tickets; let i = index">
+                    <div class="align-center-row flex-wrap mx-lg-3">
+                      <div class="seat" [ngStyle]="getBackgroundColor(i)"></div>
+                      <h4>{{ ticket.type }}</h4>
+                      <h4>{{ ticket.price }} zł</h4>
+                    </div>
+                  </div>
+                  <div class="legend-tickets">
+                    <div class="align-center-row flex-wrap mx-lg-3">
+                      <div class="seat" style="background-color: #222"></div>
+                      <h4>Twoje miejsce</h4>
+                    </div>
+                  </div>
+                  <div class="legend-tickets">
+                    <div class="align-center-row flex-wrap mx-lg-3">
+                      <div class="seat" style="background-color: #dddddd"></div>
+                      <h4>Zajęte miejsce</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
         </div>
       </div>

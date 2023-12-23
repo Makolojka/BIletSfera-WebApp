@@ -373,7 +373,7 @@ export class EventCreatorPanelComponent implements OnInit{
   location: string = '';
   getEventLocation(){
     if(this.eventName !== ''){
-      this.location = this.eventCity + ', ' + this.eventName;
+      this.location = this.eventCity + ', ' + this.eventPlace;
     }
     else{
       this.location = this.eventCity;

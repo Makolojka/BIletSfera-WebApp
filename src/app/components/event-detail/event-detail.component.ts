@@ -80,11 +80,6 @@ export class EventDetailComponent implements OnInit{
     }
     console.log("RoomSchema :"+this.roomSchemaDetails);
   }
-
-  roomSchemaShow(){
-    console.log("RoomSchema :"+JSON.stringify(this.roomSchemaDetails));
-  }
-
   scrollTo(id: string) {
     this.viewportScroller.scrollToAnchor(id);
   }
@@ -245,6 +240,17 @@ export class EventDetailComponent implements OnInit{
         console.error(error);
       }
     );
+  }
+
+  // Seat picker
+  getBackgroundColor(index: number): any {
+    const colors = ['#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#e74c3c', '#1abc9c', '#34495e', '#e67e22', '#27ae60', '#95a5a6'];
+
+    if (index < this.tickets.length) {
+      return { 'background-color': this.tickets[index].color };
+    } else {
+      return { 'background-color': colors[index % colors.length] };
+    }
   }
 
 }
