@@ -57,7 +57,7 @@ export class CartComponent implements OnInit{
   }
   // TODO: takie same użycie tych samych funkcji w sidebarze, do zmiany
   incrementQuantity(userId: string, eventId: string, ticketId: string) {
-    this.service.addTicketToCart(userId, eventId, ticketId).subscribe(
+    this.service.addTicketToCart(userId, eventId, ticketId, 1).subscribe(
       (response) => {
         this.getCartItems();
       },
@@ -99,7 +99,7 @@ export class CartComponent implements OnInit{
         }
       }
     }
-    return totalSum;
+    return Number(totalSum.toFixed(2));
   }
 
   makeOrder() {

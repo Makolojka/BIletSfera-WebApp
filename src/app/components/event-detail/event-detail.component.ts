@@ -10,6 +10,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {RoomSchema} from "../../interfaces/room-schema";
 import {Row} from "../../interfaces/row";
 import {Seat} from "../../interfaces/seat";
+import {SnackbarComponent} from "../snackbars/snackbar-error/snackbar.component";
 
 @Component({
   selector: 'event-detail',
@@ -90,9 +91,9 @@ export class EventDetailComponent implements OnInit{
     this.isScreenSmall = window.innerWidth < 768;
     console.log('Small window');
   }
-  addTicket(userId: string, ticketId: string) {
+  addTicket(userId: string, ticketId: string, quantity: number) {
     // console.log("userID: "+userId+"  eventId: "+this.id+"  ticketID: "+ticketId)
-    this.service.addTicketToCart(userId, this.id, ticketId).subscribe(
+    this.service.addTicketToCart(userId, this.id, ticketId, quantity).subscribe(
       (response) => {
       //   Toast message
         this.openSnackBarSuccess("Dodano do koszyka.");
@@ -109,6 +110,14 @@ export class EventDetailComponent implements OnInit{
       duration: 5000,
       data: { msg: msg },
       panelClass: ['snackbar-success-style']
+    });
+  }
+
+  openSnackBarError(errorMsg: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      data: { errorMsg: errorMsg },
+      panelClass: ['snackbar-error-style']
     });
   }
 
@@ -254,9 +263,6 @@ export class EventDetailComponent implements OnInit{
   }
 
   public chosenSeats: Seat[] = [];
-  // selectedSeat(seat: Seat) {
-  //   this.chosenSeats.push(seat);
-  // }
   isSeatChosen(seat: Seat): boolean {
     return this.chosenSeats.some(chosenSeat => chosenSeat.id === seat.id);
   }
@@ -288,7 +294,64 @@ export class EventDetailComponent implements OnInit{
         totalPrice += correspondingTicket.price;
       }
     });
-
+    // console.log("this.chosenSeats: ", this.chosenSeats + "this.chosenSeats strigified: ", JSON.stringify(this.chosenSeats) + "this.tickets", this.tickets)
     return parseFloat(totalPrice.toFixed(2));
   }
+
+
+  // addTicketsToCart() {
+  //   const ticketData = this.chosenSeats.map((seat: Seat) => {
+  //     const correspondingTicket = this.tickets.find((ticket: Ticket) => ticket.type === seat.type);
+  //
+  //     if (correspondingTicket) {
+  //       return {
+  //         ticketId: correspondingTicket._id,
+  //         quantity: 1, // Set the quantity as needed, this is just an example
+  //         seatNumbers: this.parseSeat(seat.id) // Assuming seat.id is the correct property for the seat number
+  //       };
+  //     }
+  //     return null; // Handle the case where a corresponding ticket is not found for a seat
+  //   }).filter((ticket) => ticket !== null);
+  //
+  //   console.log("ticketData: ",ticketData);
+  // }
+  prepareMultipleTickets() {
+    const ticketData = this.chosenSeats.reduce((acc: any[], seat) => {
+      const correspondingTicket = this.tickets.find((ticket: Ticket) => ticket.type === seat.type);
+
+      if (correspondingTicket) {
+        const existingTicket = acc.find((item) => item.ticketId === correspondingTicket._id);
+        if (existingTicket) {
+          existingTicket.quantity++;
+          existingTicket.seatNumbers += ` ${this.parseSeat(seat.id)}`;
+        } else {
+          acc.push({
+            ticketId: correspondingTicket._id,
+            quantity: 1,
+            seatNumbers: this.parseSeat(seat.id)
+          });
+        }
+      }
+      return acc;
+    }, []);
+
+    this.addTicketsToCart(this.userId, ticketData);
+    console.log("ticketData: ", ticketData);
+  }
+
+  addTicketsToCart(userId: string, ticketData: any[]) {
+    ticketData.forEach(ticket => {
+      this.service.addTicketToCart(userId, this.id, ticket.ticketId, ticket.quantity).subscribe(
+        (response) => {
+          this.openSnackBarSuccess("Dodano do koszyka.");
+          window.location.reload();
+        },
+        (error) => {
+          this.openSnackBarError("Wystąpił błąd podczas dodawania biletów.");
+          throw error;
+        }
+      );
+    });
+  }
+
 }

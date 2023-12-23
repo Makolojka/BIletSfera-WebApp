@@ -7,5 +7,4 @@ export interface Ticket {
   color: string;
   maxNumberOfTickets: number;
   availableTickets: number;
-  seatNumber?: string | null;
 }

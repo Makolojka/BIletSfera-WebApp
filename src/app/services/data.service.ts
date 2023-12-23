@@ -68,10 +68,10 @@ export class DataService {
     return this.http.post(this.url + '/api/user/' + userId + '/cart/remove-ticket/' + eventId + '/' + ticketId, body, {headers: headers});
   }
 
-  addTicketToCart(userId: string, eventId: string, ticketId: string) {
+  addTicketToCart(userId: string, eventId: string, ticketId: string, quantity: number) {
     let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
       'Content-Type': 'application/json'})
-    return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {}, {headers: headers});
+    return this.http.post(this.url + '/api/user/' + userId + '/cart/add-ticket/' + eventId + '/' + ticketId, {quantity}, {headers: headers});
   }
 
   //Buy tickets / make transaction
