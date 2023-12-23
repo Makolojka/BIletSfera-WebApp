@@ -1,5 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
-import * as $ from 'jquery';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
 import {Ticket} from "../event-card/Ticket";
 import {ActivatedRoute} from "@angular/router";
@@ -10,6 +9,7 @@ import {SnackbarSuccessComponent} from "../snackbars/snackbar-success/snackbar-s
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {RoomSchema} from "../../interfaces/room-schema";
 import {Row} from "../../interfaces/row";
+import {Seat} from "../../interfaces/seat";
 
 @Component({
   selector: 'event-detail',
@@ -253,4 +253,42 @@ export class EventDetailComponent implements OnInit{
     }
   }
 
+  public chosenSeats: Seat[] = [];
+  // selectedSeat(seat: Seat) {
+  //   this.chosenSeats.push(seat);
+  // }
+  isSeatChosen(seat: Seat): boolean {
+    return this.chosenSeats.some(chosenSeat => chosenSeat.id === seat.id);
+  }
+
+  selectedSeat(seat: Seat) {
+    const seatIndex = this.chosenSeats.findIndex(chosenSeat => chosenSeat.id === seat.id);
+
+    if (seatIndex === -1) {
+      this.chosenSeats.push(seat);
+    } else {
+      this.chosenSeats.splice(seatIndex, 1);
+    }
+  }
+
+  parseSeat(id: string): string {
+    const parts = id.split('.');
+    const row = parseInt(parts[0]) + 1;
+    const seat = parseInt(parts[1]) + 1;
+    return `${row}.${seat}.`;
+  }
+
+  calculateTotalPrice(): number {
+    let totalPrice = 0;
+
+    // Loop through chosen seats and find their corresponding ticket prices
+    this.chosenSeats.forEach((seat: Seat) => {
+      const correspondingTicket = this.tickets.find((ticket: Ticket) => ticket.type === seat.type);
+      if (correspondingTicket) {
+        totalPrice += correspondingTicket.price;
+      }
+    });
+
+    return parseFloat(totalPrice.toFixed(2));
+  }
 }

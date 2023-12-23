@@ -541,6 +541,13 @@ h2 {
   border: 1px solid #ddd;
   border-radius: 10px 10px 0 0;
   margin: 0 5px;
+  transition: all ease-in-out 0.2s;
+}
+
+.seat:hover{
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
 }
 
 
@@ -677,6 +684,13 @@ h2 {
 }
 
 .legend-container h3{
+  padding: 40px 0 0 0;
+  color: var(--third-color);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.choosed-seats h3{
   padding: 40px 0 0 0;
   color: var(--third-color);
   font-weight: bold;
