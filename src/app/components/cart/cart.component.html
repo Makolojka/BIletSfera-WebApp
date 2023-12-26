@@ -18,13 +18,23 @@
         <td class="cart-item-image" [routerLink]="['event/detail/' + cartItem.event._id]" *ngIf="screenSize > 460">
           <img [src]="cartItem.event.image" alt="Event Image">
         </td>
-        <td class="cart-item-name" [routerLink]="'event/detail'">{{ cartItem.event.title }}</td>
+        <td class="cart-item-name" [routerLink]="'event/detail'">
+          <div class="title-container">
+            {{ cartItem.event.title }}
+            <div *ngIf="cartItem.event.category.includes('Kino')" class="chosen-seats">
+              <span style="font-size: 12px">Wybrane miejsca:</span>
+              <div class="align-left-row flex-wrap" style="display: flex; justify-content: flex-start">
+                <span *ngFor="let seatNumbers of ticket.seatNumbers" class="cart-item-name" style="font-size: 12px; margin: 5px" [routerLink]="'event/detail'">{{ seatNumbers }}</span>
+              </div>
+            </div>
+          </div>
+        </td>
         <td class="cart-item-price">{{ ticket.price }} zł</td>
         <td class="cart-item-quantity">
           <div class="right-section">
-            <button class="btn plus-btn" (click)="decrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-minus"></i></button>
+            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn plus-btn" (click)="decrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-minus"></i></button>
             <div class="counter">{{ ticket.quantity }}</div>
-            <button class="btn minus-btn" (click)="incrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-plus"></i></button>
+            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn minus-btn" (click)="incrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-plus"></i></button>
           </div>
         </td>
         <td class="cart-item-sum">{{ ticket.quantity * ticket.price }} zł</td>

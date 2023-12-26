@@ -48,7 +48,11 @@ export class CartComponent implements OnInit{
           // console.log("is cart true")
           this.isCartDataEmpty = true;
         }
-        // console.log("cartData: "+JSON.stringify(this.cartData))
+        // console.log("cartData: "+JSON.stringify(this.cartData)) cartItem.event.category
+        console.log("cartData.cart[0].event.category: "+JSON.stringify(cartData.cart[0].event.category))
+        console.log("cartData.cart[0].tickets[0]: "+JSON.stringify(cartData.cart[0]))
+        console.log("cartData.cart[0].tickets[0].seatNumbers: "+JSON.stringify(cartData.cart[0].tickets[0].seatNumbers))
+        console.log("cartData.cart[0].tickets[0].quantity: "+JSON.stringify(cartData.cart[0].tickets[0].quantity))
       },
       (error: any) => {
         console.error('Error fetching cart data:', error);

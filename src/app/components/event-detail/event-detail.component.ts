@@ -11,6 +11,7 @@ import {RoomSchema} from "../../interfaces/room-schema";
 import {Row} from "../../interfaces/row";
 import {Seat} from "../../interfaces/seat";
 import {SnackbarComponent} from "../snackbars/snackbar-error/snackbar.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'event-detail',
@@ -350,13 +351,19 @@ export class EventDetailComponent implements OnInit{
 
   addTicketsToCart(userId: string, ticketData: any[]) {
     ticketData.forEach(ticket => {
-      this.service.addTicketsToCart(userId, this.id, ticket.ticketId, ticket.quantity, this.chosenSeats).subscribe(
+      console.log("ticket: ",ticket)
+      this.service.addTicketsToCart(userId, this.id, ticket.ticketId, ticket.quantity, ticket.seatNumbers).subscribe(
         (response) => {
           this.openSnackBarSuccess("Dodano do koszyka.");
           window.location.reload();
         },
-        (error) => {
-          this.openSnackBarError("Wystąpił błąd podczas dodawania biletów.");
+        (error: HttpErrorResponse) => {
+          console.log("error:",error.error.error)
+          if (error.error.error === 'CONFLICT') {
+            this.openSnackBarError("Niektóre miejsca są już w koszyku");
+          } else {
+            this.openSnackBarError("Wystąpił błąd podczas dodawania biletów.");
+          }
           throw error;
         }
       );
