@@ -14,6 +14,7 @@ import {OrganizerAuthGuard} from "./services/organiser-panel.guard";
 import {OrderComponent} from "./components/cart/order/order.component";
 import {TransactionListComponent} from "./components/transaction-list/transaction-list.component";
 import {RoomBuilderComponent} from "./components/event-manager/event-creator-panel/room-builder/room-builder.component";
+import {UserDetailsComponent} from "./components/user-details/user-details.component";
 
 const routes: Routes = [
   {
@@ -85,6 +86,11 @@ const routes: Routes = [
   {
     path: 'room-builder',
     component: RoomBuilderComponent
+  },
+  {
+    path: 'user-details',
+    component: UserDetailsComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

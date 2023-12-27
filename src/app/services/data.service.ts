@@ -8,6 +8,7 @@ import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
 import Transaction from "../interfaces/transaction";
 import {Seat} from "../interfaces/seat";
+import {UserPreferences} from "../interfaces/user-preferences";
 @Injectable({
   providedIn: 'root'
 })
@@ -89,6 +90,11 @@ export class DataService {
   // Get all user transactions
   getAllTransactions(userId: string){
     return this.http.get(this.url + '/api/transactions/all/' + userId);
+  }
+
+  // Get user's preferences
+  getPreferencesById(id: string): Observable<UserPreferences> {
+    return this.http.get<UserPreferences>(this.url + '/api/user/' + id + '/preferences');
   }
 
   // TODO: dodać autoryzację

@@ -274,6 +274,13 @@ button:hover {
   text-align: center;
 }
 
+.disclaimer{
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  color: var(--third-color-greyed);
+  font-size: 12px;
+}
+
 
 /*Error*/
 .empty-data-container{
