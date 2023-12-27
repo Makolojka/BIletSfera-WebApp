@@ -28,8 +28,8 @@ export class TransactionListComponent implements OnInit{
           this.service.getTicketDetailsById(ticket.ticketId).subscribe((res: any) => {
             const ticketDetail = {
               count: ticket.count,
-              eventName: res.type,
-              ticketName: res.price
+              ticketName: res.type,
+              ticketPrice: res.price
             };
             transaction.ticketDetails.push(ticketDetail);
           });
