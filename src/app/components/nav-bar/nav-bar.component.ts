@@ -70,7 +70,7 @@ export class NavBarComponent implements OnInit{
   }
 
   addTicketToCart(eventId: string, ticketId: string) {
-    this.service.addTicketToCart(this.userId, eventId, ticketId).subscribe(
+    this.service.addTicketToCart(this.userId, eventId, ticketId, 1).subscribe(
       (response: any) => {
         this.getCartItems();
       },
@@ -101,7 +101,7 @@ export class NavBarComponent implements OnInit{
         }
       }
     }
-    return totalSum;
+    return Number(totalSum.toFixed(2));
   }
 
   calculateTicketCount() {

@@ -1,0 +1,26 @@
+<nav-bar></nav-bar>
+<div class="transaction-details">
+  <h1>Historia zakupów</h1>
+  <table class="wishlist-table">
+    <thead>
+    <tr>
+      <th style="text-align: left">Data</th>
+      <th>Koszt zamówienia</th>
+      <th>Zakupione bilety</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions" class="cart-item">
+      <td class="wishlist-item-name">{{ transaction.saleDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+      <td>{{ transaction.totalCost }} zł</td>
+      <td>
+        <ul>
+          <li *ngFor="let ticket of transaction.ticketDetails">
+            {{ ticket.count }} biletów na wydarzenie {{ ticket.eventName }} - {{ ticket.ticketName }} zł
+          </li>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

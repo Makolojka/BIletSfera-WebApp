@@ -50,6 +50,9 @@ import { OrganizerOverviewPageComponent } from './components/organizer-overview-
 import {ActiveEventsPanelComponent} from "./components/event-manager/active-events-panel/active-events-panel.component";
 import {ReportsPanelComponent} from "./components/event-manager/reports-panel/reports-panel.component";
 import {EventCreatorPanelComponent} from "./components/event-manager/event-creator-panel/event-creator-panel.component";
+import { OrderComponent } from './components/cart/order/order.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { RoomBuilderComponent } from './components/event-manager/event-creator-panel/room-builder/room-builder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +81,10 @@ import {EventCreatorPanelComponent} from "./components/event-manager/event-creat
     OrganizerOverviewPageComponent,
     ActiveEventsPanelComponent,
     ReportsPanelComponent,
-    EventCreatorPanelComponent
+    EventCreatorPanelComponent,
+    OrderComponent,
+    TransactionListComponent,
+    RoomBuilderComponent
   ],
   imports: [
     BrowserModule,
