@@ -63,6 +63,10 @@
                 <div class="right-bottom">
                   <p>{{ location }}</p>
                 </div>
+                <div class="right-bottom" *ngIf="!roomSchema || roomSchema.length === 0">
+                  <p style="font-weight: 500">Pozostało bilet(ów):</p>
+                  <p>{{ ticket.maxNumberOfTickets }}</p>
+                </div>
               </div>
             </div>
             <div class="right-section">

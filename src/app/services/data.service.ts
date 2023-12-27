@@ -22,6 +22,11 @@ export class DataService {
   getAll() {
     return this.http.get(this.url + '/api/events');
   }
+
+  // Top events
+  getTopFiveMostViewed() {
+    return this.http.get(this.url + '/api/events/most-viewed');
+  }
   getById(id: string) {
     return this.http.get(this.url + '/api/events/' + id);
   }

@@ -9,6 +9,7 @@ import {Ticket} from "../event-card/Ticket";
 export class MultiItemCarouselComponent implements OnInit{
   @Input() items: any;
   @Input() ticketsMap: { [eventId: string]: Ticket[] } = {};
+  @Input() topFiveEvents: any;
 
   private carousel: HTMLElement | null = null;
   private carouselInner: HTMLElement | null = null;
