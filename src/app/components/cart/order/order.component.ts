@@ -62,7 +62,7 @@ export class OrderComponent implements OnInit{
         }
       }
     }
-    return totalSum;
+    return Number(totalSum.toFixed(2));
   }
 
   prepareTransactionData(): any {
@@ -74,7 +74,8 @@ export class OrderComponent implements OnInit{
             ticketId: ticket._id,
             eventId: cartItem.event._id,
             count: ticket.quantity,
-            singleTicketCost: ticket.price
+            singleTicketCost: ticket.price,
+            seatNumbers: ticket.seatNumbers
           });
         }
       }
