@@ -17,7 +17,9 @@ export class PreferredEventsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUserId();
-    this.getPreferredEvents();
+    if(this.userId !== ''){
+      this.getPreferredEvents();
+    }
   }
 
   getPreferredEvents(){

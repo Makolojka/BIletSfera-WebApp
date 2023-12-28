@@ -14,7 +14,7 @@
       <div class="align-center-row" style="display: flex; flex-wrap: wrap;">
         <preferred-events class="align-center-row flex-wrap" (arePreferredEventsLoaded)="onItemsAvailable($event)"></preferred-events>
       </div>
-      <div class="align-center-column">
+      <div class="align-center-column" *ngIf="showPreferredEvents">
         <button>Zobacz więcej</button>
       </div>
     </div>
