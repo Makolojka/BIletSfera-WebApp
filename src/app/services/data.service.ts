@@ -31,6 +31,10 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + id);
   }
 
+  getUserPreferences(id: string) {
+    return this.http.get(this.url + '/api/user/preferences/' + id);
+  }
+
   getTicketDetailsById(id: string) {
     return this.http.get(this.url + '/api/events/tickets/' + id);
   }
