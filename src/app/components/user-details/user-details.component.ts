@@ -19,6 +19,7 @@ export class UserDetailsComponent implements OnInit{
     email: '',
     id: '',
     preferences: {
+      oneTimeMonitChecked: false,
       selectedCategories: [],
       selectedSubCategories: []
     }
@@ -75,6 +76,9 @@ export class UserDetailsComponent implements OnInit{
       this.openSnackBarError("Pola Nazwa konta oraz Email nie mogą być puste.");
       return;
     }
+    if(!this.user.preferences.oneTimeMonitChecked){
+      this.closeWithoutPreferences();
+    }
     this.authService.updateUserDetails(this.user).subscribe((result) => {
         // this.router.navigate(['/']);
         this.openSnackBarSuccess("Pomyślnie zaktualizowano konto.");
@@ -87,8 +91,7 @@ export class UserDetailsComponent implements OnInit{
 
   getUserPreferences() {
     this.service.getPreferencesById(this.user.id).subscribe(
-      (data: UserPreferences) => { // Specify the type as UserPreferencesResponse
-        // Check if data.preferences is not null or undefined before assigning
+      (data: UserPreferences) => {
         if (data && data.preferences) {
           this.user.preferences = data.preferences;
           console.log('User preferences:', this.user.preferences);
@@ -98,6 +101,20 @@ export class UserDetailsComponent implements OnInit{
         console.error('Error fetching user preferences:', error);
       }
     );
+  }
+
+  closeWithoutPreferences() {
+    console.log("closeWithoutPreferences userId: ",this.user.id)
+    if(this.user.id !== ''){
+      this.service.updateOneTimeMonitChecked(this.user.id).subscribe(
+        () => {
+          console.log('oneTimeMonitChecked flag updated successfully');
+        },
+        (error) => {
+          console.error('Error updating oneTimeMonitChecked flag:', error);
+        }
+      );
+    }
   }
 
   // Snackbar messages

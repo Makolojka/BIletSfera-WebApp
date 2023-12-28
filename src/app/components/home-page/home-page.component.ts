@@ -22,12 +22,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.getAll();
     this.getUserId();
-    if(this.userId !== '')
-    {
+    if (this.userId !== '') {
       this.fetchUserPreferences();
-      if(this.oneTimeMonitChecked === false || this.userId !== ''){
-        this.openModal('personalizedOffersModal');
-      }
     }
   }
 
@@ -52,6 +48,10 @@ export class HomePageComponent implements OnInit {
       (data: any) => {
         this.oneTimeMonitChecked = data.oneTimeMonitChecked;
         console.log('oneTimeMonitChecked:', this.oneTimeMonitChecked);
+
+        if (this.oneTimeMonitChecked === false) {
+          this.openModal('personalizedOffersModal');
+        }
       },
       (error: any) => {
         console.error('Error fetching user preferences:', error);
@@ -62,7 +62,7 @@ export class HomePageComponent implements OnInit {
   getUserId(){
     const currentUser = this.authService.currentUser;
     if (currentUser) {
-      this.userId = currentUser.name;
+      this.userId = currentUser.userId;
     }
   }
 
@@ -72,7 +72,6 @@ export class HomePageComponent implements OnInit {
     {
       modalDiv.style.display = 'block';
     }
-    // this.lowerBrightness();
   }
   closeModal(modalId: string) {
     const modalDiv= document.getElementById(modalId);
@@ -80,23 +79,26 @@ export class HomePageComponent implements OnInit {
     {
       modalDiv.style.display = 'none';
     }
-    // this.raiseBrightness();
   }
-
-  // lowerBrightness() {
-  //   const element = this.elementRef.nativeElement.querySelector('.main');
-  //   if (element) {
-  //     this.renderer.addClass(element, 'brightness-70');
-  //   }
-  // }
-  // raiseBrightness() {
-  //   const element = this.elementRef.nativeElement.querySelector('.main');
-  //   if (element) {
-  //     this.renderer.removeClass(element, 'brightness-70');
-  //   }
-  // }
 
   goToPreferences() {
     this.router.navigate(['/user-details']);
   }
+
+  closeWithoutPreferences() {
+    console.log("closeWithoutPreferences userId: ",this.userId)
+
+    this.closeModal('personalizedOffersModal');
+    if(this.userId !== ''){
+      this.service.updateOneTimeMonitChecked(this.userId).subscribe(
+        () => {
+          console.log('oneTimeMonitChecked flag updated successfully');
+        },
+        (error) => {
+          console.error('Error updating oneTimeMonitChecked flag:', error);
+        }
+      );
+    }
+  }
+
 }

@@ -3,6 +3,7 @@ export interface User {
   email: string;
   id: string;
   preferences: {
+    oneTimeMonitChecked: boolean;
     selectedCategories: string[];
     selectedSubCategories: string[];
   };

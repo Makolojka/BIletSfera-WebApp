@@ -31,8 +31,12 @@ export class DataService {
     return this.http.get(this.url + '/api/events/' + id);
   }
 
+  // User preferences
   getUserPreferences(id: string) {
     return this.http.get(this.url + '/api/user/preferences/' + id);
+  }
+  updateOneTimeMonitChecked(userId: string) {
+    return this.http.put(this.url+'/api/user/'+userId+'/preferences/onetimemonit', {});
   }
 
   getTicketDetailsById(id: string) {
