@@ -22,7 +22,7 @@ export class LatestEventsComponent implements OnInit{
 
     this.service.getTopFiveMostViewed().subscribe(data => {
       this.topFiveEvents = data;
-      console.log("Top events: ",data)
+      // console.log("Top events: ",data)
     });
   }
 
@@ -32,6 +32,6 @@ export class LatestEventsComponent implements OnInit{
         this.ticketsMap[event.id] = res;
       });
     });
-    console.log("this.ticketsMap: ", this.ticketsMap)
+    // console.log("this.ticketsMap: ", this.ticketsMap)
   }
 }

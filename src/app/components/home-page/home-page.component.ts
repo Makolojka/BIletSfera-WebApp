@@ -14,6 +14,11 @@ export class HomePageComponent implements OnInit {
   ticketsMap: { [eventId: string]: Ticket[] } = {}; // Map to store tickets for each event
   userId = '';
   oneTimeMonitChecked: boolean | undefined;
+  showPreferredEvents = false;
+
+  onItemsAvailable(itemsAvailable: boolean): void {
+    this.showPreferredEvents = itemsAvailable;
+  }
 
   constructor(private service: DataService,
               private router: Router,
@@ -47,7 +52,7 @@ export class HomePageComponent implements OnInit {
     this.service.getUserPreferences(this.userId).subscribe(
       (data: any) => {
         this.oneTimeMonitChecked = data.oneTimeMonitChecked;
-        console.log('oneTimeMonitChecked:', this.oneTimeMonitChecked);
+        // console.log('oneTimeMonitChecked:', this.oneTimeMonitChecked);
 
         if (this.oneTimeMonitChecked === false) {
           this.openModal('personalizedOffersModal');
@@ -86,7 +91,7 @@ export class HomePageComponent implements OnInit {
   }
 
   closeWithoutPreferences() {
-    console.log("closeWithoutPreferences userId: ",this.userId)
+    // console.log("closeWithoutPreferences userId: ",this.userId)
 
     this.closeModal('personalizedOffersModal');
     if(this.userId !== ''){

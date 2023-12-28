@@ -110,6 +110,11 @@ export class DataService {
     return this.http.get<UserPreferences>(this.url + '/api/user/' + id + '/preferences');
   }
 
+  // Get events based on user preferences
+  getEventsBasedOnUserPreferences(userId: string) {
+    return this.http.get(this.url+'/api/events/preferences/'+userId);
+  }
+
   // TODO: dodać autoryzację
   //User Like and follow endpoints /api/profile/:userId/:actionType
   addUserLikeOrFollower(userId: string, eventId: string, actionType: string) {
