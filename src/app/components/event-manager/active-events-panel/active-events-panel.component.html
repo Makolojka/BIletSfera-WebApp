@@ -42,7 +42,9 @@
       </div>
       <div class="icon-container">
         <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
-        <p class="event-info" style="color: var(--secondary-variant-color)">{{ event.totalEarningsForEvent.toFixed(2)  }}</p>
+        <p class="event-info" style="color: var(--secondary-variant-color)">
+          {{ event.totalEarningsForEvent !== undefined ? event.totalEarningsForEvent.toFixed(2) : 'Loading earnings...' }}
+        </p>
       </div>
     </div>
   </div>

@@ -18,6 +18,9 @@ export class NavBarComponent implements OnInit{
   followedCount: number = 0;
   likedCount: number = 0;
 
+  menuHolder: HTMLElement | null = null;
+  siteBrand: HTMLElement | null = null;
+
   constructor(public authService: AuthService, public router: Router, private service: DataService) {
   }
 
@@ -39,6 +42,10 @@ export class NavBarComponent implements OnInit{
       this.getCartItems();
       this.getLikedAndFollowedCount();
     }
+
+    this.menuHolder = document.getElementById('menuHolder') as HTMLElement;
+    this.siteBrand = document.getElementById('siteBrand') as HTMLElement;
+
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }
 
@@ -129,5 +136,30 @@ export class NavBarComponent implements OnInit{
       }
     );
   }
+
+  isMenuToggled: boolean = false;
+
+  menuToggle() {
+    if (this.menuHolder && this.menuHolder.className === 'drawMenu') {
+      this.menuHolder.className = '';
+      this.isMenuToggled = false;
+    } else if (this.menuHolder) {
+      this.menuHolder.className = 'drawMenu';
+      this.isMenuToggled = true;
+    }
+  }
+
+//   if (window.innerWidth < 426) {
+//   this.siteBrand.innerHTML = 'MAS';
+// }
+
+// window.onresize = () => {
+//   if (window.innerWidth < 420) {
+//     this.siteBrand.innerHTML = 'MAS';
+//   } else {
+//     this.siteBrand.innerHTML = 'MY AWESOME WEBSITE';
+//   }
+// };
+
 
 }

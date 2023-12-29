@@ -37,7 +37,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { EventCardWideComponent } from './components/event-card-wide/event-card-wide.component';
 import {DataService} from "./services/data.service";
 import { TextRestrainPipe } from './pipes/text-restrain.pipe';
-import {NgOptimizedImage} from "@angular/common";
+import {DatePipe, NgOptimizedImage} from "@angular/common";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
@@ -113,6 +113,7 @@ import { PreferredEventsComponent } from './components/preferred-events/preferre
   ],
   providers: [
     DataService,
+    DatePipe,
     CategoryFilterService,
     AuthService,
     {

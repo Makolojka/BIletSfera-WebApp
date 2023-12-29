@@ -38,12 +38,17 @@ export class EventDetailComponent implements OnInit{
 
   public isLiked: boolean = false;
   public isFollowed: boolean = false;
+  public isLoggedIn: boolean = false;
 
-  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService,
+  constructor(private viewportScroller: ViewportScroller,
+              private route: ActivatedRoute,
+              private service: DataService,
+              private authService: AuthService,
   private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.route.paramMap
       .subscribe((params: any) => {
         this.id = params.get('id');
@@ -370,4 +375,7 @@ export class EventDetailComponent implements OnInit{
     });
   }
 
+  showMonit() {
+    this.openSnackBarError("Zaloguj się, aby dodać bilet.");
+  }
 }
