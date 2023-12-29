@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
@@ -19,9 +19,13 @@ export class NavBarComponent implements OnInit{
   likedCount: number = 0;
 
   menuHolder: HTMLElement | null = null;
-  siteBrand: HTMLElement | null = null;
+  isMenuToggled: boolean = false;
 
-  constructor(public authService: AuthService, public router: Router, private service: DataService) {
+  constructor(public authService: AuthService,
+              public router: Router,
+              private service: DataService,
+              private renderer: Renderer2,
+              private el: ElementRef) {
   }
 
   toggleSidebar(): void {
@@ -37,6 +41,9 @@ export class NavBarComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.isMenuToggled = false;
+    // @ts-ignore
+    // this.menuHolder.className = null;
     if(this.authService.isLoggedIn()){
       this.userId = this.authService.getUserId();
       this.getCartItems();
@@ -44,7 +51,7 @@ export class NavBarComponent implements OnInit{
     }
 
     this.menuHolder = document.getElementById('menuHolder') as HTMLElement;
-    this.siteBrand = document.getElementById('siteBrand') as HTMLElement;
+    console.log("this.menuHolder init: ", this.menuHolder)
 
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }
@@ -136,30 +143,19 @@ export class NavBarComponent implements OnInit{
       }
     );
   }
-
-  isMenuToggled: boolean = false;
-
   menuToggle() {
-    if (this.menuHolder && this.menuHolder.className === 'drawMenu') {
-      this.menuHolder.className = '';
-      this.isMenuToggled = false;
-    } else if (this.menuHolder) {
-      this.menuHolder.className = 'drawMenu';
-      this.isMenuToggled = true;
+    const menuHolderElement = this.el.nativeElement.querySelector('#menuHolder');
+
+    if (menuHolderElement) {
+      this.isMenuToggled = !this.isMenuToggled;
+
+      if (this.isMenuToggled) {
+        this.renderer.addClass(menuHolderElement, 'drawMenu');
+      } else {
+        this.renderer.removeClass(menuHolderElement, 'drawMenu');
+      }
     }
   }
-
-//   if (window.innerWidth < 426) {
-//   this.siteBrand.innerHTML = 'MAS';
-// }
-
-// window.onresize = () => {
-//   if (window.innerWidth < 420) {
-//     this.siteBrand.innerHTML = 'MAS';
-//   } else {
-//     this.siteBrand.innerHTML = 'MY AWESOME WEBSITE';
-//   }
-// };
 
 
 }
