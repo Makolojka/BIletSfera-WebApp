@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {AuthService} from "../../services/auth.service";
-import {PanelManagerService} from "../../services/panel-manager.service";
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import {map} from "rxjs/operators";
-
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-transaction-list',
@@ -15,14 +14,14 @@ import {map} from "rxjs/operators";
 export class TransactionListComponent implements OnInit{
   userId: string = '';
   transactions: any[] = [];
-  logoPath = 'assets/log.png';
+  logoBase64: string = '';
   private http: any;
-  constructor(private service: DataService, private authService: AuthService) {}
+  constructor(private service: DataService, private authService: AuthService, private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
     this.getTransactions();
-    // console.log("this.transactions: ",this.transactions)
+    this.loadAndConvertImageToBase64('assets/log.png');
   }
 
   getTransactions(): void {
@@ -110,7 +109,7 @@ export class TransactionListComponent implements OnInit{
                 margin: [100, 0, 0, 0]
               }
             ]
-          }
+          },
         ],
         styles: {
           header: {
@@ -124,24 +123,56 @@ export class TransactionListComponent implements OnInit{
         footer: {
           columns: [
             {
-              image: "app/assets/log.png",
-              width: 100,
-              height: 50,
-              margin: [40, 10] // Adjust margin as needed
-            },
-            {
-              text: 'Bilet kupiony na stronie BiletSfera',
-              alignment: 'right',
-              margin: [0, 20, 40, 0] // Adjust margin as needed
+              stack: [
+                { image: this.logoBase64, width: 100, height: 75, alignment: 'center' },
+                // { text: 'Bilet kupiony na stronie BiletSfera', alignment: 'center', fontSize: 8 }
+              ],
+              width: 800,
+              alignment: 'center',
+              margin: [0, 0] // Adjust margins within the column
             }
           ],
-          margin: [40, 0] // Adjust margin as needed
+          margin: [-100, -100], // Outer margin of the footer
         }
       };
+
 
       // @ts-ignore
       pdfMake.createPdf(docDefinition).open();
     });
+  }
+
+  loadImageBlob(imagePath: string): Observable<Blob> {
+    return this.httpClient.get(imagePath, { responseType: 'blob' });
+  }
+
+  convertBlobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  loadAndConvertImageToBase64(imagePath: string) {
+    this.loadImageBlob(imagePath).subscribe(
+      (blob: Blob) => {
+        this.convertBlobToBase64(blob).then(
+          (base64: string) => {
+            this.logoBase64 = base64;
+          },
+          (error: any) => {
+            console.error('Error converting blob to base64:', error);
+          }
+        );
+      },
+      (error: any) => {
+        console.error('Error loading image blob:', error);
+      }
+    );
   }
 
 }
