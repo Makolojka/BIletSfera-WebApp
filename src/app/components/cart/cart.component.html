@@ -14,13 +14,20 @@
     </thead>
     <tbody>
     <ng-container *ngFor="let cartItem of cartData?.cart">
-      <tr class="cart-item" *ngFor="let ticket of cartItem.tickets">
-        <td class="cart-item-image" [routerLink]="['event/detail/' + cartItem.event._id]" *ngIf="screenSize > 460">
-          <img [src]="cartItem.event.image" alt="Event Image">
+      <tr class="cart-item" *ngFor="let ticket of cartItem.tickets" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">
+        <td class="cart-item-image" *ngIf="screenSize > 460">
+          <ng-container *ngIf="!isEventExpired(cartItem.event.date)">
+            <a [routerLink]="['event/detail/' + cartItem.event._id]">
+              <img [src]="cartItem.event.image" alt="Event Image">
+            </a>
+          </ng-container>
+          <ng-container *ngIf="isEventExpired(cartItem.event.date)">
+            <img [src]="cartItem.event.image" alt="Event Image" style="filter: grayscale(100%);">
+          </ng-container>
         </td>
-        <td class="cart-item-name" [routerLink]="'event/detail'">
+        <td class="cart-item-name" [routerLink]="'event/detail'" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">
           <div class="title-container">
-            {{ cartItem.event.title }}
+            <span>{{ cartItem.event.title }}</span>
             <div *ngIf="cartItem.event.category.includes('Kino')" class="chosen-seats">
               <span style="font-size: 12px">Wybrane miejsca:</span>
               <div class="align-left-row flex-wrap" style="display: flex; justify-content: flex-start">
@@ -29,16 +36,22 @@
             </div>
           </div>
         </td>
-        <td class="cart-item-price">{{ ticket.price }} zł</td>
-        <td class="cart-item-quantity">
+        <td class="cart-item-price" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">{{ ticket.price }} zł</td>
+        <td class="cart-item-quantity" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">
           <div class="right-section">
-            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn plus-btn" (click)="decrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-minus"></i></button>
-            <div class="counter">{{ ticket.quantity }}</div>
-            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn minus-btn" (click)="incrementQuantity(userId, cartItem.event._id, ticket._id)"><i class="fas fa-plus"></i></button>
+            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn plus-btn" [ngClass]="{ 'expired-btn': isEventExpired(cartItem.event.date) }"
+                    (click)="isEventExpired(cartItem.event.date) ? null : decrementQuantity(userId, cartItem.event._id, ticket._id)">
+              <i class="fas fa-minus"></i>
+            </button>
+            <div class="counter" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">{{ ticket.quantity }}</div>
+            <button *ngIf="!cartItem.event.category.includes('Kino')" class="btn minus-btn" [ngClass]="{ 'expired-btn': isEventExpired(cartItem.event.date) }"
+                    (click)="isEventExpired(cartItem.event.date) ? null : incrementQuantity(userId, cartItem.event._id, ticket._id)">
+              <i class="fas fa-plus"></i>
+            </button>
           </div>
         </td>
-        <td class="cart-item-sum">{{ ticket.quantity * ticket.price }} zł</td>
-        <td class="cart-item-actions">
+        <td class="cart-item-sum" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">{{ ticket.quantity * ticket.price }} zł</td>
+        <td class="cart-item-actions" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">
           <div class="align-center-row">
             <button class="btn-wishlist btn-delete" (click)="removeWholeTicket(userId, cartItem.event._id, ticket._id, ticket.quantity)">
               <i class="fa-solid fa-trash-can icon"></i>

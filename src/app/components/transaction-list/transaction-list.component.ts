@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {PanelManagerService} from "../../services/panel-manager.service";
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import {map} from "rxjs/operators";
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -14,6 +15,8 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 export class TransactionListComponent implements OnInit{
   userId: string = '';
   transactions: any[] = [];
+  logoPath = 'assets/log.png';
+  private http: any;
   constructor(private service: DataService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -48,8 +51,6 @@ export class TransactionListComponent implements OnInit{
   }
 
   generateTicketPdf(ticketName: string, ticketPrice: number, ticketCount: number, eventId: string, transactionId: string, transaction: any) {
-    // console.log("eventId w pdf:", eventId);
-    // console.log("transaction w pdf: ", transaction)
     const seatNumbers = transaction.tickets.reduce((numbers: string[], ticket: any) => {
       if (ticket.seatNumbers.length > 0) {
         numbers.push(...ticket.seatNumbers);
@@ -119,6 +120,22 @@ export class TransactionListComponent implements OnInit{
             margin: [10, 10, 0, 10],
             color: '#ffffff'
           }
+        },
+        footer: {
+          columns: [
+            {
+              image: "app/assets/log.png",
+              width: 100,
+              height: 50,
+              margin: [40, 10] // Adjust margin as needed
+            },
+            {
+              text: 'Bilet kupiony na stronie BiletSfera',
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // Adjust margin as needed
+            }
+          ],
+          margin: [40, 0] // Adjust margin as needed
         }
       };
 
@@ -126,6 +143,5 @@ export class TransactionListComponent implements OnInit{
       pdfMake.createPdf(docDefinition).open();
     });
   }
-
 
 }
