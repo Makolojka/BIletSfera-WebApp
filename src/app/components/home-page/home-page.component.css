@@ -28,10 +28,15 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal-header{
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
 .modal-body {
   width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 40px;
   /*background-color: #f7f7f7;*/
   border-radius: 8px;
   text-align: center;
@@ -49,9 +54,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 20px 40px 20px 40px;
+  border-top: 1px solid #ddd;
 }
 .modal-dialog{
-  max-width: 600px;
+  max-width: 700px;
   max-height: 1600px;
 }
 

@@ -51,7 +51,7 @@ export class NavBarComponent implements OnInit{
     }
 
     this.menuHolder = document.getElementById('menuHolder') as HTMLElement;
-    console.log("this.menuHolder init: ", this.menuHolder)
+    // console.log("this.menuHolder init: ", this.menuHolder)
 
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }

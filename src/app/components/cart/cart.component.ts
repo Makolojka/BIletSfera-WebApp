@@ -100,12 +100,14 @@ export class CartComponent implements OnInit{
   }
 
   getTotalSum(): number {
-    // Calculate the total sum by iterating through the cart items and summing up the item totals
+    // Calculate the total sum by iterating through the non-expired cart items and summing up the item totals
     let totalSum = 0;
     if (this.cartData && this.cartData.cart) {
       for (const cartItem of this.cartData.cart) {
-        for (const ticket of cartItem.tickets) {
-          totalSum += ticket.quantity * ticket.price;
+        if (!this.isEventExpired(cartItem.event.date)) {
+          for (const ticket of cartItem.tickets) {
+            totalSum += ticket.quantity * ticket.price;
+          }
         }
       }
     }

@@ -85,7 +85,8 @@ const routes: Routes = [
   },
   {
     path: 'room-builder',
-    component: RoomBuilderComponent
+    component: RoomBuilderComponent,
+    canActivate: [OrganizerAuthGuard]
   },
   {
     path: 'user-details',
