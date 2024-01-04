@@ -45,7 +45,7 @@ export class CartComponent implements OnInit{
     this.service.getCart(this.userId).subscribe(
       (cartData: any) => {
         this.cartData = cartData; // Assign the fetched cart data to the cartData variable
-        // console.log("JSON.stringify(this.cartData)"+JSON.stringify(this.cartData.cart))
+        console.log("JSON.stringify(this.cartData)"+JSON.stringify(this.cartData.cart))
         if(this.cartData.cart.length>0){
           // console.log("is cart false")
           this.isCartDataEmpty = false;

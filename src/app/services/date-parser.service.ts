@@ -25,7 +25,7 @@ export class DateParserService {
     }
 
     const startDate = new Date(year, month - 1, day, hours, minutes);
-    const endDate = new Date(startDate); // Assuming the endDate is the same as startDate
+    const endDate = new Date(startDate);
 
     return { startDate, endDate };
   }
