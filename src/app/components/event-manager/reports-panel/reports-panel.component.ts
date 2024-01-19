@@ -28,35 +28,8 @@ export class ReportsPanelComponent implements OnInit{
   eventDetails: any[] = [];
   areEventsPresent: boolean = false;
 
-  // Temporary chart data
-  // saleData =  [
-  //   {
-  //     "name": "Bilety",
-  //     "series": [
-  //       {
-  //         "name": "12.10.2023",
-  //         "value": 12
-  //       },
-  //       {
-  //         "name": "13.10.2023",
-  //         "value": 1200
-  //       },
-  //       {
-  //         "name": "14.10.2023",
-  //         "value": 2040
-  //       },
-  //       {
-  //         "name": "15.10.2023",
-  //         "value": 8276
-  //       }
-  //     ]
-  //   },
-  // ];
-
   // Chart data
   saleData: any[] = [];
-
-
 
   // Main chart options
   legend: boolean = true;
@@ -103,7 +76,6 @@ export class ReportsPanelComponent implements OnInit{
     this.fetchTotalEarnings();
     this.fetchTotalSold();
     this.fetchAndMergeSaleData(this.organiserName);
-    console.log("this.saleData: ",this.saleData)
   }
   getOrganizerName(){
     const currentUser = this.authService.currentUser;
@@ -188,7 +160,6 @@ export class ReportsPanelComponent implements OnInit{
       .subscribe(
         (response) => {
           this.saleData = this.mergeSeries(response.saleData);
-          console.log('Merged Sale Data:', this.saleData);
         },
         (error) => {
           console.error('Error fetching sale data:', error);

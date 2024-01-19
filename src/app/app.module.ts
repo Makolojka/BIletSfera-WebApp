@@ -55,6 +55,7 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import { RoomBuilderComponent } from './components/event-manager/event-creator-panel/room-builder/room-builder.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { PreferredEventsComponent } from './components/preferred-events/preferred-events.component';
+import { StatusTextPipe } from './pipes/status-text.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +89,8 @@ import { PreferredEventsComponent } from './components/preferred-events/preferre
     TransactionListComponent,
     RoomBuilderComponent,
     UserDetailsComponent,
-    PreferredEventsComponent
+    PreferredEventsComponent,
+    StatusTextPipe
   ],
   imports: [
     BrowserModule,

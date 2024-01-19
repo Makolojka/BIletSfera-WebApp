@@ -30,7 +30,7 @@
   <!--      [gradient]="true">-->
   <!--    </ngx-charts-pie-chart>    -->
 
-  <div class="chart-container">
+  <div class="chart-container" *ngIf="saleData.length != 0">
     <ngx-charts-line-chart
       [legend]="legend"
       [showXAxisLabel]="showXAxisLabel"
@@ -64,6 +64,13 @@
             <div class="align-left-row" style="margin-left: 20px">
               <i class="fa-solid fa-location-crosshairs icon"></i>
               <p class="event-info">{{ event.location }}</p>
+            </div>
+            <div class="align-left-row" style="margin-left: 20px">
+              <i class="fa-regular fa-circle-check icon" style="color: var(--green-color)"
+                 *ngIf="event.isActive"></i>
+              <i class="fa-regular fa-circle-xmark icon" style="color: var(--red-color)"
+                 *ngIf="!event.isActive"></i>
+              <p class="event-info">{{ event.isActive | statusText }}</p>
             </div>
           </div>
         </div>

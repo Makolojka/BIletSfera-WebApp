@@ -3,6 +3,10 @@ import {DataService} from "../../../services/data.service";
 import {AuthService} from "../../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {PanelManagerService} from "../../../services/panel-manager.service";
+import {Router} from "@angular/router";
+import {SnackbarComponent} from "../../snackbars/snackbar-error/snackbar.component";
+import {SnackbarSuccessComponent} from "../../snackbars/snackbar-success/snackbar-success.component";
+
 
 @Component({
   selector: 'active-events-panel',
@@ -26,7 +30,20 @@ export class ActiveEventsPanelComponent implements OnInit{
 
   totalSoldForEvent: number = 0;
   totalEarningsForEvent: number = 0;
-  constructor(private service: DataService, private authService: AuthService, public panelManagerService: PanelManagerService) {}
+
+  // Edit data
+  isEventFormSubmitted = false;
+  eventName: string = '';
+  eventText: string = '';
+  eventCity: string = '';
+  eventPlace: string = '';
+  promoImage: string = '';
+  additionalInfo: string = '';
+  constructor(private service: DataService,
+              private authService: AuthService,
+              public panelManagerService: PanelManagerService,
+              public router: Router,
+              private _snackBar: MatSnackBar) {}
   ngOnInit() {
     this.getOrganizerName();
     this.getOwnedEvents();
@@ -94,4 +111,63 @@ export class ActiveEventsPanelComponent implements OnInit{
     );
   }
 
+  navigateToEvent(isActive: boolean, eventId: string) {
+    if (!isActive){
+      return;
+    }else if (eventId) {
+      this.router.navigate(['event/detail', eventId]);
+    }
+  }
+  // Snackbar messages
+  openSnackBarError(errorMsg: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      data: { errorMsg: errorMsg },
+      panelClass: ['snackbar-error-style']
+    });
+  }
+  openSnackBarSuccess(msg: string) {
+    this._snackBar.openFromComponent(SnackbarSuccessComponent, {
+      duration: 5000,
+      data: { msg: msg },
+      panelClass: ['snackbar-success-style']
+    });
+  }
+  openModal(event: any, modalId: string) {
+    const locationParts = event.location.split(',');
+    this.eventName = event.title;
+    this.eventText = event.text;
+    this.eventCity = locationParts[0].trim();
+    this.eventPlace = locationParts[1].trim();
+    this.promoImage = event.image;
+    this.additionalInfo = event.additionalText;
+    const modalDiv= document.getElementById(modalId);
+    if(modalDiv != null)
+    {
+      modalDiv.style.display = 'block';
+    }
+    // if(modalId === 'artistsBase'){
+    //   this.getAllArtists();
+    // }
+  }
+  closeModal(modalId: string) {
+    const modalDiv= document.getElementById(modalId);
+    if(modalDiv!= null)
+    {
+      modalDiv.style.display = 'none';
+    }
+  }
+
+  deactivateEvent(eventId: string) {
+    if(eventId){
+      this.service.deactivateEvent(eventId).subscribe(
+        () => {
+          this.openSnackBarSuccess('Pomyślnie dezaktywowano wydarzenie.');
+        },
+        (error) => {
+          this.openSnackBarError('Błąd podczas próby dezaktywacji wydarzenia.');
+        }
+      );
+    }
+  }
 }

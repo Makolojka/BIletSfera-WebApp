@@ -193,4 +193,9 @@ export class DataService {
     return this.http.get(this.url+'/api/organiser/sale-data/'+organiserName);
   }
 
+  // Change event availability
+  deactivateEvent(eventId: string) {
+    return this.http.put(this.url+'/api/event/deactivate/'+eventId, {});
+  }
+
 }
