@@ -8,6 +8,7 @@ import {Event} from "../interfaces/Event";
 import {LikedResponse} from "../interfaces/is-liked-followed";
 import Transaction from "../interfaces/transaction";
 import {Seat} from "../interfaces/seat";
+import {UserPreferences} from "../interfaces/user-preferences";
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +22,21 @@ export class DataService {
   getAll() {
     return this.http.get(this.url + '/api/events');
   }
+
+  // Top events
+  getTopFiveMostViewed() {
+    return this.http.get(this.url + '/api/events/most-viewed');
+  }
   getById(id: string) {
     return this.http.get(this.url + '/api/events/' + id);
+  }
+
+  // User preferences
+  getUserPreferences(id: string) {
+    return this.http.get(this.url + '/api/user/preferences/' + id);
+  }
+  updateOneTimeMonitChecked(userId: string) {
+    return this.http.put(this.url+'/api/user/'+userId+'/preferences/onetimemonit', {});
   }
 
   getTicketDetailsById(id: string) {
@@ -89,6 +103,16 @@ export class DataService {
   // Get all user transactions
   getAllTransactions(userId: string){
     return this.http.get(this.url + '/api/transactions/all/' + userId);
+  }
+
+  // Get user's preferences
+  getPreferencesById(id: string): Observable<UserPreferences> {
+    return this.http.get<UserPreferences>(this.url + '/api/user/' + id + '/preferences');
+  }
+
+  // Get events based on user preferences
+  getEventsBasedOnUserPreferences(userId: string) {
+    return this.http.get(this.url+'/api/events/preferences/'+userId);
   }
 
   // TODO: dodać autoryzację

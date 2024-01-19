@@ -17,11 +17,19 @@ export class OrderComponent implements OnInit{
   userId: string = '';
   cartData: any;
   validOrder: boolean = false;
+  user = {
+    name: '',
+    email: '',
+  };
 
   // Transaction data
   transactionData: any = {};
 
-  constructor(private router: Router, private service: DataService, private orderDataService: OrderDataService, private _snackBar: MatSnackBar) {
+  constructor(private router: Router,
+              private service: DataService,
+              private orderDataService: OrderDataService,
+              private _snackBar: MatSnackBar,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -32,7 +40,18 @@ export class OrderComponent implements OnInit{
 
     this.userId = this.orderDataService.userId;
     this.cartData = this.orderDataService.cartData;
+    this.getUserDetails();
   }
+
+  getUserDetails(){
+    const currentUser = this.authService.currentUser;
+    if (currentUser) {
+      console.log("currentUser:", currentUser)
+      this.user.name = currentUser.name;
+      this.user.email = currentUser.email;
+    }
+  }
+
   getTotalSum(): number {
     // Calculate the total sum by iterating through the cart items and summing up the item totals
     let totalSum = 0;
@@ -43,7 +62,7 @@ export class OrderComponent implements OnInit{
         }
       }
     }
-    return totalSum;
+    return Number(totalSum.toFixed(2));
   }
 
   prepareTransactionData(): any {
@@ -55,7 +74,8 @@ export class OrderComponent implements OnInit{
             ticketId: ticket._id,
             eventId: cartItem.event._id,
             count: ticket.quantity,
-            singleTicketCost: ticket.price
+            singleTicketCost: ticket.price,
+            seatNumbers: ticket.seatNumbers
           });
         }
       }

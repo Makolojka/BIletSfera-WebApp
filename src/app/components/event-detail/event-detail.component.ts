@@ -38,12 +38,17 @@ export class EventDetailComponent implements OnInit{
 
   public isLiked: boolean = false;
   public isFollowed: boolean = false;
+  public isLoggedIn: boolean = false;
 
-  constructor(private viewportScroller: ViewportScroller, private route: ActivatedRoute, private service: DataService, private authService: AuthService,
+  constructor(private viewportScroller: ViewportScroller,
+              private route: ActivatedRoute,
+              private service: DataService,
+              private authService: AuthService,
   private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.route.paramMap
       .subscribe((params: any) => {
         this.id = params.get('id');
@@ -130,8 +135,8 @@ export class EventDetailComponent implements OnInit{
       this.service.addUserLikeOrFollower(this.userId, this.id, 'likedEvents').subscribe(
         (response) => {
           //   Toast message
-          console.log("Event added to liked");
-          console.log("Event added to liked isLiked:", this.isLiked);
+          // console.log("Event added to liked");
+          // console.log("Event added to liked isLiked:", this.isLiked);
 
           if(this.isLiked){
             this.likesCount--;
@@ -148,7 +153,8 @@ export class EventDetailComponent implements OnInit{
       this.service.addEventLikeOrFollower(this.id, this.userId, 'like').subscribe(
         (response) => {
           //   Toast message
-          console.log("Event added to liked");
+          // console.log("Event added to liked");
+          window.location.reload();
         },
         (error) => {
           throw error;
@@ -166,8 +172,9 @@ export class EventDetailComponent implements OnInit{
       this.service.addUserLikeOrFollower(this.userId, this.id, 'followedEvents').subscribe(
         (response) => {
           //   Toast message
-          console.log("Event added to followed");
-          console.log("Event added to liked isFollowed:", this.isFollowed);
+          // console.log("Event added to followed");
+          window.location.reload();
+          // console.log("Event added to liked isFollowed:", this.isFollowed);
 
           if(this.isFollowed){
             this.followerCount--;
@@ -184,7 +191,8 @@ export class EventDetailComponent implements OnInit{
       this.service.addEventLikeOrFollower(this.id, this.userId, 'follow').subscribe(
         (response) => {
           //   Toast message
-          console.log("Event added to liked");
+          // console.log("Event added to liked");
+          window.location.reload();
         },
         (error) => {
           throw error;
@@ -370,4 +378,7 @@ export class EventDetailComponent implements OnInit{
     });
   }
 
+  showMonit() {
+    this.openSnackBarError("Zaloguj się, aby dodać bilet.");
+  }
 }

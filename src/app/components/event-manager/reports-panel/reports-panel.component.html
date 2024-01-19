@@ -5,7 +5,7 @@
 
   <div class="tile-wrapper">
     <div class="tile">
-      <h3>{{totalEarnings}} zł</h3>
+      <h3>{{totalEarnings.toFixed(2)}} zł</h3>
       <span class="tile-value">Całkowite zarobki</span>
     </div>
     <div class="tile">
@@ -69,7 +69,7 @@
         </div>
         <div class="tile-wrapper-clicked" *ngIf="event.id === lastEventId">
           <div class="tile">
-            <h3>{{ totalEarningsForEvent }} zł</h3>
+            <h3>{{ totalEarningsForEvent.toFixed(2) }} zł</h3>
             <span class="tile-value">Zarobki tego wydarzenia</span>
           </div>
           <div class="tile">

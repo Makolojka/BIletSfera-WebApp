@@ -63,6 +63,10 @@
                 <div class="right-bottom">
                   <p>{{ location }}</p>
                 </div>
+                <div class="right-bottom" *ngIf="!roomSchema || roomSchema.length === 0">
+                  <p style="font-weight: 500">Pozostało bilet(ów):</p>
+                  <p>{{ ticket.maxNumberOfTickets }}</p>
+                </div>
               </div>
             </div>
             <div class="right-section">
@@ -70,7 +74,8 @@
                 <h2>Od {{ ticket.price }} zł</h2>
               </div>
               <div class="buy-button" *ngIf="!roomSchema || roomSchema.length === 0">
-                 <main-button (click)="addTicket(userId, ticket._id, 1)" [text]="'Dodaj do koszyka'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
+                 <main-button *ngIf="isLoggedIn" (click)="addTicket(userId, ticket._id, 1)" [text]="'Dodaj do koszyka'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
+                 <main-button *ngIf="!isLoggedIn" (click)="showMonit()" [text]="'Dodaj do koszyka'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>
               </div>
               <div class="buy-button" *ngIf="roomSchema && roomSchema.length > 0">
                 <main-button (click)="scrollTo('picker')" [text]="'Wybierz bilety'" [buttonClass]="'mt-3 btn btn-special'" [icon]="'fa-ticket'"></main-button>

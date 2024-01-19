@@ -14,6 +14,9 @@
     <div class="button-container">
       <i class="fa-solid fa-edit"></i>
     </div>
+    <div class="button-container-delete">
+      <i class="fa-solid fa-trash"></i>
+    </div>
     <div class="image-container">
       <img [src]="event.image" alt="Card Image" class="event-img">
     </div>
@@ -42,7 +45,9 @@
       </div>
       <div class="icon-container">
         <i class="fa-solid fa-money-bill-1-wave icon" style="color: var(--secondary-variant-color)"></i>
-        <p class="event-info" style="color: var(--secondary-variant-color)">{{ event.totalEarningsForEvent  }}</p>
+        <p class="event-info" style="color: var(--secondary-variant-color)">
+          {{ event.totalEarningsForEvent !== undefined ? event.totalEarningsForEvent.toFixed(2) : 'Loading earnings...' }}
+        </p>
       </div>
     </div>
   </div>

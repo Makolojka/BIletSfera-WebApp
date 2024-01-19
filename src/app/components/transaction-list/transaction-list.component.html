@@ -15,8 +15,11 @@
       <td>{{ transaction.totalCost }} zł</td>
       <td>
         <ul>
-          <li *ngFor="let ticket of transaction.ticketDetails">
-            {{ ticket.count }} biletów na wydarzenie {{ ticket.eventName }} - {{ ticket.ticketName }} zł
+          <li *ngFor="let ticket of transaction.ticketDetails" class="row-space">
+            {{ ticket.count }} bilet(ów) {{ ticket.ticketName }} - {{ ticket.ticketPrice }} zł
+            <button class="button-pdf"
+                    (click)="generateTicketPdf(ticket.ticketName, ticket.ticketPrice, ticket.count, ticket.eventId, transaction.id, transaction)">
+              Pobierz jako PDF</button>
           </li>
         </ul>
       </td>

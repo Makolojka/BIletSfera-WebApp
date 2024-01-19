@@ -37,7 +37,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { EventCardWideComponent } from './components/event-card-wide/event-card-wide.component';
 import {DataService} from "./services/data.service";
 import { TextRestrainPipe } from './pipes/text-restrain.pipe';
-import {NgOptimizedImage} from "@angular/common";
+import {DatePipe, NgOptimizedImage} from "@angular/common";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {CategoryFilterService} from "./services/category-filter.service";
@@ -53,6 +53,8 @@ import {EventCreatorPanelComponent} from "./components/event-manager/event-creat
 import { OrderComponent } from './components/cart/order/order.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { RoomBuilderComponent } from './components/event-manager/event-creator-panel/room-builder/room-builder.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { PreferredEventsComponent } from './components/preferred-events/preferred-events.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +86,9 @@ import { RoomBuilderComponent } from './components/event-manager/event-creator-p
     EventCreatorPanelComponent,
     OrderComponent,
     TransactionListComponent,
-    RoomBuilderComponent
+    RoomBuilderComponent,
+    UserDetailsComponent,
+    PreferredEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +113,7 @@ import { RoomBuilderComponent } from './components/event-manager/event-creator-p
   ],
   providers: [
     DataService,
+    DatePipe,
     CategoryFilterService,
     AuthService,
     {

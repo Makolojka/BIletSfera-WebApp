@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
@@ -18,7 +18,14 @@ export class NavBarComponent implements OnInit{
   followedCount: number = 0;
   likedCount: number = 0;
 
-  constructor(public authService: AuthService, public router: Router, private service: DataService) {
+  menuHolder: HTMLElement | null = null;
+  isMenuToggled: boolean = false;
+
+  constructor(public authService: AuthService,
+              public router: Router,
+              private service: DataService,
+              private renderer: Renderer2,
+              private el: ElementRef) {
   }
 
   toggleSidebar(): void {
@@ -34,11 +41,18 @@ export class NavBarComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.isMenuToggled = false;
+    // @ts-ignore
+    // this.menuHolder.className = null;
     if(this.authService.isLoggedIn()){
       this.userId = this.authService.getUserId();
       this.getCartItems();
       this.getLikedAndFollowedCount();
     }
+
+    this.menuHolder = document.getElementById('menuHolder') as HTMLElement;
+    // console.log("this.menuHolder init: ", this.menuHolder)
+
     this.onWindowResize(); // Initialize the visibility based on the initial window size
   }
 
@@ -129,5 +143,19 @@ export class NavBarComponent implements OnInit{
       }
     );
   }
+  menuToggle() {
+    const menuHolderElement = this.el.nativeElement.querySelector('#menuHolder');
+
+    if (menuHolderElement) {
+      this.isMenuToggled = !this.isMenuToggled;
+
+      if (this.isMenuToggled) {
+        this.renderer.addClass(menuHolderElement, 'drawMenu');
+      } else {
+        this.renderer.removeClass(menuHolderElement, 'drawMenu');
+      }
+    }
+  }
+
 
 }

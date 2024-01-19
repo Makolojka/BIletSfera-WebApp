@@ -7,6 +7,7 @@ import {AuthService} from "../../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Ticket} from "../../../interfaces/ticket";
 import {Row} from "../../../interfaces/row";
+import {DatePipe, Time} from "@angular/common";
 
 @Component({
   selector: 'app-event-creator-panel',
@@ -33,10 +34,11 @@ export class EventCreatorPanelComponent implements OnInit{
   // 1. step - Basic info vars
   eventName: string = '';
   eventText: string = '';
-  startDate: Date = new Date('');
-  startDateTime: string = '';
-  endDate: Date = new Date('');
-  endDateTime: string = '';
+  isStartDate: boolean = false;
+  startDate: Date | null = null;
+  startDateTime: Time | null = null;
+  endDate: Date | null = null;
+  endDateTime: Time | null = null;
 
   selectedCategories: string[] = [];
   selectedSubCategories: string[] = [];
@@ -72,6 +74,8 @@ export class EventCreatorPanelComponent implements OnInit{
   artistsParticipating: any[] = [];
   areTicketsPresent: boolean = false;
 
+  searchQuery: string = '';
+
   newArtist = {
     name: '',
     image: '',
@@ -82,7 +86,7 @@ export class EventCreatorPanelComponent implements OnInit{
   incorrectArtistInfo = false;
   constructor(private service: DataService, private authService: AuthService, private elementRef: ElementRef,
               private renderer: Renderer2,
-              private _snackBar: MatSnackBar, public panelManagerService: PanelManagerService) {}
+              private _snackBar: MatSnackBar, public panelManagerService: PanelManagerService, private datePipe: DatePipe) {}
 
   ngOnInit(){
     this.basicInfoVisible = true;
@@ -269,6 +273,12 @@ export class EventCreatorPanelComponent implements OnInit{
     return;
   }
 
+  get filteredArtists(): any[] {
+    return this.artists.filter(artist =>
+      artist.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
   validateForm(): boolean {
     if (!this.newArtist.name || !this.newArtist.image || !this.newArtist.shortDescription) {
       this.isFormSubmitted = true;
@@ -414,14 +424,17 @@ export class EventCreatorPanelComponent implements OnInit{
 
   createNewEvent() {
     this.getEventLocation();
-    const artistIds = this.artistsParticipating.map((artist) => artist.id)
+    const artistIds = this.artistsParticipating.map((artist) => artist.id);
+
+    const dateRange = this.generateDateRange();
+
     let newEventDetails: any = {
       title: this.eventName,
       image: this.promoImage,
       text: this.eventText,
       additionalText: this.additionalInfo,
       organiser: this.organiserName,
-      date: this.startDate.toString(),
+      date: dateRange,
       location: this.location,
       category: this.selectedCategories,
       subCategory: this.selectedSubCategories,
@@ -432,24 +445,6 @@ export class EventCreatorPanelComponent implements OnInit{
       views: 0,
     };
 
-    if (
-      this.selectedCategories.includes('Kino') &&
-      this.roomSchema.length !== 0 &&
-      this.roomSchema.every(row => {
-        return row.seats.every(seat => {
-          return seat.type.trim() !== '';
-        });
-      })
-    ) {
-      newEventDetails.roomSchema = {
-        roomSchema: this.roomSchema || [],
-        roomSchemaStyle: this.roomSchemaStyle || '',
-      };
-    } else {
-      this.openSnackBarError('Stwórz poprawnie schemat swojego kina.');
-      return;
-    }
-    console.log("newEventDetails: ", newEventDetails)
     if (!this.isEventFormValidated(newEventDetails)) {
       this.openSnackBarError('Niektóre wymagane pola są puste.');
       return;
@@ -467,6 +462,40 @@ export class EventCreatorPanelComponent implements OnInit{
           this.openSnackBarError('Błąd podczas tworzenia wydarzenia. Spróbuj ponownie.');
         }
       );
+  }
+
+  generateDateRange(): string {
+    const formattedStartDate = this.datePipe.transform(this.startDate, 'dd.MM.yyyy');
+    const formattedEndDate = this.datePipe.transform(this.endDate, 'dd.MM.yyyy');
+
+    const formattedStartDateWithTime = `${formattedStartDate} ${this.startDateTime}`;
+    const formattedEndDateWithTime = `${formattedEndDate} ${this.endDateTime}`;
+    try{
+      this.updateStartDateFlag();
+      if (this.startDate && !this.endDate && !this.startDateTime) {
+        return <string>formattedStartDate;
+      } else if (this.startDate && this.startDateTime && !this.endDate && !this.endDateTime) {
+        return formattedStartDateWithTime;
+      } else if (this.startDate && !this.startDateTime && this.endDate && !this.endDateTime) {
+        return `${formattedStartDate} - ${formattedEndDate}`;
+      } else if (this.startDate && this.startDateTime && this.endDate && this.endDateTime) {
+        return `${formattedStartDateWithTime} - ${formattedEndDateWithTime}`;
+      }
+
+      return <string>formattedStartDate;
+    }catch (error){
+      console.log("Unknown error or date format")
+      return "";
+    }
+  }
+  updateStartDateFlag() {
+    if(this.startDate)
+    {
+      this.isStartDate = true;
+    }
+    else {
+      this.isStartDate = false;
+    }
   }
 
   protected readonly Object = Object;

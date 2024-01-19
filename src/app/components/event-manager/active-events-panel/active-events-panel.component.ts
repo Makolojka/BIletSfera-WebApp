@@ -71,40 +71,6 @@ export class ActiveEventsPanelComponent implements OnInit{
     }
   }
 
-  // fetchEventEarnings(eventId: string): number{
-  //   try {
-  //     // Fetch total earnings for the event
-  //     this.service.getTotalEarningsByEvent(eventId)
-  //       .subscribe((earningsResponse: any) => {
-  //         return earningsResponse.totalEarningsForEvent;
-  //       }, error => {
-  //         console.error('Error fetching total earnings:', error);
-  //         return 0;
-  //       });
-  //   } catch (error) {
-  //     console.error('Error fetching event data:', error);
-  //     return 0;
-  //   }
-  //   return 0;
-  // }
-  //
-  // fetchEventSoldTickets(eventId: string): number{
-  //   try {
-  //         // Fetch sold tickets for the event
-  //         this.service.getTicketsSoldByEvent(eventId)
-  //           .subscribe((soldTicketsResponse: any) => {
-  //             return soldTicketsResponse.ticketsSold;
-  //           }, error => {
-  //             console.error('Error fetching sold tickets:', error);
-  //             return 0;
-  //           });
-  //       } catch (error) {
-  //         console.error('Error fetching event data:', error);
-  //         return 0;
-  //       }
-  //   return 0;
-  // }
-
   getOrganizerName(){
     const currentUser = this.authService.currentUser;
     if (currentUser) {

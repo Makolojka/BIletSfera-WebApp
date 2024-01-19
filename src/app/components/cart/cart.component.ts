@@ -4,6 +4,7 @@ import {DataService} from "../../services/data.service";
 import {AuthService} from "../../services/auth.service";
 import {tick} from "@angular/core/testing";
 import {OrderDataService} from "../../services/order-data.service";
+import {DateParserService} from "../../services/date-parser.service";
 
 @Component({
   selector: 'cart',
@@ -24,7 +25,12 @@ export class CartComponent implements OnInit{
     this.screenSize = window.innerWidth;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: DataService, private authService: AuthService, private orderDataService: OrderDataService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private service: DataService,
+              private authService: AuthService,
+              private orderDataService: OrderDataService,
+              private dateParserService: DateParserService) {
     this.screenSize = window.innerWidth;
   }
 
@@ -39,7 +45,7 @@ export class CartComponent implements OnInit{
     this.service.getCart(this.userId).subscribe(
       (cartData: any) => {
         this.cartData = cartData; // Assign the fetched cart data to the cartData variable
-        // console.log("JSON.stringify(this.cartData)"+JSON.stringify(this.cartData.cart))
+        console.log("JSON.stringify(this.cartData)"+JSON.stringify(this.cartData.cart))
         if(this.cartData.cart.length>0){
           // console.log("is cart false")
           this.isCartDataEmpty = false;
@@ -49,10 +55,10 @@ export class CartComponent implements OnInit{
           this.isCartDataEmpty = true;
         }
         // console.log("cartData: "+JSON.stringify(this.cartData)) cartItem.event.category
-        console.log("cartData.cart[0].event.category: "+JSON.stringify(cartData.cart[0].event.category))
-        console.log("cartData.cart[0].tickets[0]: "+JSON.stringify(cartData.cart[0]))
-        console.log("cartData.cart[0].tickets[0].seatNumbers: "+JSON.stringify(cartData.cart[0].tickets[0].seatNumbers))
-        console.log("cartData.cart[0].tickets[0].quantity: "+JSON.stringify(cartData.cart[0].tickets[0].quantity))
+        // console.log("cartData.cart[0].event.category: "+JSON.stringify(cartData.cart[0].event.category))
+        // console.log("cartData.cart[0].tickets[0]: "+JSON.stringify(cartData.cart[0]))
+        // console.log("cartData.cart[0].tickets[0].seatNumbers: "+JSON.stringify(cartData.cart[0].tickets[0].seatNumbers))
+        // console.log("cartData.cart[0].tickets[0].quantity: "+JSON.stringify(cartData.cart[0].tickets[0].quantity))
       },
       (error: any) => {
         console.error('Error fetching cart data:', error);
@@ -94,12 +100,14 @@ export class CartComponent implements OnInit{
   }
 
   getTotalSum(): number {
-    // Calculate the total sum by iterating through the cart items and summing up the item totals
+    // Calculate the total sum by iterating through the non-expired cart items and summing up the item totals
     let totalSum = 0;
     if (this.cartData && this.cartData.cart) {
       for (const cartItem of this.cartData.cart) {
-        for (const ticket of cartItem.tickets) {
-          totalSum += ticket.quantity * ticket.price;
+        if (!this.isEventExpired(cartItem.event.date)) {
+          for (const ticket of cartItem.tickets) {
+            totalSum += ticket.quantity * ticket.price;
+          }
         }
       }
     }
@@ -107,55 +115,32 @@ export class CartComponent implements OnInit{
   }
 
   makeOrder() {
-    if(this.isCartDataEmpty)
-    {
+    if (this.isCartDataEmpty) {
       console.log("Koszyk jest pusty!");
       return;
-    }
-    else{
+    } else {
+      // Filter out expired events from the cartData
+      const filteredCartData = this.cartData.cart.filter((cartItem: { event: { date: string; }; }) => !this.isEventExpired(cartItem.event.date));
+
+      if (filteredCartData.length === 0) {
+        console.log("Wszystkie wydarzenia w koszyku są przeterminowane!");
+        return;
+      }
+
+      // Assign filtered cartData to orderDataService
       this.orderDataService.userId = this.userId;
-      this.orderDataService.cartData = this.cartData;
+      this.orderDataService.cartData = { cart: filteredCartData };
       this.router.navigate(['/cart/order']);
     }
   }
 
-  // prepareTransactionData(): any {
-  //   const ticketsArray = [];
-  //   if (this.cartData && this.cartData.cart) {
-  //     for (const cartItem of this.cartData.cart) {
-  //       for (const ticket of cartItem.tickets) {
-  //         ticketsArray.push({
-  //           ticketId: ticket._id,
-  //           eventId: cartItem.event._id,
-  //           count: ticket.quantity,
-  //           singleTicketCost: ticket.price
-  //         });
-  //       }
-  //     }
-  //   }
-  //
-  //   const totalCost = this.getTotalSum();
-  //   this.transactionData = {
-  //     userId: this.userId,
-  //     tickets: ticketsArray,
-  //     totalCost: totalCost
-  //   };
-  //
-  //   console.log("Transaction data: ", this.transactionData);
-  // }
-  //
-  // buyTickets() {
-  //   this.prepareTransactionData();
-  //   this.service.processTransaction(this.transactionData).subscribe(
-  //     (response) => {
-  //       console.log("Kupione!");
-  //     },
-  //     (error) => {
-  //       console.log("BŁĄD!: ", error);
-  //     }
-  //   );
-  // }
+  isEventExpired(dateStr: string): boolean {
+    const { startDate, endDate } = this.dateParserService.parseEventDate(dateStr);
+    const currentDate = new Date();
 
+    // Check if the event has expired based on its date range
+    return endDate < currentDate;
+  }
 
   protected readonly tick = tick;
 }

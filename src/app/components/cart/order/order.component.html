@@ -18,7 +18,13 @@
             <tbody>
             <ng-container *ngFor="let cartItem of cartData?.cart">
               <tr class="cart-item" *ngFor="let ticket of cartItem.tickets">
-                <td class="cart-item-name" >{{ cartItem.event.title }}</td>
+                <td class="cart-item-name" > {{ cartItem.event.title }}
+                  <div *ngIf="cartItem.event.category.includes('Kino')" class="align-left-row">
+                    <span style="font-size: 12px">Wybrane miejsca:</span>
+                    <div class="align-left-row flex-wrap" style="display: flex; justify-content: flex-start">
+                      <span *ngFor="let seatNumbers of ticket.seatNumbers" class="cart-item-name" style="font-size: 12px; margin: 5px" [routerLink]="'event/detail'">{{ seatNumbers }}</span>
+                    </div>
+                  </div></td>
                 <td class="cart-item-price">{{ ticket.price }} zł</td>
                 <td class="cart-item-quantity">{{ ticket.quantity }}</td>
                 <td class="cart-item-sum">{{ ticket.quantity * ticket.price }} zł</td>
@@ -33,17 +39,19 @@
             <h2>Twoje dane</h2>
           </div>
           <div class="credentials">
-            <div class="align-left-row">
-              <h4 style="margin-right: 5px">Jan</h4>
-              <h4>Kowalski</h4>
-            </div>
-            <h4>test@gmail.com</h4>
-            <div class="align-left-row">
-              <h4 style="margin-right: 5px">33-100</h4>
-              <h4>Tarnów</h4>
-            </div>
+<!--            <div class="align-left-row">-->
+<!--              <h4 style="margin-right: 5px">Jan</h4>-->
+<!--              <h4>Kowalski</h4>-->
+<!--            </div>-->
+            <h4>{{user.name}}</h4>
+            <h4>{{user.email}}</h4>
+<!--            <div class="align-left-row">-->
+<!--              <h4 style="margin-right: 5px">33-100</h4>-->
+<!--              <h4>Tarnów</h4>-->
+<!--            </div>-->
           </div>
         </div>
+        <span class="disclaimer">Kupione bilety będą dostępne w zakładce Transakcje.</span>
       </div>
 
       <div class="total-amount">
