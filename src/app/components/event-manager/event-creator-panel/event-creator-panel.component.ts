@@ -424,17 +424,14 @@ export class EventCreatorPanelComponent implements OnInit{
 
   createNewEvent() {
     this.getEventLocation();
-    const artistIds = this.artistsParticipating.map((artist) => artist.id);
-
-    const dateRange = this.generateDateRange();
-
+    const artistIds = this.artistsParticipating.map((artist) => artist.id)
     let newEventDetails: any = {
       title: this.eventName,
       image: this.promoImage,
       text: this.eventText,
       additionalText: this.additionalInfo,
       organiser: this.organiserName,
-      date: dateRange,
+      date: this.generateDateRange(),
       location: this.location,
       category: this.selectedCategories,
       subCategory: this.selectedSubCategories,
@@ -445,6 +442,24 @@ export class EventCreatorPanelComponent implements OnInit{
       views: 0,
     };
 
+    if (
+      this.selectedCategories.includes('Kino') &&
+      this.roomSchema.length !== 0 &&
+      this.roomSchema.every(row => {
+        return row.seats.every(seat => {
+          return seat.type.trim() !== '';
+        });
+      })
+    ) {
+      newEventDetails.roomSchema = {
+        roomSchema: this.roomSchema || [],
+        roomSchemaStyle: this.roomSchemaStyle || '',
+      };
+    } else if(this.selectedCategories.includes('Kino') && this.roomSchema.length === 0){
+      this.openSnackBarError('Stwórz poprawnie schemat swojego kina.');
+      return;
+    }
+    console.log("newEventDetails: ", newEventDetails)
     if (!this.isEventFormValidated(newEventDetails)) {
       this.openSnackBarError('Niektóre wymagane pola są puste.');
       return;

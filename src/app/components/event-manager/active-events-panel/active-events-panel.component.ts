@@ -39,6 +39,7 @@ export class ActiveEventsPanelComponent implements OnInit{
   eventPlace: string = '';
   promoImage: string = '';
   additionalInfo: string = '';
+  eventId: string = '';
   constructor(private service: DataService,
               private authService: AuthService,
               public panelManagerService: PanelManagerService,
@@ -118,6 +119,7 @@ export class ActiveEventsPanelComponent implements OnInit{
       this.router.navigate(['event/detail', eventId]);
     }
   }
+
   // Snackbar messages
   openSnackBarError(errorMsg: string) {
     this._snackBar.openFromComponent(SnackbarComponent, {
@@ -141,6 +143,7 @@ export class ActiveEventsPanelComponent implements OnInit{
     this.eventPlace = locationParts[1].trim();
     this.promoImage = event.image;
     this.additionalInfo = event.additionalText;
+    this.eventId = event.id;
     const modalDiv= document.getElementById(modalId);
     if(modalDiv != null)
     {
@@ -170,4 +173,64 @@ export class ActiveEventsPanelComponent implements OnInit{
       );
     }
   }
+
+  isEventUpdateFormValidated(newEventDetails: any): boolean {
+    const isAnyFieldEmpty =
+      newEventDetails.title === '' ||
+      newEventDetails.image === '' ||
+      newEventDetails.text === '' ||
+      newEventDetails.additionalText === '' ||
+      newEventDetails.location === '';
+    if (isAnyFieldEmpty) {
+      this.isEventFormSubmitted = true;
+      return false;
+    }
+    return true;
+  }
+  getEventLocation(){
+    if(this.eventName !== ''){
+      this.location = this.eventCity + ', ' + this.eventPlace;
+    }
+    else{
+      this.location = this.eventCity;
+    }
+  }
+
+  updateExistingEvent() {
+    this.getEventLocation();
+
+    let newEventDetails: any = {
+      id: this.eventId,
+      title: this.eventName,
+      image: this.promoImage,
+      text: this.eventText,
+      additionalText: this.additionalInfo,
+      organiser: this.organiserName,
+      location: this.location,
+    };
+
+    if (!this.isEventUpdateFormValidated(newEventDetails)) {
+      this.openSnackBarError('Niektóre wymagane pola są puste.');
+      return;
+    }
+
+    if(!this.eventId){
+      this.openSnackBarError('Problem z uzyskaniem id wydarzenia.');
+      return;
+    }
+
+    // Starting the transaction
+    this.service.updateExistingEvent(newEventDetails)
+      .subscribe(
+        (response: any) => {
+          this.openSnackBarSuccess('Pomyślnie utworzono wydarzenie.');
+          window.location.reload();
+        },
+        (error: any) => {
+          console.error('Błąd podczas aktualizowania wydarzenia:', error);
+          this.openSnackBarError('Błąd podczas tworzenia wydarzenia. Spróbuj ponownie.');
+        }
+      );
+  }
+
 }

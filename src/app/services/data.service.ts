@@ -70,6 +70,11 @@ export class DataService {
     return this.http.post(this.url + '/events/transaction', newEvent);
   }
 
+  //Updates existing event
+  updateExistingEvent(eventData: Event) {
+    return this.http.patch(this.url + '/api/event/update', {eventData});
+  }
+
   //Cart endpoints
   getCart(userId: string) {
     let headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token,
