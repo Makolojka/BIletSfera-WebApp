@@ -10,7 +10,6 @@ import {LikesAndFollows} from "../../interfaces/likes-and-follows";
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit{
-  isSidebarVisible = false;
   isDropdownVisible = false;
   public userId: string = '';
   cartData: any;
@@ -27,23 +26,8 @@ export class NavBarComponent implements OnInit{
               private renderer: Renderer2,
               private el: ElementRef) {
   }
-
-  toggleSidebar(): void {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
-
-  toggleDropdown(): void {
-    if(window.innerWidth <= 768){
-      this.isDropdownVisible = !this.isDropdownVisible;
-      // this.userId = '';
-      // this.cartData = '';
-    }
-  }
-
   ngOnInit() {
     this.isMenuToggled = false;
-    // @ts-ignore
-    // this.menuHolder.className = null;
     if(this.authService.isLoggedIn()){
       this.userId = this.authService.getUserId();
       this.getCartItems();
@@ -51,9 +35,7 @@ export class NavBarComponent implements OnInit{
     }
 
     this.menuHolder = document.getElementById('menuHolder') as HTMLElement;
-    // console.log("this.menuHolder init: ", this.menuHolder)
-
-    this.onWindowResize(); // Initialize the visibility based on the initial window size
+    this.onWindowResize();
   }
 
   @HostListener('window:resize')
@@ -73,49 +55,13 @@ export class NavBarComponent implements OnInit{
   getCartItems() {
     this.service.getCart(this.userId).subscribe(
       (cartData: any) => {
-        this.cartData = cartData; // Assign the fetched cart data to the cartData variable
+        this.cartData = cartData;
         this.calculateTicketCount();
-        // console.log("cartData: "+JSON.stringify(this.cartData))
       },
       (error: any) => {
         console.error('Error fetching cart data:', error);
       }
     );
-  }
-
-  addTicketToCart(eventId: string, ticketId: string) {
-    this.service.addTicketToCart(this.userId, eventId, ticketId, 1).subscribe(
-      (response: any) => {
-        this.getCartItems();
-      },
-      (error: any) => {
-        console.error('Error adding ticket to cart:', error);
-      }
-    );
-  }
-
-  removeTicketFromCart(eventId: string, ticketId: string) {
-    this.service.removeTicketFromCart(this.userId, eventId, ticketId, 1).subscribe(
-      (response: any) => {
-        this.getCartItems();
-      },
-      (error: any) => {
-        console.error('Error removing ticket from cart:', error);
-      }
-    );
-  }
-
-  getTotalSum(): number {
-    // Calculate the total sum by iterating through the cart items and summing up the item totals
-    let totalSum = 0;
-    if (this.cartData && this.cartData.cart) {
-      for (const cartItem of this.cartData.cart) {
-        for (const ticket of cartItem.tickets) {
-          totalSum += ticket.quantity * ticket.price;
-        }
-      }
-    }
-    return Number(totalSum.toFixed(2));
   }
 
   calculateTicketCount() {
@@ -156,6 +102,4 @@ export class NavBarComponent implements OnInit{
       }
     }
   }
-
-
 }

@@ -370,7 +370,6 @@
         <h2>Dodaj artystów z bazy dostępnych artystów</h2>
 
         <div class="artists">
-          <!--          <h2 id="artists">Artyści bioracy udział w wydarzeniu</h2>-->
           <div class="slider-container">
             <div class="slider">
               <!--Artist circle-->
@@ -459,7 +458,6 @@
       </div>
       <div class="modal-footer">
         <a class="logo" [routerLink]="['/']" style="margin: 10px 0"><img src="assets/log.png" style="transform: scale(1.5); margin: 0"></a>
-        <!--        <button type="button" class="btn">Dodaj artystę</button>-->
       </div>
     </div>
   </div>
@@ -484,7 +482,6 @@
             <input type="text" placeholder="Url " name="image" [(ngModel)]="newArtist.image" required>
             <div *ngIf="isFormSubmitted && !newArtist.image" class="error-modal">Pole nie może być puste.</div>
 
-            <!--            <input type="text" placeholder="Krótki opis artysty (np. )" name="shortDescription" [(ngModel)]="newArtist.shortDescription" required>-->
             <textarea
               class="textarea-modal"
               placeholder="Krótki opis artysty (np. )"
@@ -506,8 +503,7 @@
               rows="1"
               required
             ></textarea>
-            <!--            <input type="text" placeholder="Opis kariery artysty (opcjonalne)" name="career" [(ngModel)]="newArtist.career">-->
-          </form>
+            </form>
         </div>
       </div>
       <div class="modal-footer">

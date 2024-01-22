@@ -26,7 +26,6 @@ import { MultiItemCarouselComponent } from './components/multi-item-carousel/mul
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LikedComponent } from './components/liked/liked.component';
-import { LocalEventsComponent } from './components/local-events/local-events.component';
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -74,7 +73,6 @@ import { StatusTextPipe } from './pipes/status-text.pipe';
     WishListComponent,
     CartComponent,
     LikedComponent,
-    LocalEventsComponent,
     CategoriesComponent,
     EventCardWideComponent,
     TextRestrainPipe,

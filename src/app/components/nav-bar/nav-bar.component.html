@@ -8,7 +8,6 @@
           <button *ngIf="!authService.isOrganizer()" class="whiteLink siteLink" [routerLink]="['/organizer/overview']">Jesteś organizatorem?</button>
           <button *ngIf="authService.isOrganizer()" class="whiteLink siteLink" [routerLink]="['/event-manager']">
             <i class="fa-solid fa-solar-panel me-0" style="font-size: 18px"></i>
-<!--            <span style="font-size: 16px">Panel organizatora</span>-->
           </button>
         </div>
         <div class="flex3 text-center" id="siteBrand">
@@ -21,9 +20,7 @@
         </div>
 
         <div class="flex2 text-end d-block d-md-none">
-<!--          <button class="whiteLink siteLink"><i class="fas fa-search"></i></button>-->
         </div>
-<!--        fa-solid fa-ticket {{ ticketCount }}-->
         <div class="flex2 text-end d-none d-md-block">
           <button class="whiteLink siteLink" *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']" [queryParams]="{ register: true }">Zarejestruj się</button>
           <button class="blackLink siteLink" *ngIf="authService.isLoggedIn()" [routerLink]="['/cart']">

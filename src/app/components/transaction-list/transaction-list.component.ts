@@ -44,8 +44,6 @@ export class TransactionListComponent implements OnInit{
           });
         });
       });
-
-      console.log("transactions: ", transactions);
     });
   }
 
@@ -56,7 +54,6 @@ export class TransactionListComponent implements OnInit{
       }
       return numbers;
     }, []);
-    // console.log("seatNumbers w pdf: ", seatNumbers)
 
     this.service.getById(eventId).subscribe((eventDetails: any) => {
       const eventName = eventDetails.title || 'Nazwa niedostępna';
@@ -125,7 +122,6 @@ export class TransactionListComponent implements OnInit{
             {
               stack: [
                 { image: this.logoBase64, width: 100, height: 75, alignment: 'center' },
-                // { text: 'Bilet kupiony na stronie BiletSfera', alignment: 'center', fontSize: 8 }
               ],
               width: 800,
               alignment: 'center',

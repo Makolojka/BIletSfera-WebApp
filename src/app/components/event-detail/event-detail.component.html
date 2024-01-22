@@ -18,7 +18,6 @@
   <div class="banner-row" id="about">
     <span><i class="fas fa-calendar icon" data-tooltip="Data"></i>{{ date }}</span>
     <span><i class="fas fa-location icon" data-tooltip="Lokalizacja"></i>{{ location }}</span>
-<!--    TODO: organizator do modelu dodać-->
     <span><i class="fa-solid fa-user-tie icon" data-tooltip="Organizator"></i>{{ organiser }}</span>
   </div>
   <div class="banner-line"></div>
@@ -171,7 +170,7 @@
 
       <div class="additional-info">
         <h2 id="additional">Dodatkowe informacje</h2>
-        <p class="text">{{ additionalText }}</p>
+        <div [innerHTML]="sanitizeHtml(additionalText)" class="text"></div>
       </div>
 
       <div class="artists" *ngIf="artists.length != 0">

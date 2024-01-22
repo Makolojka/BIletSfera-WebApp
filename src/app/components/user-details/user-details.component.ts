@@ -25,9 +25,6 @@ export class UserDetailsComponent implements OnInit{
     }
   };
 
-  // selectedCategories: string[] = [];
-  // selectedSubCategories: string[] = [];
-
   constructor(private authService: AuthService, private _snackBar: MatSnackBar, public service: DataService,) {}
   ngOnInit() {
     this.getUserDetails();
@@ -63,7 +60,6 @@ export class UserDetailsComponent implements OnInit{
   getUserDetails(){
     const currentUser = this.authService.currentUser;
     if (currentUser) {
-      console.log("currentUser:", currentUser)
       this.user.name = currentUser.name;
       this.user.email = currentUser.email;
       this.user.id = currentUser.userId;
@@ -71,7 +67,6 @@ export class UserDetailsComponent implements OnInit{
   }
   // Update user details
   updateUserDetails() {
-    console.log("this.user: ",this.user)
     if(this.user.name === '' || this.user.email === ''){
       this.openSnackBarError("Pola Nazwa konta oraz Email nie mogą być puste.");
       return;
@@ -88,13 +83,11 @@ export class UserDetailsComponent implements OnInit{
         this.openSnackBarError("Wystąpił błąd, spróbuj ponownie później.");
       });
   }
-
   getUserPreferences() {
     this.service.getPreferencesById(this.user.id).subscribe(
       (data: UserPreferences) => {
         if (data && data.preferences) {
           this.user.preferences = data.preferences;
-          console.log('User preferences:', this.user.preferences);
         }
       },
       (error) => {

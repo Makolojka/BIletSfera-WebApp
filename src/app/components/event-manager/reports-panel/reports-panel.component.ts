@@ -68,7 +68,6 @@ export class ReportsPanelComponent implements OnInit{
   lastEventId: string = '';
 
   constructor(private service: DataService, private authService: AuthService, public panelManagerService: PanelManagerService) {}
-  // TODO: przerobić na pobieranie za każdym razem po zmianie na to okno
   ngOnInit() {
     this.getOrganizerName();
     this.getOwnedEvents();
@@ -204,9 +203,9 @@ export class ReportsPanelComponent implements OnInit{
       this.eventSelectedToggle = false;
       this.lastEventId = '';
     } else {
-      this.eventSelectedToggle = false; // Initially hide details
+      this.eventSelectedToggle = false;
       this.getEventData(eventId);
-      this.eventSelectedToggle = true; // Show details if there's data available
+      this.eventSelectedToggle = true;
       this.lastEventId = eventId;
     }
   }

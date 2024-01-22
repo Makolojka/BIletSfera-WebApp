@@ -243,9 +243,11 @@ export class EventCreatorPanelComponent implements OnInit{
   toggleArtist(artist: any) {
     const index = this.artistsParticipating.findIndex((a) => a.id === artist.id);
     if (index === -1) {
-      this.artistsParticipating.push(artist); // Add the artist if not already present
+      this.artistsParticipating.push(artist);
+      this.openSnackBarSuccess("Artysta został dodany.");
     } else {
-      this.artistsParticipating.splice(index, 1); // Remove the artist if already present
+      this.artistsParticipating.splice(index, 1);
+      this.openSnackBarSuccess("Artysta został usunięty.");
     }
   }
 

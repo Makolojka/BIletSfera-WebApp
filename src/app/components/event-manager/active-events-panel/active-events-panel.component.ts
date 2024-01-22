@@ -64,7 +64,7 @@ export class ActiveEventsPanelComponent implements OnInit{
       // Fetch total earnings for the event
       this.service.getTotalEarningsByEvent(eventId)
         .subscribe((earningsResponse: any) => {
-          // Assign the total earnings to the specific event in eventDetails
+          // Assigns the total earnings to the specific event in eventDetails
           const eventIndex = this.eventDetails.findIndex(event => event.id === eventId);
           if (eventIndex !== -1) {
             this.eventDetails[eventIndex].totalEarningsForEvent = earningsResponse.totalEarningsForEvent;
@@ -76,7 +76,7 @@ export class ActiveEventsPanelComponent implements OnInit{
       // Fetch sold tickets for the event
       this.service.getTicketsSoldByEvent(eventId)
         .subscribe((soldTicketsResponse: any) => {
-          // Assign the total sold tickets to the specific event in eventDetails
+          // Assigns the total sold tickets to the specific event in eventDetails
           const eventIndex = this.eventDetails.findIndex(event => event.id === eventId);
           if (eventIndex !== -1) {
             this.eventDetails[eventIndex].totalSoldForEvent = soldTicketsResponse.ticketsSold;
@@ -100,7 +100,6 @@ export class ActiveEventsPanelComponent implements OnInit{
     this.service.getOwnedEvents(this.userId).subscribe(
       (res: any) => {
         this.ownedEvents = res.ownedEvents;
-        // console.log('Owned Events:', this.ownedEvents);
         this.fetchEventDetails();
         if(this.ownedEvents.length !== 0){
           this.areEventsPresent = true;
@@ -149,9 +148,6 @@ export class ActiveEventsPanelComponent implements OnInit{
     {
       modalDiv.style.display = 'block';
     }
-    // if(modalId === 'artistsBase'){
-    //   this.getAllArtists();
-    // }
   }
   closeModal(modalId: string) {
     const modalDiv= document.getElementById(modalId);

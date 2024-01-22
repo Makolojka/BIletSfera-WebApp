@@ -20,7 +20,6 @@ export class MultiItemCarouselComponent implements OnInit{
   ngOnInit(): void {
     this.carousel = document.getElementById('carousel') as HTMLElement;
   }
-  //TODO: On focus
   ngAfterViewInit(): void {
     if (this.carousel) {
       this.carouselInner = this.carousel.querySelector('.custom-carousel-inner') as HTMLElement;
@@ -64,11 +63,8 @@ export class MultiItemCarouselComponent implements OnInit{
       }
       const slides = this.carouselInner.getElementsByClassName('custom-carousel-item');
       const slideWidth = (slides[0] as HTMLElement).offsetWidth; // Get the width of a single slide including margins
-
       const containerWidth = this.carousel!.offsetWidth; // Get the width of the carousel container
-
       const visibleSlides = Math.floor(containerWidth / slideWidth); // Calculate the number of visible slides
-
       const maxSlideIndex = slides.length - visibleSlides; // Calculate the maximum slide index
 
       slideIndex = Math.max(0, Math.min(slideIndex, maxSlideIndex)); // Clamp the slide index within the valid range
@@ -80,16 +76,6 @@ export class MultiItemCarouselComponent implements OnInit{
         substractionWidth = containerWidth - visibleSlides * slideWidth;
         translateX += substractionWidth;
       }
-
-      // Debug values
-      // console.log("slide width:" + slideWidth);
-      // console.log("containerWidth:" + containerWidth);
-      // console.log("visibleSlides:" + visibleSlides);
-      // console.log("substractionWidth:" + substractionWidth);
-      // console.log("maxSlideIndex:" + maxSlideIndex);
-      // console.log("slideIndex:" + slideIndex);
-      // console.log("translateX:" + translateX);
-
       this.carouselInner.style.transform = `translateX(${translateX}px)`;
       this.currentSlide = slideIndex;
 

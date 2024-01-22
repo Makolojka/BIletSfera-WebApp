@@ -53,7 +53,7 @@ export class OrderComponent implements OnInit{
   }
 
   getTotalSum(): number {
-    // Calculate the total sum by iterating through the cart items and summing up the item totals
+    // Calculate the total sum by iterating through the cart items
     let totalSum = 0;
     if (this.cartData && this.cartData.cart) {
       for (const cartItem of this.cartData.cart) {

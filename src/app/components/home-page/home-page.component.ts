@@ -36,7 +36,7 @@ export class HomePageComponent implements OnInit {
     this.service.getAll().subscribe((response) => {
       this.items$ = response;
       this.dataLoaded = true;
-      this.fetchTicketsForEachEvent(); // Fetch tickets for each event after getting all events
+      this.fetchTicketsForEachEvent();
     });
   }
 
@@ -52,8 +52,6 @@ export class HomePageComponent implements OnInit {
     this.service.getUserPreferences(this.userId).subscribe(
       (data: any) => {
         this.oneTimeMonitChecked = data.oneTimeMonitChecked;
-        // console.log('oneTimeMonitChecked:', this.oneTimeMonitChecked);
-
         if (this.oneTimeMonitChecked === false) {
           this.openModal('personalizedOffersModal');
         }
@@ -91,8 +89,6 @@ export class HomePageComponent implements OnInit {
   }
 
   closeWithoutPreferences() {
-    // console.log("closeWithoutPreferences userId: ",this.userId)
-
     this.closeModal('personalizedOffersModal');
     if(this.userId !== ''){
       this.service.updateOneTimeMonitChecked(this.userId).subscribe(

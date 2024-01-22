@@ -12,6 +12,8 @@ import {Row} from "../../interfaces/row";
 import {Seat} from "../../interfaces/seat";
 import {SnackbarComponent} from "../snackbars/snackbar-error/snackbar.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'event-detail',
@@ -44,7 +46,9 @@ export class EventDetailComponent implements OnInit{
               private route: ActivatedRoute,
               private service: DataService,
               private authService: AuthService,
-  private _snackBar: MatSnackBar) {}
+              private sanitizer: DomSanitizer,
+              private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
@@ -171,10 +175,7 @@ export class EventDetailComponent implements OnInit{
     {
       this.service.addUserLikeOrFollower(this.userId, this.id, 'followedEvents').subscribe(
         (response) => {
-          //   Toast message
-          // console.log("Event added to followed");
           window.location.reload();
-          // console.log("Event added to liked isFollowed:", this.isFollowed);
 
           if(this.isFollowed){
             this.followerCount--;
@@ -190,8 +191,6 @@ export class EventDetailComponent implements OnInit{
       );
       this.service.addEventLikeOrFollower(this.id, this.userId, 'follow').subscribe(
         (response) => {
-          //   Toast message
-          // console.log("Event added to liked");
           window.location.reload();
         },
         (error) => {
@@ -312,27 +311,8 @@ export class EventDetailComponent implements OnInit{
         totalPrice += correspondingTicket.price;
       }
     });
-    // console.log("this.chosenSeats: ", this.chosenSeats + "this.chosenSeats strigified: ", JSON.stringify(this.chosenSeats) + "this.tickets", this.tickets)
     return parseFloat(totalPrice.toFixed(2));
   }
-
-
-  // addTicketsToCart() {
-  //   const ticketData = this.chosenSeats.map((seat: Seat) => {
-  //     const correspondingTicket = this.tickets.find((ticket: Ticket) => ticket.type === seat.type);
-  //
-  //     if (correspondingTicket) {
-  //       return {
-  //         ticketId: correspondingTicket._id,
-  //         quantity: 1, // Set the quantity as needed, this is just an example
-  //         seatNumbers: this.parseSeat(seat.id) // Assuming seat.id is the correct property for the seat number
-  //       };
-  //     }
-  //     return null; // Handle the case where a corresponding ticket is not found for a seat
-  //   }).filter((ticket) => ticket !== null);
-  //
-  //   console.log("ticketData: ",ticketData);
-  // }
   prepareMultipleTickets() {
     const ticketData = this.chosenSeats.reduce((acc: any[], seat) => {
       const correspondingTicket = this.tickets.find((ticket: Ticket) => ticket.type === seat.type);
@@ -380,5 +360,9 @@ export class EventDetailComponent implements OnInit{
 
   showMonit() {
     this.openSnackBarError("Zaloguj się, aby dodać bilet.");
+  }
+
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

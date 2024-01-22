@@ -17,9 +17,6 @@ export class CartComponent implements OnInit{
   cartData: any;
   isCartDataEmpty: boolean = true;
 
-  // // Transaction data
-  // transactionData: any = {};
-
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.screenSize = window.innerWidth;
@@ -37,35 +34,26 @@ export class CartComponent implements OnInit{
   ngOnInit() {
     if(this.authService.isLoggedIn()){
       this.userId = this.authService.getUserId();
-      this.getCartItems(); // Call the method to fetch cart items from the server
+      this.getCartItems();
     }
   }
 
   getCartItems() {
     this.service.getCart(this.userId).subscribe(
       (cartData: any) => {
-        this.cartData = cartData; // Assign the fetched cart data to the cartData variable
-        console.log("JSON.stringify(this.cartData)"+JSON.stringify(this.cartData.cart))
+        this.cartData = cartData;
         if(this.cartData.cart.length>0){
-          // console.log("is cart false")
           this.isCartDataEmpty = false;
         }
         else{
-          // console.log("is cart true")
           this.isCartDataEmpty = true;
         }
-        // console.log("cartData: "+JSON.stringify(this.cartData)) cartItem.event.category
-        // console.log("cartData.cart[0].event.category: "+JSON.stringify(cartData.cart[0].event.category))
-        // console.log("cartData.cart[0].tickets[0]: "+JSON.stringify(cartData.cart[0]))
-        // console.log("cartData.cart[0].tickets[0].seatNumbers: "+JSON.stringify(cartData.cart[0].tickets[0].seatNumbers))
-        // console.log("cartData.cart[0].tickets[0].quantity: "+JSON.stringify(cartData.cart[0].tickets[0].quantity))
       },
       (error: any) => {
         console.error('Error fetching cart data:', error);
       }
     );
   }
-  // TODO: takie same użycie tych samych funkcji w sidebarze, do zmiany
   incrementQuantity(userId: string, eventId: string, ticketId: string) {
     this.service.addTicketToCart(userId, eventId, ticketId, 1).subscribe(
       (response) => {
@@ -100,7 +88,7 @@ export class CartComponent implements OnInit{
   }
 
   getTotalSum(): number {
-    // Calculate the total sum by iterating through the non-expired cart items and summing up the item totals
+    // Calculate the total sum by iterating through the non-expired cart items
     let totalSum = 0;
     if (this.cartData && this.cartData.cart) {
       for (const cartItem of this.cartData.cart) {
