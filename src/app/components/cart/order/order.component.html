@@ -27,7 +27,7 @@
                   </div></td>
                 <td class="cart-item-price">{{ ticket.price }} zł</td>
                 <td class="cart-item-quantity">{{ ticket.quantity }}</td>
-                <td class="cart-item-sum">{{ ticket.quantity * ticket.price }} zł</td>
+                <td class="cart-item-sum">{{ (ticket.quantity * ticket.price).toFixed(2) }} zł</td>
               </tr>
             </ng-container>
             </tbody>

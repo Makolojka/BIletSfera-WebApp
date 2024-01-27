@@ -27,7 +27,6 @@ export class LikedComponent implements OnInit{
     });
   }
 
-  // TODO: zabezpieczenie, co jak nie wykona się jedna z metod?
   likeEvent(eventId: string){
     if(this.userId && eventId)
     {

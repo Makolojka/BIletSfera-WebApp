@@ -50,7 +50,7 @@
             </button>
           </div>
         </td>
-        <td class="cart-item-sum" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">{{ ticket.quantity * ticket.price }} zł</td>
+        <td class="cart-item-sum" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">{{ (ticket.quantity * ticket.price).toFixed(2) }} zł</td>
         <td class="cart-item-actions" [ngClass]="{ 'expired-item': isEventExpired(cartItem.event.date) }">
           <div class="align-center-row">
             <button class="btn-wishlist btn-delete" (click)="removeWholeTicket(userId, cartItem.event._id, ticket._id, ticket.quantity)">

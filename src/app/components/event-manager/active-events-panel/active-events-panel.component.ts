@@ -162,6 +162,7 @@ export class ActiveEventsPanelComponent implements OnInit{
       this.service.deactivateEvent(eventId).subscribe(
         () => {
           this.openSnackBarSuccess('Pomyślnie dezaktywowano wydarzenie.');
+          window.location.reload();
         },
         (error) => {
           this.openSnackBarError('Błąd podczas próby dezaktywacji wydarzenia.');
