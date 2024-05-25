@@ -1,27 +1,56 @@
-# BiletSfera
+# Aplikacja Serwerowa Systemu Sprzedaży Biletów
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
+# Autor
+Marcin Król
 
-## Development server
+***
+# Wstęp 
+Aplikacja Webowa dostępna w niniejszym repozytorium jest częścią większego systemu - System Sprzedaży Biletów. Jednocześnie stanowi jego największą i najbardziej rozbudowaną część. Cały system - projekt, implementacja oraz badania były tematem mojej pracy inżynierskiej.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Opis projektu
+Aplikacja webowa umożliwia użytkownikom przeglądanie i wyszukiwanie dostępnych wydarzeń, a także wybieranie najlepszych miejsc w sali na podstawie „schematu” miejsc. Po wybraniu biletów, użytkownicy mogą dokonać płatności. Aplikacja umożliwia również organizatorom wydarzeń łatwe dodawanie nowych wydarzeń i zarządzanie sprzedażą biletów poprzez interfejs administracyjny. Organizatorzy mogą także skorzystać z narzędzi analitycznych, aby śledzić sprzedaż biletów i dostosowywać ceny w zależności od popytu. Głównym celem aplikacji jest, aby użytkownicy mogli łatwo i szybko kupować bilety na swoje ulubione wydarzenia, a organizatorzy posiadali pełną kontrolę nad sprzedażą biletów i wglądem do danych analitycznych, które pomogą im w podejmowaniu decyzji biznesowych. 
 
-## Code scaffolding
+Część serwerowa: https://github.com/Makolojka/BiletSfera-Server
+Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+***
 
-## Build
+# Uruchomienie projektu
+Aby, uruchomić projekt należy znajdować się w terminalu w odpowiednim folderze(ścieżce) i wywołać komendę '_npm start_'
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Część kliencka dostępna jest pod adresem: 
+> http://localhost:4200/
 
-## Running unit tests
+***
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Diagram ERD
+<kbd> <img src="./images/ERD.png" /> </kbd>
 
-## Running end-to-end tests
+## Dokumentacja API
+Szczegółowa dokumentacja API dostępna jest z poziomu interfejsu swagger.io. <br>
+<br>Po włączeniu serwera dokumentację można znaleźć pod adresem: 
+> http://localhost:3001/api-docs/#/<br>
+> 
+> 
+***
+<kbd> <img src="./images/api1.png" /> </kbd>
+<kbd> <img src="./images/api2.png" /> </kbd>
+<kbd> <img src="./images/api3.png" /> </kbd>
+<kbd> <img src="./images/api4.png" /> </kbd>
+<kbd> <img src="./images/schemas.png" /> </kbd>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Praca inżynierska wraz z szczegółową dokumentacją oraz wyglądem ekranów aplikacji:
+[Dokumentacja.pdf](./images/Marcin_Krol_System_sprzedazy_biletow.pdf)
 
-## Further help
+# Technologie użyte w projekcie
+- node.js
+- express.js
+- swagger.io
+- angular 16
+- mongo.db
+- javascript/typescript
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+***
+
+# Prezentacja aplikacji
+https://youtu.be/TaqddrTQ0sc
