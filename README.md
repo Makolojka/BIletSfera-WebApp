@@ -1,8 +1,5 @@
 # Aplikacja Serwerowa Systemu Sprzedaży Biletów
 
-# Autor
-Marcin Król
-
 ***
 
 # Wstęp 
@@ -53,5 +50,5 @@ Szczegółowa dokumentacja API dostępna jest z poziomu interfejsu swagger.io. <
 
 ***
 
-# Prezentacja aplikacji
-https://youtu.be/TaqddrTQ0sc
+## Autor
+Marcin Król
