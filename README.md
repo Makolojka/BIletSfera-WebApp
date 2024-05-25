@@ -13,6 +13,59 @@ Część serwerowa: https://github.com/Makolojka/BiletSfera-Server
 Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 
 ***
+## Ekrany aplikacji
+
+### Strona główna
+<kbd><img src="./images/home_2.png" width="800" /></kbd>
+***
+
+### Rejestracja/Logowanie
+<kbd><img src="./images/register.png" width="800" /></kbd>
+***
+
+### Wyszukiwanie
+<kbd><img src="./images/wyszukiwanie.png" width="800" /></kbd>
+***
+
+### Detal wydarzenia
+<kbd><img src="./images/detail2.png" width="800" /></kbd>
+***
+
+### Panel użytkownika - Dodawanie biletu do koszyka
+<kbd><img src="./images/add.png" width="800" /></kbd>
+***
+
+### Panel użytkownika - Widok koszyka
+<kbd><img src="./images/koszyk 2.png" width="800" /></kbd>
+***
+
+### Wyszukiwanie artystów
+<kbd><img src="./images/artysty.png" width="800" /></kbd>
+***
+
+### Przykładowy szablon kina
+<kbd><img src="./images/cinemaroom.png" width="800" /></kbd>
+***
+
+### Panel użytkownika - Historia transakcji
+<kbd><img src="./images/historia.png" width="800" /></kbd>
+***
+
+### Formularz rejestracji organizatora
+<kbd><img src="./images/oragnizer register.png" width="800" /></kbd>
+***
+
+### Panel organizatora - aktywne wydarzenia
+<kbd><img src="./images/aktywne2.png" width="800" /></kbd>
+***
+
+### Panel organizatora - raporty
+<kbd><img src="./images/raporty.png" width="800" /></kbd>
+***
+
+### Panel organizatora - tworzenie wydarzenia
+<kbd><img src="./images/nowe wydarzenia.png" width="800" /></kbd>
+***
 
 # Uruchomienie projektu
 Aby, uruchomić projekt należy znajdować się w terminalu w odpowiednim folderze(ścieżce) i wywołać komendę '_npm start_'
