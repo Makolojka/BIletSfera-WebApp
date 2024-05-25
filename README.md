@@ -27,11 +27,19 @@ Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 <kbd><img src="./images/wyszukiwanie.png" width="800" /></kbd>
 ***
 
-### Dodawanie biletu do koszyka
+### Detal wydarzenia
+<kbd><img src="./images/detail2.png" width="800" /></kbd>
+***
+
+### Panel użytkownika - Dodawanie biletu do koszyka
 <kbd><img src="./images/add.png" width="800" /></kbd>
 ***
 
-### Wyszukiwanie organizatorów
+### Panel użytkownika - Widok koszyka
+<kbd><img src="./images/koszyk 2.png" width="800" /></kbd>
+***
+
+### Wyszukiwanie artystów
 <kbd><img src="./images/artysty.png" width="800" /></kbd>
 ***
 
@@ -39,7 +47,7 @@ Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 <kbd><img src="./images/cinemaroom.png" width="800" /></kbd>
 ***
 
-### Historia transakcji
+### Panel użytkownika - Historia transakcji
 <kbd><img src="./images/historia.png" width="800" /></kbd>
 ***
 
@@ -49,6 +57,10 @@ Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 
 ### Panel organizatora - aktywne wydarzenia
 <kbd><img src="./images/aktywne2.png" width="800" /></kbd>
+***
+
+### Panel organizatora - raporty
+<kbd><img src="./images/raporty.png" width="800" /></kbd>
 ***
 
 ### Panel organizatora - tworzenie wydarzenia
