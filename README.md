@@ -39,20 +39,16 @@ Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 <kbd><img src="./images/koszyk 2.png" width="800" /></kbd>
 ***
 
-### Wyszukiwanie artystów
-<kbd><img src="./images/artysty.png" width="800" /></kbd>
-***
-
-### Przykładowy szablon kina
-<kbd><img src="./images/cinemaroom.png" width="800" /></kbd>
-***
-
 ### Panel użytkownika - Historia transakcji
 <kbd><img src="./images/historia.png" width="800" /></kbd>
 ***
 
 ### Formularz rejestracji organizatora
 <kbd><img src="./images/oragnizer register.png" width="800" /></kbd>
+***
+
+### Panel organizatora - Przykładowy szablon kina
+<kbd><img src="./images/cinemaroom.png" width="800" /></kbd>
 ***
 
 ### Panel organizatora - aktywne wydarzenia
@@ -65,6 +61,14 @@ Część mobilna: https://github.com/Makolojka/BiletSfera-Mobile
 
 ### Panel organizatora - tworzenie wydarzenia
 <kbd><img src="./images/nowe wydarzenia.png" width="800" /></kbd>
+***
+
+### Panel organizatora - Wyszukiwanie artystów
+<kbd><img src="./images/artysty.png" width="800" /></kbd>
+***
+
+### Panel organizatora - Widok dodawania/usuwania artystów
+<kbd><img src="./images/artysty 3.png" width="800" /></kbd>
 ***
 
 # Uruchomienie projektu
