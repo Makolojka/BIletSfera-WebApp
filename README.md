@@ -1,7 +1,5 @@
 # Aplikacja Serwerowa Systemu Sprzedaży Biletów
 
-***
-
 # Wstęp 
 Aplikacja Webowa dostępna w niniejszym repozytorium jest częścią większego systemu - System Sprzedaży Biletów. Jednocześnie stanowi jego największą i najbardziej rozbudowaną część. Cały system - projekt, implementacja oraz badania były tematem mojej pracy inżynierskiej.
 
